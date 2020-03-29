@@ -5,7 +5,7 @@ function Navi() {
   return (
     <>
       <Navbar bg="light" variant="light">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand href="#home">Chao</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="#home">Profile</Nav.Link>
           <Nav.Link href="#features">About</Nav.Link>
