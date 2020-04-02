@@ -5,6 +5,7 @@ import Navi from "./Navi";
 import Intro from "./Intro";
 import We0mmm from "./We0mmm";
 import NoMatch from "./NoMatch";
+import Covid19 from './Covid19';
 
 export default function MainWeb() {
   return (
@@ -13,7 +14,7 @@ export default function MainWeb() {
 
       <Router>
         <Switch>
-          <Route exact path="/" render={props => <Intro />} />
+          <Route exact path="/" render={props => <Covid19 />} />
           <Route exact path="/we0mmm" render={props => <We0mmm />} />
           <Route component={NoMatch} />
         </Switch>
