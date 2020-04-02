@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
 
-export default Covid19 () {
+export default function Covid19 () {
   return "Covid-19 Updates..."
 }
