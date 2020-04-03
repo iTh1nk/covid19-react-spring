@@ -17,28 +17,45 @@ export default function Covid19() {
   const toggle1 = () => setIsOpen1(!isOpen1);
   const toggle2 = () => setIsOpen2(!isOpen2);
 
-  const regionStyle = {
-    fontWeight: "bolder"
+  const containerStyle = {
+    marginTop: "1em",
+    marginBottom: "1em"
+  };
+
+  const regionTitle = {
+    color: "darkblue"
+  };
+
+  const numConfirmed = {
+    color: "darkred"
+  };
+  const numNew = {
+    color: "red"
+  };
+  const numDead = {
+    color: "grey"
   };
 
   return (
     <>
-      <Container>
+      <Container style={containerStyle}>
         {/* Card for Irvine */}
         <Card>
-          <CardHeader style={regionStyle}>尔湾疫情</CardHeader>
+          <CardHeader>
+            <h5 style={regionTitle}>尔湾疫情</h5>
+          </CardHeader>
           <CardBody>
             <Table light>
-              <thead style={{textAlign: "center"}}>
+              <thead style={{ textAlign: "center" }}>
                 <tr>
-                  <th>累计确诊</th>
-                  <th>今日新增</th>
+                  <th style={numConfirmed}>累计确诊</th>
+                  <th style={numNew}>今日新增</th>
                 </tr>
               </thead>
-              <tbody style={{textAlign: "center"}}>
+              <tbody style={{ textAlign: "center" }}>
                 <tr>
-                  <td>65</td>
-                  <td>+8</td>
+                  <td style={numConfirmed}>65</td>
+                  <td style={numNew}>+8</td>
                 </tr>
               </tbody>
             </Table>
@@ -54,9 +71,7 @@ export default function Covid19() {
             {/* Toggle Content for Irvine */}
             <Collapse isOpen={isOpen}>
               <Card>
-                <CardBody>
-                  麦速更新中......
-                </CardBody>
+                <CardBody>麦速更新中......</CardBody>
               </Card>
             </Collapse>
           </CardBody>
@@ -65,21 +80,23 @@ export default function Covid19() {
         <hr />
         {/* Card for OC */}
         <Card>
-          <CardHeader style={regionStyle}>橙县疫情</CardHeader>
+          <CardHeader>
+            <h5 style={regionTitle}>橙县疫情</h5>
+          </CardHeader>
           <CardBody>
             <Table light>
-              <thead style={{textAlign: "center"}}>
+              <thead style={{ textAlign: "center" }}>
                 <tr>
-                  <th>累计确诊</th>
-                  <th>今日新增</th>
-                  <th>累计死亡</th>
+                  <th style={numConfirmed}>累计确诊</th>
+                  <th style={numNew}>今日新增</th>
+                  <th style={numDead}>累计死亡</th>
                 </tr>
               </thead>
-              <tbody style={{textAlign: "center"}}>
+              <tbody style={{ textAlign: "center" }}>
                 <tr>
-                  <td>656</td>
-                  <td>56</td>
-                  <td>13</td>
+                  <td style={numConfirmed}>656</td>
+                  <td style={numNew}>+56</td>
+                  <td style={numDead}>13</td>
                 </tr>
               </tbody>
             </Table>
@@ -95,9 +112,7 @@ export default function Covid19() {
             {/* Toggle Content for OC */}
             <Collapse isOpen={isOpen1}>
               <Card>
-                <CardBody>
-                  麦速更新中......
-                </CardBody>
+                <CardBody>麦速更新中......</CardBody>
               </Card>
             </Collapse>
           </CardBody>
@@ -106,21 +121,23 @@ export default function Covid19() {
         <hr />
         {/* Card for US */}
         <Card>
-          <CardHeader style={regionStyle}>全美疫情</CardHeader>
+          <CardHeader>
+            <h5 style={regionTitle}>全美疫情</h5>
+          </CardHeader>
           <CardBody>
             <Table light>
-              <thead style={{textAlign: "center"}}>
+              <thead style={{ textAlign: "center" }}>
                 <tr>
-                  <th>累计确诊</th>
-                  <th>今日新增</th>
-                  <th>累计死亡</th>
+                  <th style={numConfirmed}>累计确诊</th>
+                  <th style={numNew}>今日新增</th>
+                  <th style={numDead}>累计死亡</th>
                 </tr>
               </thead>
-              <tbody style={{textAlign: "center"}}>
+              <tbody style={{ textAlign: "center" }}>
                 <tr>
-                  <td>240,000+</td>
-                  <td>27,000</td>
-                  <td>6,000+</td>
+                  <td style={numConfirmed}>240,000+</td>
+                  <td style={numNew}>+27,000</td>
+                  <td style={numDead}>6,000+</td>
                 </tr>
               </tbody>
             </Table>
@@ -136,15 +153,12 @@ export default function Covid19() {
             {/* Toggle Content for US */}
             <Collapse isOpen={isOpen2}>
               <Card>
-                <CardBody>
-                  麦速更新中......
-                </CardBody>
+                <CardBody>麦速更新中......</CardBody>
               </Card>
             </Collapse>
           </CardBody>
           {/* <CardFooter></CardFooter> */}
         </Card>
-        <hr />
       </Container>
     </>
   );
