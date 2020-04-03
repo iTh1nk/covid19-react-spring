@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Select from "react-select";
+// import Select from "react-select";
 import { Collapse, Button, CardBody, Card } from "reactstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -47,12 +47,12 @@ function SelectInt(props) {
       >
         <Card>
           <CardBody>
-            <Select
+            {/* <Select
               value={selectedOptionCountry}
               onChange={handleChangeCountry}
               options={options}
               placeholder="请下拉选择或手动输入英文国家名..."
-            />
+            /> */}
             <br />
             <span>疫情日期: </span>
             <DatePicker
