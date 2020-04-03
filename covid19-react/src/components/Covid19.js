@@ -8,6 +8,7 @@ import {
   Collapse,
   Table
 } from "reactstrap";
+import dataIrvine from "../data/dataIrvine.json";
 
 export default function Covid19() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +36,10 @@ export default function Covid19() {
   const numDead = {
     color: "grey"
   };
+  const dateStyle = {
+    fontStyle: "italic",
+    color: "grey"
+  }
 
   return (
     <>
@@ -71,7 +76,26 @@ export default function Covid19() {
             {/* Toggle Content for Irvine */}
             <Collapse isOpen={isOpen}>
               <Card>
-                <CardBody>麦速更新中......</CardBody>
+                <CardBody>
+                  <Table light borderless>
+                    <thead style={{ textAlign: "center" }}>
+                      <tr>
+                        <th>日期</th>
+                        <th style={numConfirmed}>当日累计</th>
+                        <th style={numNew}>当日新增</th>
+                      </tr>
+                    </thead>
+                    <tbody style={{ textAlign: "center" }}>
+                      {dataIrvine.map((item, index) => (
+                        <tr key={index}>
+                          <td style={dateStyle}>{item.date}</td>
+                          <td style={numConfirmed}>{item.confirmed}</td>
+                          <td style={numNew}>+{item.new}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </CardBody>
               </Card>
             </Collapse>
           </CardBody>
