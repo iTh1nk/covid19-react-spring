@@ -66,14 +66,19 @@ export default function Covid19() {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "12em"
+    height: "8em"
   };
 
   if (isLoading) {
     return (
-      <div style={loadingStyle}>
-        <Loading />
-      </div>
+      <>
+        <div style={loadingStyle}>
+          载入中...
+        </div>
+        <div style={loadingStyle}>
+          <Loading />
+        </div>
+      </>
     );
   }
 
