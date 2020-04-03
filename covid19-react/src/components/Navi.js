@@ -1,5 +1,5 @@
 import React from "react";
-import { NavbarBrand, Navbar } from "reactstrap";
+import { NavbarBrand, Navbar, NavbarText } from "reactstrap";
 
 function Navi() {
   return (
@@ -8,6 +8,7 @@ function Navi() {
         <NavbarBrand href="/" className="text-md-center">
           麦报
         </NavbarBrand>
+        <NavbarText>(更新于当地时间17:30 - 04.02)</NavbarText>
       </Navbar>
     </>
   );
