@@ -1,8 +1,13 @@
 [
   {
-    "date": "04-02",
+    "date": "04-03",
     "confirmed": 69,
     "new": 4
+  },
+  {
+    "date": "04-02",
+    "confirmed": 65,
+    "new": 8
   },
   {
     "date": "04-01",
