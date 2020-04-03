@@ -144,6 +144,7 @@ export default function Covid19() {
           </CardBody>
           {/* <CardFooter></CardFooter> */}
         </Card>
+        <hr />
       </Container>
     </>
   );
