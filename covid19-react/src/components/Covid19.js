@@ -151,7 +151,7 @@ export default function Covid19() {
                     <thead style={{ textAlign: "center" }}>
                       <tr>
                         <th>日期</th>
-                        <th style={numConfirmed}>当日累计确诊<span style={numDead}>(死亡)</span></th>
+                        <th style={numConfirmed}>当日累计确诊</th>
                         <th style={numNew}>当日新增</th>
                       </tr>
                     </thead>
@@ -159,7 +159,7 @@ export default function Covid19() {
                       {dataOC.map((item, index) => (
                         <tr key={index}>
                           <td style={dateStyle}>{item.date}</td>
-                          <td style={numConfirmed}>{item.confirmed}<span style={numDead}>({item.deaths})</span></td>
+                          <td style={numConfirmed}>{item.confirmed}</td>
                           <td style={numNew}>+{item.new}</td>
                         </tr>
                       ))}
