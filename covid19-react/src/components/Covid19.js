@@ -85,8 +85,6 @@ export default function Covid19() {
   return (
     <>
       <Container style={containerStyle}>
-
-      <Loading />
         {/* *********************************************************************************** */}
         {/* Card for Irvine */}
         <Card>
