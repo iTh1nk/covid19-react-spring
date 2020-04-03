@@ -191,8 +191,8 @@ export default function Covid19() {
               </thead>
               <tbody style={{ textAlign: "center" }}>
                 <tr>
-                  <td style={numConfirmed}>240,000+</td>
-                  <td style={numNew}>+27,000</td>
+                  <td style={numConfirmed}>245,000+</td>
+                  <td style={numNew}>+28,000</td>
                   <td style={numDead}>6,000+</td>
                 </tr>
               </tbody>

@@ -10,7 +10,7 @@ function Navi() {
           <h1 style={{ color: "darkblue" }}>麦报</h1>
         </NavbarBrand>
         <NavbarText>
-          (更新于当地时间04-02, 17:30)
+          (更新于 04-02, 20:30)
         </NavbarText>
       </Navbar>
     </>
