@@ -9,6 +9,8 @@ import {
   Table
 } from "reactstrap";
 import dataIrvine from "../data/dataIrvine.json";
+import dataOC from "../data/dataOC.json";
+import Moment from "react-moment";
 
 export default function Covid19() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +19,8 @@ export default function Covid19() {
   const toggle = () => setIsOpen(!isOpen);
   const toggle1 = () => setIsOpen1(!isOpen1);
   const toggle2 = () => setIsOpen2(!isOpen2);
+
+  const date = new Date();
 
   const containerStyle = {
     marginTop: "1em",
@@ -39,18 +43,21 @@ export default function Covid19() {
   const dateStyle = {
     fontStyle: "italic",
     color: "grey"
-  }
+  };
 
   return (
     <>
       <Container style={containerStyle}>
+        {/* *********************************************************************************** */}
         {/* Card for Irvine */}
         <Card>
           <CardHeader>
-            <h5 style={regionTitle}>尔湾疫情</h5>
+            <h5 style={regionTitle}>
+              尔湾疫情 (<Moment format="MM-DD">{date}</Moment>)
+            </h5>
           </CardHeader>
           <CardBody>
-            <Table light>
+            <Table>
               <thead style={{ textAlign: "center" }}>
                 <tr>
                   <th style={numConfirmed}>累计确诊</th>
@@ -59,8 +66,8 @@ export default function Covid19() {
               </thead>
               <tbody style={{ textAlign: "center" }}>
                 <tr>
-                  <td style={numConfirmed}>65</td>
-                  <td style={numNew}>+8</td>
+                  <td style={numConfirmed}>{dataIrvine[0].confirmed}</td>
+                  <td style={numNew}>+{dataIrvine[0].new}</td>
                 </tr>
               </tbody>
             </Table>
@@ -77,7 +84,7 @@ export default function Covid19() {
             <Collapse isOpen={isOpen}>
               <Card>
                 <CardBody>
-                  <Table light borderless>
+                  <Table borderless>
                     <thead style={{ textAlign: "center" }}>
                       <tr>
                         <th>日期</th>
@@ -101,14 +108,17 @@ export default function Covid19() {
           </CardBody>
           {/* <CardFooter></CardFooter> */}
         </Card>
-        <hr />
+        <br />
+        {/* *********************************************************************************** */}
         {/* Card for OC */}
         <Card>
           <CardHeader>
-            <h5 style={regionTitle}>橙县疫情</h5>
+            <h5 style={regionTitle}>
+              橙县疫情(<Moment format="MM-DD">{date}</Moment>)
+            </h5>
           </CardHeader>
           <CardBody>
-            <Table light>
+            <Table>
               <thead style={{ textAlign: "center" }}>
                 <tr>
                   <th style={numConfirmed}>累计确诊</th>
@@ -136,20 +146,44 @@ export default function Covid19() {
             {/* Toggle Content for OC */}
             <Collapse isOpen={isOpen1}>
               <Card>
-                <CardBody>麦速更新中......</CardBody>
+                <CardBody>
+                  <Table borderless>
+                    <thead style={{ textAlign: "center" }}>
+                      <tr>
+                        <th>日期</th>
+                        <th style={numConfirmed}>当日累计确诊</th>
+                        <th style={numNew}>当日新增</th>
+                        <th style={numDead}>当日累计死亡</th>
+                      </tr>
+                    </thead>
+                    <tbody style={{ textAlign: "center" }}>
+                      {dataOC.map((item, index) => (
+                        <tr key={index}>
+                          <td style={dateStyle}>{item.date}</td>
+                          <td style={numConfirmed}>{item.confirmed}</td>
+                          <td style={numNew}>+{item.new}</td>
+                          <td style={numDead}>{item.deaths}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </CardBody>
               </Card>
             </Collapse>
           </CardBody>
           {/* <CardFooter></CardFooter> */}
         </Card>
-        <hr />
+        <br />
+        {/* *********************************************************************************** */}
         {/* Card for US */}
         <Card>
           <CardHeader>
-            <h5 style={regionTitle}>全美疫情</h5>
+            <h5 style={regionTitle}>
+              全美疫情(<Moment format="MM-DD">{date}</Moment>)
+            </h5>
           </CardHeader>
           <CardBody>
-            <Table light>
+            <Table>
               <thead style={{ textAlign: "center" }}>
                 <tr>
                   <th style={numConfirmed}>累计确诊</th>

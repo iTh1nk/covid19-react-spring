@@ -7,12 +7,7 @@ import MainWeb from "./components/MainWeb";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <MainWeb />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+ReactDOM.render(<MainWeb />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
