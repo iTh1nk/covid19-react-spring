@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Navi from "./Navi";
@@ -8,9 +8,11 @@ import NoMatch from "./NoMatch";
 import Covid19 from './Covid19';
 
 export default function MainWeb() {
+  const [toggleSearch, setToggleSearch] = useState(false);
+
   return (
     <>
-      <Navi />
+      <Navi value={{toggleSearch, setToggleSearch}} />
 
       <Router>
         <Switch>

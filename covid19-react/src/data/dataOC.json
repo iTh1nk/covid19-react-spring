@@ -1,5 +1,11 @@
 [
   {
+    "date": "04-03",
+    "confirmed": 711,
+    "new": 57,
+    "deaths": 13
+  },
+  {
     "date": "04-02",
     "confirmed": 656,
     "new": 56,

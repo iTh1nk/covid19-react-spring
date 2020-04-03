@@ -25,7 +25,7 @@ function SelectInt(props) {
   const onExiting = () => setStatus("Closing...");
   const onExited = () => setStatus("Closed");
   const toggle = () => setCollapse(!collapse);
-  
+
   const options = [
     { value: "china", label: "China" },
     { value: "us", label: "US" },
