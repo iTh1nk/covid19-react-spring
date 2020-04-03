@@ -59,9 +59,9 @@ function SelectInt(props) {
               selected={startDate}
               onChange={handleChangeDatePicker}
             />
-            {/* <br /><br />
-            已选国家: {[selectedOptionCountry][0].label}, 疫情日期:  */}
-            {/* {console.log([props][0].confirmed)} */}
+            <br /><br />
+            {/* 已选国家: {[selectedOptionCountry][0].label} */}
+            {[props][0].data.US[0].confirmed}
           </CardBody>
         </Card>
         <br />

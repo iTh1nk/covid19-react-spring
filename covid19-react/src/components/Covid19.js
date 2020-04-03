@@ -17,14 +17,16 @@ import Axios from "axios";
 import SelectInt from "./SelectInt";
 
 export default function Covid19() {
+  const [dataUS, setDataUS] = useState([]);
+  const [dataWorld, setDataWorld] = useState([]);
+
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2);
     Axios.get("https://pomber.github.io/covid19/timeseries.json")
       .then(resp => {
+        setDataWorld(resp.data);
         setDataUS(resp.data.US.reverse());
         console.log(resp.data.US);
+        setIsLoading(false);
       })
       .catch(err => {
         console.log(err);
@@ -38,7 +40,9 @@ export default function Covid19() {
     if (num == dataUS.length - 1) {
       return dataUS[parseInt(num)].confirmed;
     } else {
-      return dataUS[parseInt(num)].confirmed - dataUS[parseInt(num) + 1].confirmed;
+      return (
+        dataUS[parseInt(num)].confirmed - dataUS[parseInt(num) + 1].confirmed
+      );
     }
   };
   const formatDate = str => {
@@ -52,7 +56,6 @@ export default function Covid19() {
   const toggle1 = () => setIsOpen1(!isOpen1);
   const toggle2 = () => setIsOpen2(!isOpen2);
   const [isLoading, setIsLoading] = useState(true);
-  const [dataUS, setDataUS] = useState([]);
 
   const date = new Date();
 
@@ -109,7 +112,7 @@ export default function Covid19() {
   return (
     <>
       <Container style={containerStyle}>
-        <SelectInt />
+        <SelectInt data={dataWorld} />
         {/* *********************************************************************************** */}
         {/* Card for Irvine */}
         <Card>
