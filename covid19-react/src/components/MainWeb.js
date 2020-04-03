@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Navi from "./Navi";
-import Intro from "./Intro";
+// import Intro from "./Intro";
 import We0mmm from "./We0mmm";
 import NoMatch from "./NoMatch";
 import Covid19 from './Covid19';
