@@ -151,7 +151,7 @@ export default function Covid19() {
                     <thead style={{ textAlign: "center" }}>
                       <tr>
                         <th>日期</th>
-                        <th style={numConfirmed}>当日累计确诊</th>
+                        <th style={numConfirmed}>当日累计</th>
                         <th style={numNew}>当日新增</th>
                       </tr>
                     </thead>
