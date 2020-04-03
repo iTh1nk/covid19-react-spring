@@ -5,12 +5,6 @@ import { Collapse, Button, CardBody, Card } from "reactstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const options = [
-  { value: "china", label: "China" },
-  { value: "us", label: "US" },
-  { value: "italy", label: "Italy" }
-];
-
 function SelectInt(props) {
   const [selectedOptionCountry, setSelectedOptionCountry] = useState([]);
   const handleChangeCountry = selectedOptionCountry => {
@@ -31,6 +25,12 @@ function SelectInt(props) {
   const onExiting = () => setStatus("Closing...");
   const onExited = () => setStatus("Closed");
   const toggle = () => setCollapse(!collapse);
+  
+  const options = [
+    { value: "china", label: "China" },
+    { value: "us", label: "US" },
+    { value: "italy", label: "Italy" }
+  ];
 
   return (
     <div>

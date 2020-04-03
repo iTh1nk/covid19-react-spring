@@ -10,7 +10,7 @@ function Navi() {
           <h1 style={{ color: "darkblue" }}>麦报</h1>
         </NavbarBrand>
         <NavbarText>
-          <span style={{fontStyle: "italic"}}>(更新于 04-02, 20:30)</span>
+          <span style={{fontStyle: "italic"}}></span>
         </NavbarText>
       </Navbar>
     </>

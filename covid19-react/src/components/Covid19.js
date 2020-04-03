@@ -117,7 +117,7 @@ export default function Covid19() {
         {/* Card for Irvine */}
         <Card>
           <CardHeader>
-            <h5 style={regionTitle}>尔湾疫情(手动) ({dataIrvine[0].date})</h5>
+            <h5 style={regionTitle}>尔湾疫情 ({dataIrvine[0].date})</h5>
           </CardHeader>
           <CardBody>
             <Table>
@@ -176,7 +176,7 @@ export default function Covid19() {
         {/* Card for OC */}
         <Card>
           <CardHeader>
-            <h5 style={regionTitle}>橙县疫情(手动)({dataOC[0].date})</h5>
+            <h5 style={regionTitle}>橙县疫情({dataOC[0].date})</h5>
           </CardHeader>
           <CardBody>
             <Table>
@@ -238,7 +238,8 @@ export default function Covid19() {
         <Card>
           <CardHeader>
             <h5 style={regionTitle}>
-              全美疫情(实时) (<Moment format="MM-DD">{date}</Moment>)
+              全美疫情 ({dataUS[0].date})
+              {/* (<Moment format="MM-DD">{date}</Moment>) */}
             </h5>
           </CardHeader>
           <CardBody>
@@ -254,7 +255,7 @@ export default function Covid19() {
                 <tr>
                   <td style={numConfirmed}>{dataUS[0].confirmed}</td>
                   <td style={numNew}>
-                    {numNewUS(dataUS[0].confirmed, dataUS[1].confirmed)}
+                    +{numNewUS(dataUS[0].confirmed, dataUS[1].confirmed)}
                   </td>
                   <td style={numDead}>{dataUS[0].deaths}</td>
                 </tr>
