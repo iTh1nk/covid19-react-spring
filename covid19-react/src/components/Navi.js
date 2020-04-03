@@ -14,7 +14,7 @@ function Navi() {
         </NavbarBrand>
         <NavbarText>
           (更新于当地时间04-02, 17:30)
-          (<Moment format="MM-DD, HH:mm">{date}</Moment>)
+          {/* (<Moment format="MM-DD, HH:mm">{date}</Moment>) */}
         </NavbarText>
       </Navbar>
     </>
