@@ -53,7 +53,9 @@ export default function Covid19() {
         <Card>
           <CardHeader>
             <h5 style={regionTitle}>
-              尔湾疫情 (<Moment format="MM-DD">{date}</Moment>)
+              尔湾疫情
+              {/* (<Moment format="MM-DD">{date}</Moment>) */}(
+              {dataIrvine[0].date})
             </h5>
           </CardHeader>
           <CardBody>
@@ -114,7 +116,8 @@ export default function Covid19() {
         <Card>
           <CardHeader>
             <h5 style={regionTitle}>
-              橙县疫情(<Moment format="MM-DD">{date}</Moment>)
+              橙县疫情
+              {/* (<Moment format="MM-DD">{date}</Moment>) */}({dataOC[0].date})
             </h5>
           </CardHeader>
           <CardBody>
@@ -177,7 +180,9 @@ export default function Covid19() {
         <Card>
           <CardHeader>
             <h5 style={regionTitle}>
-              全美疫情(<Moment format="MM-DD">{date}</Moment>)
+              全美疫情
+              {/* (<Moment format="MM-DD">{date}</Moment>) */}(
+              {dataIrvine[0].date})
             </h5>
           </CardHeader>
           <CardBody>
