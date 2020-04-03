@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Card,
@@ -6,7 +6,8 @@ import {
   CardBody,
   Button,
   Collapse,
-  Table
+  Table,
+  Spinner
 } from "reactstrap";
 import dataIrvine from "../data/dataIrvine.json";
 import dataOC from "../data/dataOC.json";
@@ -19,8 +20,25 @@ export default function Covid19() {
   const toggle = () => setIsOpen(!isOpen);
   const toggle1 = () => setIsOpen1(!isOpen1);
   const toggle2 = () => setIsOpen2(!isOpen2);
+  const [isLoading, setIsLoading] = useState(true);
 
   const date = new Date();
+
+  const Loading = () => {
+    return (
+      <div>
+        <Spinner type="grow" color="danger" />
+        <Spinner type="grow" color="warning" />
+        <Spinner type="grow" color="primary" />
+      </div>
+    );
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
   const containerStyle = {
     marginTop: "1em",
@@ -44,6 +62,20 @@ export default function Covid19() {
     fontStyle: "italic",
     color: "grey"
   };
+  const loadingStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "12em"
+  };
+
+  if (isLoading) {
+    return (
+      <div style={loadingStyle}>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <>
