@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from "react";
 
 import Select from "react-select";
-import { Collapse, Button, CardBody, Card } from "reactstrap";
+import { Collapse, Button, CardBody, Card, Table } from "reactstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Moment from "react-moment";
+import moment from "moment";
 
 function SelectInt(props) {
+  // const dateMoment = () => {
+  //   return moment({ startDate })
+  //     .subtract(1, "day")
+  //     .format("YYYY-M-D");
+  // };
+
   useEffect(() => {
     setCollapse(props.toggle);
-  })
+  });
 
   const [selectedOptionCountry, setSelectedOptionCountry] = useState([]);
   const handleChangeCountry = selectedOptionCountry => {
@@ -17,23 +25,54 @@ function SelectInt(props) {
   };
 
   const [startDate, setStartDate] = useState(new Date());
-  const handleChangeDatePicker = date => {
-    setStartDate(date);
-  };
 
-  const [collapse, setCollapse] = useState(false);
+  const [selectedData, setSelectedData] = useState("");
+
+  const [collapse, setCollapse] = useState(true);
   const [status, setStatus] = useState("Closed");
 
   const onEntering = () => setStatus("Opening...");
   const onEntered = () => setStatus("Opened");
   const onExiting = () => setStatus("Closing...");
   const onExited = () => setStatus("Closed");
-  const toggle = () => setCollapse(!collapse);
+  // const toggle = () => setCollapse(!collapse);
+
+  const ShowSelectData = () => {
+    return (
+      <div>
+        {props.data.US.map((item, index) => (
+          <div key={index}>
+            {item.date ==
+            moment({ startDate })
+              .subtract(1, "day")
+              .format("YYYY-M-D") ? (
+              <Table>
+                <thead style={{ textAlign: "center" }}>
+                  <tr>
+                    <th>日期</th>
+                    <th>累计确诊</th>
+                    <th>累计死亡</th>
+                  </tr>
+                </thead>
+                <tbody style={{ textAlign: "center" }}>
+                  <tr>
+                    <td>{item.date}</td>
+                    <td>{item.confirmed}</td>
+                    <td>{item.deaths}</td>
+                  </tr>
+                </tbody>
+              </Table>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   const options = [
-    { value: "china", label: "China" },
-    { value: "us", label: "US" },
-    { value: "italy", label: "Italy" }
+    { value: "China", label: "China" },
+    { value: "US", label: "US" },
+    { value: "Italy", label: "Italy" }
   ];
 
   return (
@@ -42,6 +81,7 @@ function SelectInt(props) {
         点击进入麦搜索(该功能麦速更新中...)
       </Button> */}
       {/* <h5>Current state: {status}</h5> */}
+      {/* <Moment format="YYYY-M-D">{startDate}</Moment> */}
       <Collapse
         isOpen={collapse}
         onEntering={onEntering}
@@ -61,11 +101,27 @@ function SelectInt(props) {
             <span>疫情日期: </span>
             <DatePicker
               selected={startDate}
-              onChange={handleChangeDatePicker}
+              onChange={date => {
+                setStartDate(date);
+              }}
+              dateFormat="yyyy-M-d"
+              showYearDropdown
             />
-            <br /><br />
-            {/* 已选国家: {[selectedOptionCountry][0].label} */}
-            {[props][0].data.US[0].confirmed}
+            <br />
+            <br />
+            {selectedOptionCountry == ""
+              ? "请选择国家..."
+              : "已选择国家: " + selectedOptionCountry.value}
+            <br />
+            <br />
+            {/* {console.log([props.data])} */}
+            <ShowSelectData />
+            {/* {selectedOptionCountry == ""
+              ? ""
+              : "疫情: " + setSelectedData(props.data.US[0].confirmed)}
+            <br />
+            <br />
+            {selectedData} */}
           </CardBody>
         </Card>
         <br />
