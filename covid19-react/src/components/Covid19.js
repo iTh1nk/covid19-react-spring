@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Container,
   Card,
@@ -15,10 +15,12 @@ import Moment from "react-moment";
 // import usDate from "https://pomber.github.io/covid19/timeseries.json";
 import Axios from "axios";
 import SelectInt from "./SelectInt";
+import { AssignContext } from "./AssignContext";
 
 export default function Covid19() {
   const [dataUS, setDataUS] = useState([]);
   const [dataWorld, setDataWorld] = useState([]);
+  const { toggleSearch, setToggleSearch } = useContext(AssignContext);
 
   useEffect(() => {
     Axios.get("https://pomber.github.io/covid19/timeseries.json")
@@ -112,7 +114,7 @@ export default function Covid19() {
   return (
     <>
       <Container style={containerStyle}>
-        <SelectInt data={dataWorld} />
+        <SelectInt data={dataWorld} toggle={toggleSearch} />
         {/* *********************************************************************************** */}
         {/* Card for Irvine */}
         <Card>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Select from "react-select";
 import { Collapse, Button, CardBody, Card } from "reactstrap";
@@ -6,6 +6,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function SelectInt(props) {
+  useEffect(() => {
+    setCollapse(props.toggle);
+  })
+
   const [selectedOptionCountry, setSelectedOptionCountry] = useState([]);
   const handleChangeCountry = selectedOptionCountry => {
     setSelectedOptionCountry(selectedOptionCountry);
@@ -34,9 +38,9 @@ function SelectInt(props) {
 
   return (
     <div>
-      <Button color="primary" onClick={toggle} style={{ marginBottom: "1rem" }}>
+      {/* <Button color="primary" style={{ marginBottom: "1rem" }}>
         点击进入麦搜索(该功能麦速更新中...)
-      </Button>
+      </Button> */}
       {/* <h5>Current state: {status}</h5> */}
       <Collapse
         isOpen={collapse}
