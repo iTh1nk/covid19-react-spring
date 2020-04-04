@@ -70,9 +70,9 @@ function SelectInt(props) {
   };
 
   const options = [
-    { value: "China", label: "China" },
-    { value: "US", label: "US" },
-    { value: "Italy", label: "Italy" }
+    { value: "China", label: "中国(China)" },
+    { value: "US", label: "美国(US)" },
+    { value: "Italy", label: "意大利(Italy)" }
   ];
 
   return (
@@ -95,7 +95,7 @@ function SelectInt(props) {
               value={selectedOptionCountry}
               onChange={handleChangeCountry}
               options={options}
-              placeholder="请下拉选择或手动输入英文国家名..."
+              placeholder="请下拉选择或手动输入国家名..."
             />
             <br />
             <span>疫情日期: </span>
@@ -111,11 +111,14 @@ function SelectInt(props) {
             <br />
             {selectedOptionCountry == ""
               ? "请选择国家..."
-              : "已选择国家: " + selectedOptionCountry.value}
+              : "已选择国家: " + selectedOptionCountry.label}
+            <br />
+            <br />
+            {selectedOptionCountry == "" ? null : <ShowSelectData />}
+            {/* <ShowSelectData /> */}
             <br />
             <br />
             {/* {console.log([props.data])} */}
-            <ShowSelectData />
             {/* {selectedOptionCountry == ""
               ? ""
               : "疫情: " + setSelectedData(props.data.US[0].confirmed)}
