@@ -49,42 +49,105 @@ function SelectInt(props) {
 
   const ShowSelectData = () => {
     if (selectedOptionCountry == "") {
-      return (<div style={{color: "red"}}>请选择国家...</div>);
+      return <div style={{ color: "red" }}>请选择国家...</div>;
     } else if (moment(new Date()).diff(startDate) < 0) {
       return <div style={{ color: "red" }}>当前日期无数据</div>;
+    } else if (selectedOptionCountry.value == "US") {
+      return (
+        <div>
+          {props.data.US.map((item, index) => (
+            <div key={index}>
+              {item.date ==
+              moment(startDate)
+                // .subtract(1, "day")
+                .format("YYYY-M-D") ? (
+                <Table>
+                  <thead style={{ textAlign: "center" }}>
+                    <tr>
+                      <th>日期</th>
+                      <th style={{ color: "darkred" }}>累计确诊</th>
+                      <th style={{ color: "grey" }}>累计死亡</th>
+                    </tr>
+                  </thead>
+                  <tbody style={{ textAlign: "center" }}>
+                    <tr>
+                      <td>{item.date}</td>
+                      <td style={{ color: "darkred" }}>{item.confirmed}</td>
+                      <td style={{ color: "grey" }}>{item.deaths}</td>
+                    </tr>
+                  </tbody>
+                </Table>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      );
+    } else if (selectedOptionCountry.value == "Italy") {
+      return (
+        <div>
+          {props.data.Italy.map((item, index) => (
+            <div key={index}>
+              {item.date ==
+              moment(startDate)
+                // .subtract(1, "day")
+                .format("YYYY-M-D") ? (
+                <Table>
+                  <thead style={{ textAlign: "center" }}>
+                    <tr>
+                      <th>日期</th>
+                      <th style={{ color: "darkred" }}>累计确诊</th>
+                      <th style={{ color: "grey" }}>累计死亡</th>
+                    </tr>
+                  </thead>
+                  <tbody style={{ textAlign: "center" }}>
+                    <tr>
+                      <td>{item.date}</td>
+                      <td style={{ color: "darkred" }}>{item.confirmed}</td>
+                      <td style={{ color: "grey" }}>{item.deaths}</td>
+                    </tr>
+                  </tbody>
+                </Table>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      );
+    } else if (selectedOptionCountry.value == "China") {
+      return (
+        <div>
+          {props.data.China.map((item, index) => (
+            <div key={index}>
+              {item.date ==
+              moment(startDate)
+                // .subtract(1, "day")
+                .format("YYYY-M-D") ? (
+                <Table>
+                  <thead style={{ textAlign: "center" }}>
+                    <tr>
+                      <th>日期</th>
+                      <th style={{ color: "darkred" }}>累计确诊</th>
+                      <th style={{ color: "grey" }}>累计死亡</th>
+                    </tr>
+                  </thead>
+                  <tbody style={{ textAlign: "center" }}>
+                    <tr>
+                      <td>{item.date}</td>
+                      <td style={{ color: "darkred" }}>{item.confirmed}</td>
+                      <td style={{ color: "grey" }}>{item.deaths}</td>
+                    </tr>
+                  </tbody>
+                </Table>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      );
+    } else {
+      return "Ugh";
     }
-    return (
-      <div>
-        {props.data.US.map((item, index) => (
-          <div key={index}>
-            {item.date ==
-            moment(startDate)
-              // .subtract(1, "day")
-              .format("YYYY-M-D") ? (
-              <Table>
-                <thead style={{ textAlign: "center" }}>
-                  <tr>
-                    <th>日期</th>
-                    <th style={{ color: "darkred" }}>累计确诊</th>
-                    <th style={{ color: "grey" }}>累计死亡</th>
-                  </tr>
-                </thead>
-                <tbody style={{ textAlign: "center" }}>
-                  <tr>
-                    <td>{item.date}</td>
-                    <td style={{ color: "darkred" }}>{item.confirmed}</td>
-                    <td style={{ color: "grey" }}>{item.deaths}</td>
-                  </tr>
-                </tbody>
-              </Table>
-            ) : null}
-          </div>
-        ))}
-      </div>
-    );
   };
 
-  const handleReset = (e) => {
+  const handleReset = e => {
     e.preventDefault();
     setStartDate(new Date());
     setSelectedOptionCountry([]);
