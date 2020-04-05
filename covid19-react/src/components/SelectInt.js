@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useReducer } from "react";
 
 import Select from "react-select";
 import { Collapse, Button, CardBody, Card, Table } from "reactstrap";
@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Moment from "react-moment";
 import moment from "moment";
+import { AssignContext } from "./AssignContext";
 
 function SelectInt(props) {
   // const dateMoment = () => {
@@ -26,15 +27,24 @@ function SelectInt(props) {
 
   const [startDate, setStartDate] = useState(new Date());
 
-  const [selectedData, setSelectedData] = useState("");
-
   const [collapse, setCollapse] = useState(true);
-  const [status, setStatus] = useState("Closed");
+  const { toggleStatus, setToggleStatus } = useContext(AssignContext);
 
-  const onEntering = () => setStatus("Opening...");
-  const onEntered = () => setStatus("Opened");
-  const onExiting = () => setStatus("Closing...");
-  const onExited = () => setStatus("Closed");
+  const [selectedData, dispatch] = useReducer(
+    selectedDataReducer,
+    "Waiting for data..."
+  );
+  function selectedDataReducer(state, action) {
+    switch (action.type) {
+      case "US":
+        return;
+    }
+  }
+
+  const onEntering = () => setToggleStatus("展开...");
+  const onEntered = () => setToggleStatus("关闭");
+  const onExiting = () => setToggleStatus("关闭...");
+  const onExited = () => setToggleStatus("展开");
   // const toggle = () => setCollapse(!collapse);
 
   const ShowSelectData = () => {
@@ -43,8 +53,8 @@ function SelectInt(props) {
         {props.data.US.map((item, index) => (
           <div key={index}>
             {item.date ==
-            moment({ startDate })
-              .subtract(1, "day")
+            moment(startDate)
+              // .subtract(1, "day")
               .format("YYYY-M-D") ? (
               <Table>
                 <thead style={{ textAlign: "center" }}>
@@ -77,10 +87,6 @@ function SelectInt(props) {
 
   return (
     <div>
-      {/* <Button color="primary" style={{ marginBottom: "1rem" }}>
-        点击进入麦搜索(该功能麦速更新中...)
-      </Button> */}
-      {/* <h5>Current state: {status}</h5> */}
       {/* <Moment format="YYYY-M-D">{startDate}</Moment> */}
       <Collapse
         isOpen={collapse}
@@ -106,25 +112,30 @@ function SelectInt(props) {
               }}
               dateFormat="yyyy-M-d"
               showYearDropdown
+              // openToDate={new Date("2020/01/22")}
             />
-            <br />
-            <br />
-            {selectedOptionCountry == ""
-              ? "请选择国家..."
-              : "已选择国家: " + selectedOptionCountry.label}
-            <br />
-            <br />
-            {selectedOptionCountry == "" ? null : <ShowSelectData />}
-            {/* <ShowSelectData /> */}
-            <br />
-            <br />
-            {/* {console.log([props.data])} */}
-            {/* {selectedOptionCountry == ""
-              ? ""
-              : "疫情: " + setSelectedData(props.data.US[0].confirmed)}
-            <br />
-            <br />
-            {selectedData} */}
+            {selectedOptionCountry == "" ? null : (
+              <div style={{ marginTop: "1em" }}>
+                <Button color="secondary" size="sm" outline>
+                  重置
+                </Button>
+              </div>
+            )}
+            {selectedOptionCountry == "" ? (
+              <div style={{ marginTop: "1em" }}>请选择国家...</div>
+            ) : (
+              <div style={{ marginTop: "1em" }}>
+                已选择国家: {selectedOptionCountry.label}
+              </div>
+            )}
+            {moment(startDate).format("YYYY-M-D") ==
+            moment(new Date()).format("YYYY-M-D") ? (
+              <div style={{ marginTop: "1em" }}>当前日期无数据</div>
+            ) : (
+              <div style={{ marginTop: "1em" }}>
+                <ShowSelectData />
+              </div>
+            )}
           </CardBody>
         </Card>
         <br />

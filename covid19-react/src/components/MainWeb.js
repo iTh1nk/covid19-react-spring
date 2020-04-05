@@ -10,10 +10,13 @@ import Covid19 from "./Covid19";
 
 export default function MainWeb() {
   const [toggleSearch, setToggleSearch] = useState(false);
+  const [toggleStatus, setToggleStatus] = useState("展开");
 
   return (
     <>
-      <AssignContext.Provider value={{ toggleSearch, setToggleSearch }}>
+      <AssignContext.Provider
+        value={{ toggleSearch, setToggleSearch, toggleStatus, setToggleStatus }}
+      >
         <Navi />
         <Router>
           <Switch>

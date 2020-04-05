@@ -3,7 +3,10 @@ import { NavbarBrand, Navbar, NavbarText, Button, Nav } from "reactstrap";
 import { AssignContext } from "./AssignContext";
 
 function Navi() {
+
+  const {toggleStatus, setToggleStatus} = useContext(AssignContext);
   const { toggleSearch, setToggleSearch } = useContext(AssignContext);
+
   const toggle = () => {
     setToggleSearch(!toggleSearch);
   };
@@ -24,7 +27,7 @@ function Navi() {
             onClick={toggle}
             style={{ marginBottom: "1rem" }}
           >
-            点击进入麦搜索(该功能麦速更新中...)
+            点击进入麦搜索(该功能麦速更新中...){toggleStatus}
           </Button>
         </NavbarText>
       </Navbar>
