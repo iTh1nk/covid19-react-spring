@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import MainWeb from "./components/MainWeb";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import "toasted-notes/src/styles.css";
 
 ReactDOM.render(<MainWeb />, document.getElementById("root"));
 

@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AssignContext } from "./AssignContext";
+import { Button } from "reactstrap";
+
+import toaster from "toasted-notes";
 
 import Navi from "./Navi";
 // import Intro from "./Intro";
@@ -9,6 +12,15 @@ import NoMatch from "./NoMatch";
 import Covid19 from "./Covid19";
 
 export default function MainWeb() {
+  useEffect(() => {
+    toaster.notify(
+      <div style={{ fontWeight: "bold", color: "darkgreen" }}>麦搜索已全面开放</div>,
+      {
+        duration: 5000
+      }
+    );
+  });
+
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleStatus, setToggleStatus] = useState("展开");
 
