@@ -19,7 +19,7 @@ export default function MainWeb() {
         duration: 5000
       }
     );
-  });
+  }, []);
 
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleStatus, setToggleStatus] = useState("展开");
