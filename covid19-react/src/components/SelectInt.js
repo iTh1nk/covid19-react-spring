@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Moment from "react-moment";
 import moment from "moment";
 import { AssignContext } from "./AssignContext";
+import "./SelectInt.css";
 
 function SelectInt(props) {
   // const dateMoment = () => {
@@ -48,13 +49,13 @@ function SelectInt(props) {
   // const toggle = () => setCollapse(!collapse);
 
   const ShowSelectData = () => {
-    console.log(moment(new Date()).diff(startDate, 'minutes'));
+    console.log(moment(new Date()).diff(startDate, "minutes"));
     if (selectedOptionCountry == "") {
       return <div style={{ color: "red" }}>请选择国家...</div>;
-    } else if (moment(new Date()).diff(startDate, 'hours') < 0) {
+    } else if (moment(new Date()).diff(startDate, "hours") < 0) {
       return <div style={{ color: "red" }}>当前日期无数据</div>;
     } else if (
-      (moment(new Date()).diff(startDate, 'days') == 0) &&
+      moment(new Date()).diff(startDate, "days") == 0 &&
       props.data[selectedOptionCountry.value][0].date !=
         moment(new Date()).format("YYYY-M-D")
     ) {
@@ -102,8 +103,8 @@ function SelectInt(props) {
     { value: "China", label: "中国(China)" },
     { value: "US", label: "美国(US)" },
     { value: "Italy", label: "意大利(Italy)" },
-    { value: "France", label: "法国(France" },
-    { value: "Spain", label: "西班牙(Spain" },
+    { value: "France", label: "法国(France)" },
+    { value: "Spain", label: "西班牙(Spain)" },
     { value: "Germany", label: "法国(Germany)" },
     { value: "United Kingdom", label: "英国(United Kingdom)" },
     { value: "Canada", label: "加拿大(Canada)" },
@@ -117,6 +118,20 @@ function SelectInt(props) {
   return (
     <div>
       {/* <Moment format="YYYY-M-D">{startDate}</Moment> */}
+      <div className="marquee">
+        <span>
+          This is text - This is text - This is text - This is text - This is
+          text - This is text - This is text - This is text - This is text -
+          This is text - This is text - This is text -&nbsp;
+        </span>
+      </div>
+      <p className="marquee marquee2">
+        <span>
+          This is text - This is text - This is text - This is text - This is
+          text - This is text - This is text - This is text - This is text -
+          This is text - This is text - This is text -&nbsp;
+        </span>
+      </p>
       <Collapse
         isOpen={collapse}
         onEntering={onEntering}
