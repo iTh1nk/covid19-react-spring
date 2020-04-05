@@ -130,7 +130,6 @@ function SelectInt(props) {
                 <Button
                   color="secondary"
                   size="sm"
-                  outline
                   onClick={e => handleReset(e)}
                 >
                   重置
