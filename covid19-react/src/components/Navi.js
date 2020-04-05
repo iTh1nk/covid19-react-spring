@@ -27,7 +27,7 @@ function Navi() {
             onClick={toggle}
             style={{ marginBottom: "1rem" }}
           >
-            点击进入麦搜索(该功能麦速更新中...){toggleStatus}
+            麦搜索 {toggleStatus}
           </Button>
         </NavbarText>
       </Navbar>

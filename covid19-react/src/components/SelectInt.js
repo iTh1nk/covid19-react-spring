@@ -17,7 +17,7 @@ function SelectInt(props) {
 
   useEffect(() => {
     setCollapse(props.toggle);
-  });
+  }, [props.toggle]);
 
   const [selectedOptionCountry, setSelectedOptionCountry] = useState([]);
   const handleChangeCountry = selectedOptionCountry => {
@@ -27,7 +27,7 @@ function SelectInt(props) {
 
   const [startDate, setStartDate] = useState(new Date());
 
-  const [collapse, setCollapse] = useState(true);
+  const [collapse, setCollapse] = useState(false);
   const { toggleStatus, setToggleStatus } = useContext(AssignContext);
 
   const [selectedData, dispatch] = useReducer(
@@ -41,13 +41,18 @@ function SelectInt(props) {
     }
   }
 
-  const onEntering = () => setToggleStatus("展开...");
+  const onEntering = () => setToggleStatus("...");
   const onEntered = () => setToggleStatus("关闭");
-  const onExiting = () => setToggleStatus("关闭...");
+  const onExiting = () => setToggleStatus("...");
   const onExited = () => setToggleStatus("展开");
   // const toggle = () => setCollapse(!collapse);
 
   const ShowSelectData = () => {
+    if (selectedOptionCountry == "") {
+      return (<div style={{color: "red"}}>请选择国家...</div>);
+    } else if (moment(new Date()).diff(startDate) < 0) {
+      return <div style={{ color: "red" }}>当前日期无数据</div>;
+    }
     return (
       <div>
         {props.data.US.map((item, index) => (
@@ -60,15 +65,15 @@ function SelectInt(props) {
                 <thead style={{ textAlign: "center" }}>
                   <tr>
                     <th>日期</th>
-                    <th>累计确诊</th>
-                    <th>累计死亡</th>
+                    <th style={{ color: "darkred" }}>累计确诊</th>
+                    <th style={{ color: "grey" }}>累计死亡</th>
                   </tr>
                 </thead>
                 <tbody style={{ textAlign: "center" }}>
                   <tr>
                     <td>{item.date}</td>
-                    <td>{item.confirmed}</td>
-                    <td>{item.deaths}</td>
+                    <td style={{ color: "darkred" }}>{item.confirmed}</td>
+                    <td style={{ color: "grey" }}>{item.deaths}</td>
                   </tr>
                 </tbody>
               </Table>
@@ -77,6 +82,12 @@ function SelectInt(props) {
         ))}
       </div>
     );
+  };
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    setStartDate(new Date());
+    setSelectedOptionCountry([]);
   };
 
   const options = [
@@ -116,26 +127,30 @@ function SelectInt(props) {
             />
             {selectedOptionCountry == "" ? null : (
               <div style={{ marginTop: "1em" }}>
-                <Button color="secondary" size="sm" outline>
+                <Button
+                  color="secondary"
+                  size="sm"
+                  outline
+                  onClick={e => handleReset(e)}
+                >
                   重置
                 </Button>
               </div>
             )}
-            {selectedOptionCountry == "" ? (
-              <div style={{ marginTop: "1em" }}>请选择国家...</div>
-            ) : (
-              <div style={{ marginTop: "1em" }}>
-                已选择国家: {selectedOptionCountry.label}
+            {selectedOptionCountry == "" ? null : (
+              <div style={{ marginTop: "1em", color: "green" }}>
+                已选择国家:{" "}
+                <span style={{ color: "green" }}>
+                  {selectedOptionCountry.label}
+                </span>
               </div>
             )}
-            {moment(startDate).format("YYYY-M-D") ==
-            moment(new Date()).format("YYYY-M-D") ? (
-              <div style={{ marginTop: "1em" }}>当前日期无数据</div>
-            ) : (
-              <div style={{ marginTop: "1em" }}>
-                <ShowSelectData />
-              </div>
-            )}
+            {/* {moment(startDate).format("YYYY-M-D") ==
+            moment(new Date()).format("YYYY-M-D") ? null : ( */}
+            <div style={{ marginTop: "1em" }}>
+              <ShowSelectData />
+            </div>
+            {/* )} */}
           </CardBody>
         </Card>
         <br />

@@ -137,7 +137,7 @@ export default function Covid19() {
               </tbody>
             </Table>
             <Button
-              color="secondary"
+              color="primary"
               onClick={toggle}
               size="sm"
               style={{ marginBottom: "1rem" }}
@@ -198,7 +198,7 @@ export default function Covid19() {
               </tbody>
             </Table>
             <Button
-              color="secondary"
+              color="primary"
               onClick={toggle1}
               size="sm"
               style={{ marginBottom: "1rem" }}
@@ -264,7 +264,7 @@ export default function Covid19() {
               </tbody>
             </Table>
             <Button
-              color="secondary"
+              color="primary"
               onClick={toggle2}
               size="sm"
               style={{ marginBottom: "1rem" }}
