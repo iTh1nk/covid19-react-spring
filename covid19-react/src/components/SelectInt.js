@@ -53,13 +53,13 @@ function SelectInt(props) {
     if (selectedOptionCountry == "") {
       return <div style={{ color: "red" }}>请选择国家...</div>;
     } else if (moment(new Date()).diff(startDate, "hours") < 0) {
-      return <div style={{ color: "red" }}>当前日期无数据</div>;
+      return <div style={{ color: "red" }}>当前日期无数据, 请选择其他日期</div>;
     } else if (
       moment(new Date()).diff(startDate, "days") == 0 &&
       props.data[selectedOptionCountry.value][0].date !=
         moment(new Date()).format("YYYY-M-D")
     ) {
-      return <div style={{ color: "red" }}>当前日期无数据</div>;
+      return <div style={{ color: "red" }}>当前日期无数据, 请选择其他日期</div>;
     } else {
       return (
         <div>
@@ -118,19 +118,8 @@ function SelectInt(props) {
   return (
     <div>
       {/* <Moment format="YYYY-M-D">{startDate}</Moment> */}
-      <div className="marquee">
-        <span>
-          This is text - This is text - This is text - This is text - This is
-          text - This is text - This is text - This is text - This is text -
-          This is text - This is text - This is text -&nbsp;
-        </span>
-      </div>
-      <p className="marquee marquee2">
-        <span>
-          This is text - This is text - This is text - This is text - This is
-          text - This is text - This is text - This is text - This is text -
-          This is text - This is text - This is text -&nbsp;
-        </span>
+      <p className="topNotification">
+        <span>"这些残暴的欢愉，终将以残暴结局"</span>
       </p>
       <Collapse
         isOpen={collapse}

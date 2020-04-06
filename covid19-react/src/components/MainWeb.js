@@ -12,13 +12,31 @@ import NoMatch from "./NoMatch";
 import Covid19 from "./Covid19";
 
 export default function MainWeb() {
+  const testFunc = e => {
+    e.preventDefault();
+    alert("Hello");
+  };
   useEffect(() => {
-    toaster.notify(
-      <div style={{ fontWeight: "bold", color: "darkgreen" }}>麦搜索已全面开放</div>,
-      {
-        duration: 5000
-      }
-    );
+    // toaster.notify(
+    //   <div style={{ fontWeight: "bold", color: "darkgreen" }}>
+    //     麦搜索已全面开放
+    //   </div>,
+    //   {
+    //     duration: 5000
+    //   }
+    // );
+    toaster.notify(({ onClose }) => (
+      <div>
+        <span>My custom toaster</span>
+        <button
+          onClick={(e, onClose) => {
+            testFunc(e, onClose);
+          }}
+        >
+          Close me please
+        </button>
+      </div>
+    ));
   }, []);
 
   const [toggleSearch, setToggleSearch] = useState(false);
