@@ -8,6 +8,7 @@ import Moment from "react-moment";
 import moment from "moment";
 import { AssignContext } from "./AssignContext";
 import "./SelectInt.css";
+import Headlines from "./Headlines"; 
 
 function SelectInt(props) {
   // const dateMoment = () => {
