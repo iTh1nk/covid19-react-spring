@@ -15,7 +15,7 @@ function Navi() {
     <>
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/" className="text-md-center">
-          <TextLoop>
+          <TextLoop interval="6000">
             <h1 style={{ color: "darkblue" }}>麦报</h1>
             <h1 style={{ color: "darkblue" }}>麦报</h1>
           </TextLoop>
