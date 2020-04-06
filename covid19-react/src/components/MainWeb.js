@@ -17,26 +17,27 @@ export default function MainWeb() {
     alert("Hello");
   };
   useEffect(() => {
-    // toaster.notify(
-    //   <div style={{ fontWeight: "bold", color: "darkgreen" }}>
-    //     麦搜索已全面开放
-    //   </div>,
-    //   {
-    //     duration: 5000
-    //   }
-    // );
-    toaster.notify(({ onClose }) => (
-      <div>
-        <span>My custom toaster</span>
-        <button
-          onClick={(e, onClose) => {
-            testFunc(e, onClose);
-          }}
-        >
-          Close me please
-        </button>
-      </div>
-    ));
+    toaster.notify(
+      <div style={{ fontWeight: "bold", color: "darkgreen" }}>
+        麦搜索已全面开放
+      </div>,
+      {
+        duration: 5000
+      }
+    );
+    // toaster.notify(({ onClose }) => (
+    //   <div>
+    //     <span>My custom toaster</span>
+    //     <Button
+    //       color="primary"
+    //       outline
+    //       size="sm"
+    //       onClick={onClose}
+    //     >
+    //       关闭
+    //     </Button>
+    //   </div>
+    // ));
   }, []);
 
   const [toggleSearch, setToggleSearch] = useState(false);
