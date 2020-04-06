@@ -1,5 +1,10 @@
 [
   {
+    "date": "04-06",
+    "confirmed": 77,
+    "new": 2
+  },
+  {
     "date": "04-05",
     "confirmed": 75,
     "new": 5
