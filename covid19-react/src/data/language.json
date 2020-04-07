@@ -108,5 +108,9 @@
         "en": "Open"
       }
     }
+  },
+  "toasterNote": {
+    "cn": "麦搜索已全面开放",
+    "en": "MacSearch is available now!"
   }
 }

@@ -21,7 +21,7 @@ export default function MainWeb() {
     // SetLanSwitch(window.localStorage.getItem('lanSwitch'));
     toaster.notify(
       <div style={{ fontWeight: "bold", color: "darkgreen" }}>
-        {lanSwitch ? "麦搜索已全面开放" : "MacSearch is available now!"}
+        {lan.toasterNote[lanSwitch]}
       </div>,
       {
         duration: 5000
