@@ -1,11 +1,11 @@
 {
   "lanSwitchBtn": {
-    "cn": "中文",
-    "en": "English"
+    "cn": "English",
+    "en": "中文"
   },
   "brand": {
     "cn": "麦报",
-    "en": "MacCast"
+    "en": "MCast"
   },
   "searchBtn": {
     "cn": "麦搜索",
@@ -19,6 +19,10 @@
     "placeholder": {
       "cn": "请下拉选择或手动输入国家名...",
       "en": "Please choose or input country's name..."
+    },
+    "resetBtn": {
+      "cn": "重置",
+      "en": "Reset"
     }
   },
   "cardIrvine": {
@@ -48,8 +52,12 @@
       "cn": "日期",
       "en": "Date"
     },
+    "cardBtn": {
+      "cn": "更多...",
+      "en": "More..."
+    },
     "totalConfirmed": {
-      "cn": "累计新增",
+      "cn": "累计确诊",
       "en": "Total Confirmed"
     },
     "dailyNew": {
@@ -57,12 +65,48 @@
       "en": "New Cases"
     },
     "dayConfirmed": {
-      "cn": "当日确诊",
+      "cn": "当日累计",
       "en": "Daily Confirmed"
     },
     "dayNew": {
       "cn": "当日新增",
       "en": "Daily New"
+    },
+    "totalDeaths": {
+      "cn": "累计死亡",
+      "en": "Total Deaths"
+    }
+  },
+  "errors": {
+    "noData": {
+      "cn": "当前日期无数据, 请选择其他日期",
+      "en": "No data on selected day, please choose another date."
+    },
+    "chooseCountry": {
+      "cn": "请选择国家...",
+      "en": "Please choose country..."
+    },
+    "chosenCountry": {
+      "cn": "已选择国家: ",
+      "en": "Selected country: "
+    }
+  },
+  "message": {
+    "loading": {
+      "cn": "载入中...",
+      "en": "Loading..."
+    }
+  },
+  "toggleBtn": {
+    "status": {
+      "close": {
+        "cn": "关闭",
+        "en": "Close"
+      },
+      "open": {
+        "cn": "展开",
+        "en": "Open"
+      }
     }
   }
 }

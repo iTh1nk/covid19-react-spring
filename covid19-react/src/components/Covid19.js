@@ -21,7 +21,9 @@ import { AssignContext } from "./AssignContext";
 export default function Covid19() {
   const [dataUS, setDataUS] = useState([]);
   const [dataWorld, setDataWorld] = useState([]);
-  const { toggleSearch, setToggleSearch, lanSwitch, lan } = useContext(AssignContext);
+  const { toggleSearch, setToggleSearch, lanSwitch, lan } = useContext(
+    AssignContext
+  );
 
   useEffect(() => {
     Axios.get("https://pomber.github.io/covid19/timeseries.json")
@@ -108,7 +110,7 @@ export default function Covid19() {
   if (isLoading) {
     return (
       <>
-        <div style={loadingStyle}>载入中...</div>
+        <div style={loadingStyle}>{lan.message.loading[lanSwitch]}</div>
         <div style={loadingStyle}>
           <Loading />
         </div>
@@ -125,14 +127,18 @@ export default function Covid19() {
         {/* Card for Irvine */}
         <Card>
           <CardHeader>
-            <h5 style={regionTitle}>{lan.cardIrvine.title[lanSwitch]} ({dataIrvine[0].date})</h5>
+            <h5 style={regionTitle}>
+              {lan.cardIrvine.title[lanSwitch]} ({dataIrvine[0].date})
+            </h5>
           </CardHeader>
           <CardBody>
             <Table>
               <thead style={{ textAlign: "center" }}>
                 <tr>
-                  <th style={numConfirmed}>累计确诊</th>
-                  <th style={numNew}>今日新增</th>
+                  <th style={numConfirmed}>
+                    {lan.general.totalConfirmed[lanSwitch]}
+                  </th>
+                  <th style={numNew}>{lan.general.dailyNew[lanSwitch]}</th>
                 </tr>
               </thead>
               <tbody style={{ textAlign: "center" }}>
@@ -153,7 +159,7 @@ export default function Covid19() {
               size="sm"
               style={{ marginBottom: "1rem" }}
             >
-              更多...
+              {lan.general.cardBtn[lanSwitch]}
             </Button>
 
             {/* Toggle Content for Irvine */}
@@ -164,8 +170,10 @@ export default function Covid19() {
                     <thead style={{ textAlign: "center" }}>
                       <tr>
                         <th>{lan.general.date[lanSwitch]}</th>
-                        <th style={numConfirmed}>当日累计</th>
-                        <th style={numNew}>当日新增</th>
+                        <th style={numConfirmed}>
+                          {lan.general.dayConfirmed[lanSwitch]}
+                        </th>
+                        <th style={numNew}>{lan.general.dayNew[lanSwitch]}</th>
                       </tr>
                     </thead>
                     <tbody style={{ textAlign: "center" }}>
@@ -195,15 +203,20 @@ export default function Covid19() {
         {/* Card for OC */}
         <Card>
           <CardHeader>
-            <h5 style={regionTitle}>{lan.cardOC.title[lanSwitch]}({dataOC[0].date}) ({lan.cardOC.icu[lanSwitch]}: {dataOC[0].icu})</h5>
+            <h5 style={regionTitle}>
+              {lan.cardOC.title[lanSwitch]}({dataOC[0].date}) (
+              {lan.cardOC.icu[lanSwitch]}: {dataOC[0].icu})
+            </h5>
           </CardHeader>
           <CardBody>
             <Table>
               <thead style={{ textAlign: "center" }}>
                 <tr>
-                  <th style={numConfirmed}>累计确诊</th>
-                  <th style={numNew}>今日新增</th>
-                  <th style={numDead}>累计死亡</th>
+                  <th style={numConfirmed}>
+                    {lan.general.totalConfirmed[lanSwitch]}
+                  </th>
+                  <th style={numNew}>{lan.general.dailyNew[lanSwitch]}</th>
+                  <th style={numDead}>{lan.general.totalDeaths[lanSwitch]}</th>
                 </tr>
               </thead>
               <tbody style={{ textAlign: "center" }}>
@@ -220,7 +233,7 @@ export default function Covid19() {
               size="sm"
               style={{ marginBottom: "1rem" }}
             >
-              更多...
+              {lan.general.cardBtn[lanSwitch]}
             </Button>
 
             {/* Toggle Content for OC */}
@@ -231,8 +244,10 @@ export default function Covid19() {
                     <thead style={{ textAlign: "center" }}>
                       <tr>
                         <th>{lan.general.date[lanSwitch]}</th>
-                        <th style={numConfirmed}>当日累计</th>
-                        <th style={numNew}>当日新增</th>
+                        <th style={numConfirmed}>
+                          {lan.general.dayConfirmed[lanSwitch]}
+                        </th>
+                        <th style={numNew}>{lan.general.dayNew[lanSwitch]}</th>
                       </tr>
                     </thead>
                     <tbody style={{ textAlign: "center" }}>
@@ -257,7 +272,7 @@ export default function Covid19() {
         <Card>
           <CardHeader>
             <h5 style={regionTitle}>
-            {lan.cardUS.title[lanSwitch]} ({dataUS[0].date})
+              {lan.cardUS.title[lanSwitch]} ({dataUS[0].date})
               {/* (<Moment format="MM-DD">{date}</Moment>) */}
             </h5>
           </CardHeader>
@@ -265,9 +280,11 @@ export default function Covid19() {
             <Table>
               <thead style={{ textAlign: "center" }}>
                 <tr>
-                  <th style={numConfirmed}>累计确诊</th>
-                  <th style={numNew}>今日新增</th>
-                  <th style={numDead}>累计死亡</th>
+                  <th style={numConfirmed}>
+                    {lan.general.totalConfirmed[lanSwitch]}
+                  </th>
+                  <th style={numNew}>{lan.general.dailyNew[lanSwitch]}</th>
+                  <th style={numDead}>{lan.general.totalDeaths[lanSwitch]}</th>
                 </tr>
               </thead>
               <tbody style={{ textAlign: "center" }}>
@@ -286,7 +303,7 @@ export default function Covid19() {
               size="sm"
               style={{ marginBottom: "1rem" }}
             >
-              更多...
+              {lan.general.cardBtn[lanSwitch]}
             </Button>
 
             {/* Toggle Content for US */}
@@ -297,8 +314,10 @@ export default function Covid19() {
                     <thead style={{ textAlign: "center" }}>
                       <tr>
                         <th>{lan.general.date[lanSwitch]}</th>
-                        <th style={numConfirmed}>当日累计</th>
-                        <th style={numNew}>当日新增</th>
+                        <th style={numConfirmed}>
+                          {lan.general.dayConfirmed[lanSwitch]}
+                        </th>
+                        <th style={numNew}>{lan.general.dayNew[lanSwitch]}</th>
                       </tr>
                     </thead>
                     <tbody style={{ textAlign: "center" }}>

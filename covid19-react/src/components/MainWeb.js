@@ -43,12 +43,22 @@ export default function MainWeb() {
   }, []);
 
   const [toggleSearch, setToggleSearch] = useState(false);
-  const [toggleStatus, setToggleStatus] = useState("展开");
+  const [toggleStatus, setToggleStatus] = useState(
+    lan.toggleBtn.status.open[lanSwitch]
+  );
 
   return (
     <>
       <AssignContext.Provider
-        value={{ toggleSearch, setToggleSearch, toggleStatus, setToggleStatus, lanSwitch, SetLanSwitch, lan }}
+        value={{
+          toggleSearch,
+          setToggleSearch,
+          toggleStatus,
+          setToggleStatus,
+          lanSwitch,
+          SetLanSwitch,
+          lan
+        }}
       >
         <Navi />
         <Router>

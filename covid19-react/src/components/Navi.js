@@ -34,13 +34,13 @@ function Navi() {
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/" className="text-md-center">
           <TextLoop interval="6000">
-            <h1 style={{ color: "darkblue" }}>{lanSwitch ? "麦报" : "麦报"}</h1>
+            <h1 style={{ color: "darkblue" }}>{lanSwitch ? "麦 报" : "麦 报"}</h1>
             <h1 style={{ color: "darkblue", transform: "scale(1, 1)" }}>
-              {lanSwitch ? "MacCast" : "MacCast"}
+              {lanSwitch ? "MCast" : "MCast"}
             </h1>
           </TextLoop>
         </NavbarBrand>
-        <Button onClick={e => handleLanSwitch(e)}>
+        <Button size="sm" onClick={e => handleLanSwitch(e)}>
           {lan.lanSwitchBtn[lanSwitch]}
         </Button>
         <Nav className="mr-auto" navbar></Nav>

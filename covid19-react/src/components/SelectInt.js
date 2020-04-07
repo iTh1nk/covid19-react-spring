@@ -46,23 +46,27 @@ function SelectInt(props) {
   }
 
   const onEntering = () => setToggleStatus("...");
-  const onEntered = () => setToggleStatus("关闭");
+  const onEntered = () => setToggleStatus(lan.toggleBtn.status.close[lanSwitch]);
   const onExiting = () => setToggleStatus("...");
-  const onExited = () => setToggleStatus("展开");
+  const onExited = () => setToggleStatus(lan.toggleBtn.status.open[lanSwitch]);
   // const toggle = () => setCollapse(!collapse);
 
   const ShowSelectData = () => {
     console.log(moment(new Date()).diff(startDate, "minutes"));
     if (selectedOptionCountry == "") {
-      return <div style={{ color: "red" }}>请选择国家...</div>;
+      return (
+        <div style={{ color: "red" }}>
+          {lan.errors.chooseCountry[lanSwitch]}
+        </div>
+      );
     } else if (moment(new Date()).diff(startDate, "hours") < 0) {
-      return <div style={{ color: "red" }}>当前日期无数据, 请选择其他日期</div>;
+      return <div style={{ color: "red" }}>{lan.errors.noData[lanSwitch]}</div>;
     } else if (
       moment(new Date()).diff(startDate, "days") == 0 &&
       props.data[selectedOptionCountry.value][0].date !=
         moment(new Date()).format("YYYY-M-D")
     ) {
-      return <div style={{ color: "red" }}>当前日期无数据, 请选择其他日期</div>;
+      return <div style={{ color: "red" }}>{lan.errors.noData[lanSwitch]}</div>;
     } else {
       return (
         <div>
@@ -75,9 +79,13 @@ function SelectInt(props) {
                 <Table>
                   <thead style={{ textAlign: "center" }}>
                     <tr>
-                      <th>日期</th>
-                      <th style={{ color: "darkred" }}>累计确诊</th>
-                      <th style={{ color: "grey" }}>累计死亡</th>
+                      <th>{lan.general.date[lanSwitch]}</th>
+                      <th style={{ color: "darkred" }}>
+                        {lan.general.totalConfirmed[lanSwitch]}
+                      </th>
+                      <th style={{ color: "grey" }}>
+                        {lan.general.totalDeaths[lanSwitch]}
+                      </th>
                     </tr>
                   </thead>
                   <tbody style={{ textAlign: "center" }}>
@@ -140,7 +148,7 @@ function SelectInt(props) {
               placeholder={lan.selectInt.placeholder[lanSwitch]}
             />
             <br />
-            <span>疫情日期: </span>
+            <span>{lan.general.date[lanSwitch]}: </span>
             <DatePicker
               selected={startDate}
               onChange={date => {
@@ -157,13 +165,13 @@ function SelectInt(props) {
                   size="sm"
                   onClick={e => handleReset(e)}
                 >
-                  重置
+                  {lan.selectInt.resetBtn[lanSwitch]}
                 </Button>
               </div>
             )}
             {selectedOptionCountry == "" ? null : (
               <div style={{ marginTop: "1em", color: "green" }}>
-                已选择国家:{" "}
+                {lan.errors.chosenCountry[lanSwitch]}{" "}
                 <span style={{ color: "green" }}>
                   {selectedOptionCountry.label}
                 </span>
