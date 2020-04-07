@@ -18,7 +18,7 @@
   "selectInt": {
     "placeholder": {
       "cn": "请下拉选择或手动输入国家名...",
-      "en": "Please choose or input country's name..."
+      "en": "Please choose or input country..."
     },
     "resetBtn": {
       "cn": "重置",
