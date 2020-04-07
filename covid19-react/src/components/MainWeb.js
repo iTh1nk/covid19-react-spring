@@ -15,7 +15,7 @@ import Covid19 from "./Covid19";
 
 export default function MainWeb() {
   // console.log("Local Storage: ", window.localStorage.getItem('lanSwitch'))
-  const [lanSwitch, SetLanSwitch] = useState("cn");
+  const [lanSwitch, SetLanSwitch] = useState(window.localStorage.getItem("lanSwitch") || "cn");
 
   useEffect(() => {
     // SetLanSwitch(window.localStorage.getItem('lanSwitch'));

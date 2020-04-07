@@ -24,9 +24,12 @@ function Navi() {
     //   window.location.reload();
     if (lanSwitch === "cn") {
       SetLanSwitch("en");
+      window.localStorage.setItem("lanSwitch", "en");
     } else {
       SetLanSwitch("cn");
+      window.localStorage.setItem("lanSwitch", "cn");
     }
+    console.log(window.localStorage.getItem("lanSwitch"));
   };
 
   return (
@@ -34,7 +37,9 @@ function Navi() {
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/" className="text-md-center">
           <TextLoop interval="6000">
-            <h1 style={{ color: "darkblue" }}>{lanSwitch ? "麦 报" : "麦 报"}</h1>
+            <h1 style={{ color: "darkblue" }}>
+              {lanSwitch ? "麦 报" : "麦 报"}
+            </h1>
             <h1 style={{ color: "darkblue", transform: "scale(1, 1)" }}>
               {lanSwitch ? "MCast" : "MCast"}
             </h1>
