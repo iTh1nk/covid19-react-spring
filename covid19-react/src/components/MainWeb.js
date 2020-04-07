@@ -44,7 +44,7 @@ export default function MainWeb() {
 
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleStatus, setToggleStatus] = useState(
-    lan.toggleBtn.status.open[lanSwitch]
+    ""
   );
 
   return (

@@ -46,9 +46,9 @@ function SelectInt(props) {
   }
 
   const onEntering = () => setToggleStatus("...");
-  const onEntered = () => setToggleStatus(lan.toggleBtn.status.close[lanSwitch]);
+  const onEntered = () => setToggleStatus("");
   const onExiting = () => setToggleStatus("...");
-  const onExited = () => setToggleStatus(lan.toggleBtn.status.open[lanSwitch]);
+  const onExited = () => setToggleStatus("");
   // const toggle = () => setCollapse(!collapse);
 
   const ShowSelectData = () => {
