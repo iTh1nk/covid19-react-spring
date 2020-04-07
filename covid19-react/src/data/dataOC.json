@@ -3,7 +3,9 @@
     "date": "04-06",
     "confirmed": 882,
     "new": 51,
-    "deaths": 14
+    "deaths": 14,
+    "icu": 72,
+    "hospitalized": 130
   },
   {
     "date": "04-05",

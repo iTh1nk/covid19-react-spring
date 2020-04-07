@@ -1,32 +1,26 @@
 [
   {
     "date": "04-06",
-    "confirmed": 77,
-    "new": 2
+    "confirmed": 77
   },
   {
     "date": "04-05",
-    "confirmed": 75,
-    "new": 5
+    "confirmed": 75
   },
   {
     "date": "04-04",
-    "confirmed": 70,
-    "new": 1
+    "confirmed": 70
   },
   {
     "date": "04-03",
-    "confirmed": 69,
-    "new": 4
+    "confirmed": 69
   },
   {
     "date": "04-02",
-    "confirmed": 65,
-    "new": 8
+    "confirmed": 65
   },
   {
     "date": "04-01",
-    "confirmed": 57,
-    "new": 7
+    "confirmed": 57
   }
 ]

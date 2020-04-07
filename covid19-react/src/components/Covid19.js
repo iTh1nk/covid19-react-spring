@@ -21,7 +21,7 @@ import { AssignContext } from "./AssignContext";
 export default function Covid19() {
   const [dataUS, setDataUS] = useState([]);
   const [dataWorld, setDataWorld] = useState([]);
-  const { toggleSearch, setToggleSearch } = useContext(AssignContext);
+  const { toggleSearch, setToggleSearch, lanSwitch, lan } = useContext(AssignContext);
 
   useEffect(() => {
     Axios.get("https://pomber.github.io/covid19/timeseries.json")
@@ -50,6 +50,10 @@ export default function Covid19() {
   };
   const formatDate = str => {
     return str;
+  };
+
+  const computeNewIrvine = (num, index) => {
+    console.log(num, index);
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -121,7 +125,7 @@ export default function Covid19() {
         {/* Card for Irvine */}
         <Card>
           <CardHeader>
-            <h5 style={regionTitle}>尔湾疫情 ({dataIrvine[0].date})</h5>
+            <h5 style={regionTitle}>{lan.cardIrvine.title[lanSwitch]} ({dataIrvine[0].date})</h5>
           </CardHeader>
           <CardBody>
             <Table>
@@ -134,7 +138,12 @@ export default function Covid19() {
               <tbody style={{ textAlign: "center" }}>
                 <tr>
                   <td style={numConfirmed}>{dataIrvine[0].confirmed}</td>
-                  <td style={numNew}>+{dataIrvine[0].new}</td>
+                  <td style={numNew}>
+                    +
+                    {dataIrvine.length === 1
+                      ? 0
+                      : dataIrvine[0].confirmed - dataIrvine[1].confirmed}
+                  </td>
                 </tr>
               </tbody>
             </Table>
@@ -154,7 +163,7 @@ export default function Covid19() {
                   <Table borderless>
                     <thead style={{ textAlign: "center" }}>
                       <tr>
-                        <th>日期</th>
+                        <th>{lan.general.date[lanSwitch]}</th>
                         <th style={numConfirmed}>当日累计</th>
                         <th style={numNew}>当日新增</th>
                       </tr>
@@ -164,7 +173,13 @@ export default function Covid19() {
                         <tr key={index}>
                           <td style={dateStyle}>{item.date}</td>
                           <td style={numConfirmed}>{item.confirmed}</td>
-                          <td style={numNew}>+{item.new}</td>
+                          <td style={numNew}>
+                            +
+                            {index === dataIrvine.length - 1
+                              ? 0
+                              : dataIrvine[index].confirmed -
+                                dataIrvine[index + 1].confirmed}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -180,7 +195,7 @@ export default function Covid19() {
         {/* Card for OC */}
         <Card>
           <CardHeader>
-            <h5 style={regionTitle}>橙县疫情({dataOC[0].date})</h5>
+            <h5 style={regionTitle}>{lan.cardOC.title[lanSwitch]}({dataOC[0].date}) ({lan.cardOC.icu[lanSwitch]}: {dataOC[0].icu})</h5>
           </CardHeader>
           <CardBody>
             <Table>
@@ -215,7 +230,7 @@ export default function Covid19() {
                   <Table borderless>
                     <thead style={{ textAlign: "center" }}>
                       <tr>
-                        <th>日期</th>
+                        <th>{lan.general.date[lanSwitch]}</th>
                         <th style={numConfirmed}>当日累计</th>
                         <th style={numNew}>当日新增</th>
                       </tr>
@@ -242,7 +257,7 @@ export default function Covid19() {
         <Card>
           <CardHeader>
             <h5 style={regionTitle}>
-              全美疫情 ({dataUS[0].date})
+            {lan.cardUS.title[lanSwitch]} ({dataUS[0].date})
               {/* (<Moment format="MM-DD">{date}</Moment>) */}
             </h5>
           </CardHeader>
@@ -281,7 +296,7 @@ export default function Covid19() {
                   <Table borderless>
                     <thead style={{ textAlign: "center" }}>
                       <tr>
-                        <th>日期</th>
+                        <th>{lan.general.date[lanSwitch]}</th>
                         <th style={numConfirmed}>当日累计</th>
                         <th style={numNew}>当日新增</th>
                       </tr>

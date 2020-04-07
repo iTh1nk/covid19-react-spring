@@ -8,7 +8,7 @@ import Moment from "react-moment";
 import moment from "moment";
 import { AssignContext } from "./AssignContext";
 import "./SelectInt.css";
-import Headlines from "./Headlines"; 
+import Headlines from "./Headlines";
 
 function SelectInt(props) {
   // const dateMoment = () => {
@@ -30,7 +30,9 @@ function SelectInt(props) {
   const [startDate, setStartDate] = useState(new Date());
 
   const [collapse, setCollapse] = useState(false);
-  const { toggleStatus, setToggleStatus } = useContext(AssignContext);
+  const { toggleStatus, setToggleStatus, lanSwitch, lan } = useContext(
+    AssignContext
+  );
 
   const [selectedData, dispatch] = useReducer(
     selectedDataReducer,
@@ -120,7 +122,7 @@ function SelectInt(props) {
     <div>
       {/* <Moment format="YYYY-M-D">{startDate}</Moment> */}
       <p className="topNotification">
-        <span>"这些残暴的欢愉，终将以残暴结局"</span>
+        <span>{lan.topNotification[lanSwitch]}</span>
       </p>
       <Collapse
         isOpen={collapse}
@@ -135,7 +137,7 @@ function SelectInt(props) {
               value={selectedOptionCountry}
               onChange={handleChangeCountry}
               options={options}
-              placeholder="请下拉选择或手动输入国家名..."
+              placeholder={lan.selectInt.placeholder[lanSwitch]}
             />
             <br />
             <span>疫情日期: </span>

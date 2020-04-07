@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AssignContext } from "./AssignContext";
 import { Button } from "reactstrap";
 
+import lan from "../data/language.json";
+
 import toaster from "toasted-notes";
 
 import Navi from "./Navi";
@@ -12,14 +14,14 @@ import NoMatch from "./NoMatch";
 import Covid19 from "./Covid19";
 
 export default function MainWeb() {
-  const testFunc = e => {
-    e.preventDefault();
-    alert("Hello");
-  };
+  // console.log("Local Storage: ", window.localStorage.getItem('lanSwitch'))
+  const [lanSwitch, SetLanSwitch] = useState("cn");
+
   useEffect(() => {
+    // SetLanSwitch(window.localStorage.getItem('lanSwitch'));
     toaster.notify(
       <div style={{ fontWeight: "bold", color: "darkgreen" }}>
-        麦搜索已全面开放
+        {lanSwitch ? "麦搜索已全面开放" : "MacSearch is available now!"}
       </div>,
       {
         duration: 5000
@@ -46,7 +48,7 @@ export default function MainWeb() {
   return (
     <>
       <AssignContext.Provider
-        value={{ toggleSearch, setToggleSearch, toggleStatus, setToggleStatus }}
+        value={{ toggleSearch, setToggleSearch, toggleStatus, setToggleStatus, lanSwitch, SetLanSwitch, lan }}
       >
         <Navi />
         <Router>

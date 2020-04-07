@@ -4,11 +4,29 @@ import { AssignContext } from "./AssignContext";
 import TextLoop from "react-text-loop";
 
 function Navi() {
-  const { toggleStatus, setToggleStatus } = useContext(AssignContext);
-  const { toggleSearch, setToggleSearch } = useContext(AssignContext);
+  const {
+    toggleStatus,
+    setToggleStatus,
+    toggleSearch,
+    setToggleSearch,
+    lanSwitch,
+    SetLanSwitch,
+    lan
+  } = useContext(AssignContext);
 
   const toggle = () => {
     setToggleSearch(!toggleSearch);
+  };
+
+  const handleLanSwitch = e => {
+    e.preventDefault();
+    //   window.localStorage.setItem('lanSwitch', !window.localStorage.getItem('lanSwitch'));
+    //   window.location.reload();
+    if (lanSwitch === "cn") {
+      SetLanSwitch("en");
+    } else {
+      SetLanSwitch("cn");
+    }
   };
 
   return (
@@ -16,12 +34,15 @@ function Navi() {
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/" className="text-md-center">
           <TextLoop interval="6000">
-            <h1 style={{ color: "darkblue" }}>麦报</h1>
-            <h1 style={{ color: "darkblue", transform: "scale(1, -1)" }}>
-              麦报
+            <h1 style={{ color: "darkblue" }}>{lanSwitch ? "麦报" : "麦报"}</h1>
+            <h1 style={{ color: "darkblue", transform: "scale(1, 1)" }}>
+              {lanSwitch ? "MacCast" : "MacCast"}
             </h1>
           </TextLoop>
         </NavbarBrand>
+        <Button onClick={e => handleLanSwitch(e)}>
+          {lan.lanSwitchBtn[lanSwitch]}
+        </Button>
         <Nav className="mr-auto" navbar></Nav>
         <NavbarText>
           {/* <span style={{ fontStyle: "italic" }}></span> */}
@@ -32,7 +53,7 @@ function Navi() {
             onClick={toggle}
             style={{ marginBottom: "1rem" }}
           >
-            麦搜索 {toggleStatus}
+            {lan.searchBtn[lanSwitch]} {toggleStatus}
           </Button>
         </NavbarText>
       </Navbar>

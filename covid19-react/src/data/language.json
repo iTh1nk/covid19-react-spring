@@ -1,0 +1,68 @@
+{
+  "lanSwitchBtn": {
+    "cn": "中文",
+    "en": "English"
+  },
+  "brand": {
+    "cn": "麦报",
+    "en": "MacCast"
+  },
+  "searchBtn": {
+    "cn": "麦搜索",
+    "en": "MacSearch"
+  },
+  "topNotification": {
+    "cn": "“这些残暴的欢愉，终将以残暴结局”",
+    "en": "”These violent delights have violent ends“"
+  },
+  "selectInt": {
+    "placeholder": {
+      "cn": "请下拉选择或手动输入国家名...",
+      "en": "Please choose or input country's name..."
+    }
+  },
+  "cardIrvine": {
+    "title": {
+      "cn": "尔湾疫情",
+      "en": "Irvine Case"
+    }
+  },
+  "cardOC": {
+    "title": {
+      "cn": "橙县疫情",
+      "en": "OC Case"
+    },
+    "icu": {
+      "cn": "重症监护",
+      "en": "ICU"
+    }
+  },
+  "cardUS": {
+    "title": {
+      "cn": "全美疫情",
+      "en": "US Case"
+    }
+  },
+  "general": {
+    "date": {
+      "cn": "日期",
+      "en": "Date"
+    },
+    "totalConfirmed": {
+      "cn": "累计新增",
+      "en": "Total Confirmed"
+    },
+    "dailyNew": {
+      "cn": "今日新增",
+      "en": "New Cases"
+    },
+    "dayConfirmed": {
+      "cn": "当日确诊",
+      "en": "Daily Confirmed"
+    },
+    "dayNew": {
+      "cn": "当日新增",
+      "en": "Daily New"
+    }
+  }
+}
