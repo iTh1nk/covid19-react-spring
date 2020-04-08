@@ -51,7 +51,7 @@ function Navi() {
         <Nav className="mr-auto" navbar>
           <Button size="sm" outline onClick={e => handleLanSwitch(e)}>
             <img
-              src="./lanSwitch.png"
+              src="/lanSwitch.png"
               alt="Language Icon"
               style={lanSwitchIconStyle}
             ></img>{" "}
