@@ -5,7 +5,7 @@ export default function Intro() {
   const [getSpring, setGetSpring] = useState([]);
 
   useEffect(() => {
-    Axios.get("/api/categories")
+    Axios.get("/api/toaster")
       .then(resp => {
         setGetSpring(resp.data);
         console.log("Get from Spring: ", resp.data);
@@ -17,8 +17,8 @@ export default function Intro() {
 
   return (
     <>
-      <div>Introduction: {getSpring.map(item => (
-        <div key={item.id}>{item.name}</div>
+      <div>{getSpring.map(item => (
+        <div key={item.id}>{item.content}</div>
       ))}</div>
     </>
   );

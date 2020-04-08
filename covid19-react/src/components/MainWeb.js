@@ -8,7 +8,7 @@ import lan from "../data/language.json";
 import toaster from "toasted-notes";
 
 import Navi from "./Navi";
-// import Intro from "./Intro";
+import Intro from "./Intro";
 import We0mmm from "./We0mmm";
 import NoMatch from "./NoMatch";
 import Covid19 from "./Covid19";
@@ -49,6 +49,7 @@ export default function MainWeb() {
 
   return (
     <>
+      <Intro />
       <AssignContext.Provider
         value={{
           toggleSearch,
