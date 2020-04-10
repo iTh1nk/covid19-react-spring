@@ -1,6 +1,8 @@
 package com.covid19.api.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,7 +17,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "notification")
 public class Notification {
   @Id
-  private Integer id;
+  // @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
   private String content;
 }
