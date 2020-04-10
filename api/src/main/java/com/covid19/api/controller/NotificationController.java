@@ -38,7 +38,7 @@ public class NotificationController {
   ResponseEntity<Notification> createNotification(@Valid @RequestBody Notification notification)
       throws URISyntaxException {
     Notification result = notificationRepository.save(notification);
-    return ResponseEntity.created(new URI("/api/test" + result.getId())).body(result);
+    return ResponseEntity.created(new URI("/api/toaster" + result.getId())).body(result);
   }
 
   @PutMapping("/toaster/put/{id}")
@@ -53,15 +53,15 @@ public class NotificationController {
     return ResponseEntity.ok().build();
   }
 
-  @GetMapping(value = "/test")
-  public @ResponseBody List<Notification> getCompanies() {
-    List<Notification> notifications = new ArrayList<Notification>();
-    notifications.add(new Notification((long) 3, "Andrew Strauss"));
-    notifications.add(new Notification((long) 12, "John Greece"));
-    notifications.add(new Notification((long) 101, "Robert Parera"));
-    notifications.add(new Notification((long) 153, "Charlotte O' Neil"));
-    notifications.add(new Notification((long) 239, "Eddy Knight"));
-    return notifications;
-  }
+  // @GetMapping(value = "/test")
+  // public @ResponseBody List<Notification> getCompanies() {
+  //   List<Notification> notifications = new ArrayList<Notification>();
+  //   notifications.add(new Notification((long) 3, "Andrew Strauss"));
+  //   notifications.add(new Notification((long) 12, "John Greece"));
+  //   notifications.add(new Notification((long) 101, "Robert Parera"));
+  //   notifications.add(new Notification((long) 153, "Charlotte O' Neil"));
+  //   notifications.add(new Notification((long) 239, "Eddy Knight"));
+  //   return notifications;
+  // }
 
 }
