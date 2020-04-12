@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import {
   Container,
   Form,
@@ -10,9 +10,19 @@ import {
 } from "reactstrap";
 import Axios from "axios";
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "delete":
+    // return {toasterObj: [...]}
+  }
+}
+
 export default function Admin() {
+  const [{ toasterObj }, dispatch] = useReducer(reducer, { toasterObj: [] });
+
   const [toaster, setToaster] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [placeholder, setPlaceholder] = useState("");
 
   useEffect(() => {
