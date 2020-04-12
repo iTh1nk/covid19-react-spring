@@ -39,20 +39,26 @@ export default function Covid19() {
         console.log(err);
       });
 
-    Axios.get("/api/toaster").then((resp) => {
-      console.log("Get Toaster: ", resp.data)
-      toaster.notify(
-        <div style={{ fontWeight: "bold", color: "darkgreen" }}>
-          {/* {lan.toasterNote[lanSwitch]} */}
-          {/* {console.log("Typeof: " ,typeof resp.data[0])} */}
-          {console.log(resp.data)}
-          {typeof resp.data[0] === "undefined" ? lan.toasterNote[lanSwitch] : resp.data[0].content}
-        </div>,
-        {
-          duration: 5000,
-        }
-      );
-    });
+    Axios.get("/api/toaster")
+      .then((resp) => {
+        console.log("Get Toaster: ", resp.data);
+        toaster.notify(
+          <div style={{ fontWeight: "bold", color: "darkgreen" }}>
+            {/* {lan.toasterNote[lanSwitch]} */}
+            {/* {console.log("Typeof: " ,typeof resp.data[0])} */}
+            {console.log(resp.data)}
+            {typeof resp.data[0] === "undefined"
+              ? lan.toasterNote[lanSwitch]
+              : resp.data[0].content}
+          </div>,
+          {
+            duration: 5000,
+          }
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // toaster.notify(({ onClose }) => (
     //   <div>
