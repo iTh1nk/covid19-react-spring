@@ -44,7 +44,8 @@ export default function Covid19() {
       toaster.notify(
         <div style={{ fontWeight: "bold", color: "darkgreen" }}>
           {/* {lan.toasterNote[lanSwitch]} */}
-          {resp.data[0].content || lan.toasterNote[lanSwitch]}
+          {/* {console.log("Typeof: " ,typeof resp.data[0])} */}
+          {typeof resp.data[0] === "undefined" ? lan.toasterNote[lanSwitch] : resp.data[0].content}
         </div>,
         {
           duration: 5000,
