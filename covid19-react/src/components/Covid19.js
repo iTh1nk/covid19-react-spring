@@ -45,6 +45,7 @@ export default function Covid19() {
         <div style={{ fontWeight: "bold", color: "darkgreen" }}>
           {/* {lan.toasterNote[lanSwitch]} */}
           {/* {console.log("Typeof: " ,typeof resp.data[0])} */}
+          {console.log(resp.data)}
           {typeof resp.data[0] === "undefined" ? lan.toasterNote[lanSwitch] : resp.data[0].content}
         </div>,
         {
