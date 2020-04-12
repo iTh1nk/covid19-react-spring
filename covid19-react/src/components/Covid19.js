@@ -58,6 +58,14 @@ export default function Covid19() {
       })
       .catch((err) => {
         console.log(err);
+        toaster.notify(
+          <div style={{ fontWeight: "bold", color: "darkgreen" }}>
+            {lan.toasterNote[lanSwitch]}
+          </div>,
+          {
+            duration: 5000,
+          }
+        );
       });
 
     // toaster.notify(({ onClose }) => (
