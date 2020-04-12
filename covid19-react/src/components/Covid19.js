@@ -52,7 +52,7 @@ export default function Covid19() {
               : resp.data[0].content}
           </div>,
           {
-            duration: 5000,
+            duration: 1000,
           }
         );
       })
@@ -63,7 +63,7 @@ export default function Covid19() {
             {lan.toasterNote[lanSwitch]}
           </div>,
           {
-            duration: 5000,
+            duration: 1000,
           }
         );
       });
