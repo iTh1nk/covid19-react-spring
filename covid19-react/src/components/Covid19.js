@@ -7,7 +7,7 @@ import {
   Button,
   Collapse,
   Table,
-  Spinner
+  Spinner,
 } from "reactstrap";
 import dataIrvine from "../data/dataIrvine.json";
 import dataOC from "../data/dataOC.json";
@@ -18,6 +18,8 @@ import Axios from "axios";
 import SelectInt from "./SelectInt";
 import { AssignContext } from "./AssignContext";
 
+import toaster from "toasted-notes";
+
 export default function Covid19() {
   const [dataUS, setDataUS] = useState([]);
   const [dataWorld, setDataWorld] = useState([]);
@@ -27,21 +29,48 @@ export default function Covid19() {
 
   useEffect(() => {
     Axios.get("https://pomber.github.io/covid19/timeseries.json")
-      .then(resp => {
+      .then((resp) => {
         setDataWorld(resp.data);
         setDataUS(resp.data.US.reverse());
         console.log(resp.data.US);
         setIsLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
+
+    Axios.get("/api/toaster").then((resp) => {
+      console.log("Get Toaster: ", resp.data)
+      toaster.notify(
+        <div style={{ fontWeight: "bold", color: "darkgreen" }}>
+          {/* {lan.toasterNote[lanSwitch]} */}
+          {resp.data[0].content || lan.toasterNote[lanSwitch]}
+        </div>,
+        {
+          duration: 5000,
+        }
+      );
+    });
+
+    // toaster.notify(({ onClose }) => (
+    //   <div>
+    //     <span>My custom toaster</span>
+    //     <Button
+    //       color="primary"
+    //       outline
+    //       size="sm"
+    //       onClick={onClose}
+    //     >
+    //       关闭
+    //     </Button>
+    //   </div>
+    // ));
   }, []);
 
   const numNewUS = (arg1, arg2) => {
     return arg1 - arg2;
   };
-  const numNewUSList = num => {
+  const numNewUSList = (num) => {
     if (num == dataUS.length - 1) {
       return dataUS[parseInt(num)].confirmed;
     } else {
@@ -50,7 +79,7 @@ export default function Covid19() {
       );
     }
   };
-  const formatDate = str => {
+  const formatDate = (str) => {
     return str;
   };
 
@@ -80,31 +109,31 @@ export default function Covid19() {
 
   const containerStyle = {
     marginTop: "1em",
-    marginBottom: "1em"
+    marginBottom: "1em",
   };
 
   const regionTitle = {
-    color: "darkblue"
+    color: "darkblue",
   };
 
   const numConfirmed = {
-    color: "darkred"
+    color: "darkred",
   };
   const numNew = {
-    color: "red"
+    color: "red",
   };
   const numDead = {
-    color: "grey"
+    color: "grey",
   };
   const dateStyle = {
     fontStyle: "italic",
-    color: "darkblue"
+    color: "darkblue",
   };
   const loadingStyle = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "8em"
+    height: "8em",
   };
 
   if (isLoading) {
@@ -274,6 +303,14 @@ export default function Covid19() {
             <h5 style={regionTitle}>
               {lan.cardUS.title[lanSwitch]} ({dataUS[0].date})
               {/* (<Moment format="MM-DD">{date}</Moment>) */}
+              <span
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.replace("/admin");
+                }}
+              >
+                .
+              </span>
             </h5>
           </CardHeader>
           <CardBody>

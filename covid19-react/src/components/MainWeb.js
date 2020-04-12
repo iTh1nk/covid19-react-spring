@@ -5,8 +5,6 @@ import { Button } from "reactstrap";
 
 import lan from "../data/language.json";
 
-import toaster from "toasted-notes";
-
 import Navi from "./Navi";
 import Intro from "./Intro";
 import We0mmm from "./We0mmm";
@@ -17,31 +15,6 @@ import AuthModal from "./AuthModal";
 export default function MainWeb() {
   // console.log("Local Storage: ", window.localStorage.getItem('lanSwitch'))
   const [lanSwitch, SetLanSwitch] = useState(window.localStorage.getItem("lanSwitch") || "cn");
-
-  useEffect(() => {
-    // SetLanSwitch(window.localStorage.getItem('lanSwitch'));
-    toaster.notify(
-      <div style={{ fontWeight: "bold", color: "darkgreen" }}>
-        {lan.toasterNote[lanSwitch]}
-      </div>,
-      {
-        duration: 5000
-      }
-    );
-    // toaster.notify(({ onClose }) => (
-    //   <div>
-    //     <span>My custom toaster</span>
-    //     <Button
-    //       color="primary"
-    //       outline
-    //       size="sm"
-    //       onClick={onClose}
-    //     >
-    //       关闭
-    //     </Button>
-    //   </div>
-    // ));
-  }, []);
 
   const [toggleSearch, setToggleSearch] = useState(false);
   const [toggleStatus, setToggleStatus] = useState(
