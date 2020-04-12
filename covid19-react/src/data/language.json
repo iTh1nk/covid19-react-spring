@@ -11,6 +11,10 @@
     "cn": "麦搜索",
     "en": "MacSearch"
   },
+  "toasterNote": {
+    "cn": "等待数据库...",
+    "en": "Waiting for SQL..."
+  },
   "topNotification": {
     "cn": "“这些残暴的欢愉，终将以残暴结局”",
     "en": "”These violent delights have violent ends“"
@@ -108,9 +112,5 @@
         "en": "Open"
       }
     }
-  },
-  "toasterNote": {
-    "cn": "麦搜索已全面开放",
-    "en": "MacSearch is available now!"
   }
 }
