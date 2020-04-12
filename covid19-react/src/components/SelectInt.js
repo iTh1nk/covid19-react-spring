@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext, useReducer } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import Select from "react-select";
 import { Collapse, Button, CardBody, Card, Table } from "reactstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Moment from "react-moment";
+// import Moment from "react-moment";
 import moment from "moment";
 import { AssignContext } from "./AssignContext";
 import "./SelectInt.css";
-import Headlines from "./Headlines";
+// import Headlines from "./Headlines";
 
 function SelectInt(props) {
   // const dateMoment = () => {
@@ -34,16 +34,16 @@ function SelectInt(props) {
     AssignContext
   );
 
-  const [selectedData, dispatch] = useReducer(
-    selectedDataReducer,
-    "Waiting for data..."
-  );
-  function selectedDataReducer(state, action) {
-    switch (action.type) {
-      case "US":
-        return;
-    }
-  }
+  // const [selectedData, dispatch] = useReducer(
+  //   selectedDataReducer,
+  //   "Waiting for data..."
+  // );
+  // function selectedDataReducer(state, action) {
+  //   switch (action.type) {
+  //     case "US":
+  //       return;
+  //   }
+  // }
 
   const onEntering = () => setToggleStatus("...");
   const onEntered = () => setToggleStatus("");

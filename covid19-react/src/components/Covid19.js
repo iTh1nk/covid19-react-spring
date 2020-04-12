@@ -11,8 +11,8 @@ import {
 } from "reactstrap";
 import dataIrvine from "../data/dataIrvine.json";
 import dataOC from "../data/dataOC.json";
-import Moment from "react-moment";
-import moment from "moment";
+// import Moment from "react-moment";
+// import moment from "moment";
 // import usDate from "https://pomber.github.io/covid19/timeseries.json";
 import Axios from "axios";
 import SelectInt from "./SelectInt";
