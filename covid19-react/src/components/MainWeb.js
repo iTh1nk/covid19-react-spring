@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AssignContext } from "./AssignContext";
-import { Button } from "reactstrap";
+// import { Button } from "reactstrap";
 
 import lan from "../data/language.json";
 
 import Navi from "./Navi";
-import Intro from "./Intro";
+// import Intro from "./Intro";
 import We0mmm from "./We0mmm";
 import NoMatch from "./NoMatch";
 import Covid19 from "./Covid19";

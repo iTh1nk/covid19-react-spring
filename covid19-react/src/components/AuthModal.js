@@ -8,7 +8,7 @@ export default function LoginModal(props) {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleOnChange = (e) => {
-    if (e.target.value === "0728") {
+    if (e.target.value === process.env.REACT_APP_SELFKEY) {
       setIsLoggedIn(true);
       localStorage.setItem(
         "auth",

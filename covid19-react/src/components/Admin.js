@@ -9,6 +9,7 @@ import {
   Table,
 } from "reactstrap";
 import Axios from "axios";
+// import dotevn from "dotenv";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -110,6 +111,18 @@ export default function Admin() {
             color="secondary"
           >
             Reset
+          </Button>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              localStorage.removeItem("auth");
+              window.location.reload();
+            }}
+            style={{ marginLeft: "2em" }}
+            size="sm"
+            color="warning"
+          >
+            Logout
           </Button>
         </Form>
         <hr />
