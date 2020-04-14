@@ -2,7 +2,7 @@
 
 # [COVID-19](http://52.197.136.58:3005/) ![We0mmmBadge](https://img.shields.io/badge/-We0mmm-blue?logo=visual-studio-code)
 
-* This app is designed for gathering covid-19 cases for Irvine, Orange County, and also US daily bases;
+* This app is designed for gathering covid-19 cases for Irvine, Orange County, and also US on daily bases;
 * All data was retrieved from official health department;
 * Multi-language is supported in this app: English and Mandarin;
 ---
