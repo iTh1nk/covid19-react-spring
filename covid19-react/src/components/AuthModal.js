@@ -5,6 +5,9 @@ import moment from "moment";
 
 export default function LoginModal(props) {
   const [modal, setModal] = useState(true);
+  const toggle = () => {
+    window.location.replace("/");
+  };
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleOnChange = (e) => {
@@ -24,7 +27,9 @@ export default function LoginModal(props) {
     return (
       <div>
         <Modal isOpen={modal} backdrop="static">
-          <ModalHeader>Access Authentication</ModalHeader>
+          <ModalHeader toggle={toggle} charCode="🏡">
+            Access Authentication
+          </ModalHeader>
           <ModalBody>
             <Input
               onChange={(e) => {

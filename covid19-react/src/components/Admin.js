@@ -9,17 +9,22 @@ import {
   Table,
 } from "reactstrap";
 import Axios from "axios";
-// import dotevn from "dotenv";
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "delete":
-    // return {toasterObj: [...]}
-  }
-}
+// function reducer(state, action) {
+//   switch (action.type) {
+//     case "get":
+//       return {
+//         toaster: [...state.toaster, { data: action.data }],
+//       };
+//     // case "delete":
+//     //   return {
+//     //     toaster: [...state.toaster]
+//     //   };
+//   }
+// }
 
 export default function Admin() {
-  const [{ toasterObj }, dispatch] = useReducer(reducer, { toasterObj: [] });
+  // const [{ toaster }, dispatch] = useReducer(reducer, { toaster: [] });
 
   const [toaster, setToaster] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -30,6 +35,7 @@ export default function Admin() {
     Axios.get("/api/toaster")
       .then((resp) => {
         setToaster(resp.data);
+        // dispatch({ type: "get", data: resp.data });
         setIsLoading(false);
         // console.log("Get Toaster: ", resp.data);
       })
@@ -55,8 +61,10 @@ export default function Admin() {
 
   const handleDel = (e, id) => {
     e.preventDefault();
+    // dispatch({ type: "delete", id: id });
     Axios.delete("/api/toaster/" + id)
       .then((resp) => {
+        setToaster(toaster.filter((item) => item.id !== id));
         console.log("DELETed!");
       })
       .catch((err) => {
@@ -135,6 +143,7 @@ export default function Admin() {
             </tr>
           </thead>
           <tbody>
+            {/* {console.log("GetToaster: ", toaster)} */}
             {toaster.map((item, index) => (
               <tr key={index}>
                 <td>{item.id}</td>
