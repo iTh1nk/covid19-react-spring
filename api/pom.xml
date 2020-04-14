@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.covid19</groupId>
 	<artifactId>api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<version>1.0</version>
+	<name>COVID19-OC</name>
+	<description>Covid-19 Daily Update</description>
 
 	<properties>
 		<java.version>1.8</java.version>
