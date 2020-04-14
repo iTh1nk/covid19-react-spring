@@ -47,12 +47,21 @@ export default function Admin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let data = {
-      id: 1,
+      id: document.getElementById("toasterId").value,
       content: document.getElementById("toasterContent").value,
     };
     Axios.post("/api/toaster", data)
       .then((resp) => {
+        setToaster([
+          ...toaster,
+          {
+            id: document.getElementById("toasterId").value,
+            content: document.getElementById("toasterContent").value,
+          },
+        ]);
         console.log("POSTed!");
+        document.getElementById("toasterId").value = "";
+        document.getElementById("toasterContent").value = "";
       })
       .catch((err) => {
         console.log(err);
@@ -93,6 +102,14 @@ export default function Admin() {
       <Container style={{ marginTop: "5em" }}>
         <Form onSubmit={(e) => handleSubmit(e)}>
           <FormGroup>
+            <Label style={{ fontWeight: "bolder" }}>Toaster ID: </Label>
+            <Input
+              type="text"
+              name="id"
+              id="toasterId"
+              placeholder={"Please input toaster ID..."}
+            />
+            <br />
             <Label
               onClick={(e) => handlePlaceholder(e)}
               style={{ fontWeight: "bolder" }}
@@ -104,34 +121,36 @@ export default function Admin() {
               name="content"
               id="toasterContent"
               placeholder={
-                placeholder ? placeholder : "Please input your toaster..."
+                placeholder ? placeholder : "Please input toaster content..."
               }
             />
           </FormGroup>
-          <Button type="submit" size="sm" outline color="primary">
-            Submit
-          </Button>
-          <Button
-            onClick={(e) => handleReset(e)}
-            style={{ marginLeft: "2em" }}
-            size="sm"
-            outline
-            color="secondary"
-          >
-            Reset
-          </Button>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              localStorage.removeItem("auth");
-              window.location.reload();
-            }}
-            style={{ marginLeft: "2em" }}
-            size="sm"
-            color="warning"
-          >
-            Logout
-          </Button>
+          <FormGroup style={{ width: "100%", position: "relative" }}>
+            <Button type="submit" size="sm" outline color="primary">
+              Submit
+            </Button>
+            <Button
+              onClick={(e) => handleReset(e)}
+              style={{ marginLeft: "2em" }}
+              size="sm"
+              outline
+              color="secondary"
+            >
+              Reset
+            </Button>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                localStorage.removeItem("auth");
+                window.location.reload();
+              }}
+              style={{ position: "absolute", right: "0em" }}
+              size="sm"
+              color="warning"
+            >
+              Logout
+            </Button>
+          </FormGroup>
         </Form>
         <hr />
         <Table borderless style={{ textAlign: "center" }}>
