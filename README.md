@@ -1,6 +1,6 @@
 <img src="./favicon.ico" align="right" width="160px" height="170px"/>
 
-# [COVID-19](http://52.197.136.58:3005/) ![We0mmmBadge](https://img.shields.io/badge/-We0mmm-blue?logo=visual-studio-code)
+# [COVID-19](http://54.95.189.51:3005/) ![We0mmmBadge](https://img.shields.io/badge/-We0mmm-blue?logo=visual-studio-code)
 
 * This app is designed for gathering covid-19 cases for Irvine, Orange County, and also US on daily bases;
 * All data was retrieved from official health department;
