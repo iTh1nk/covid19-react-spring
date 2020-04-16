@@ -28,16 +28,16 @@ export default function Covid19() {
   );
 
   useEffect(() => {
-    Axios.get("https://pomber.github.io/covid19/timeseries.json")
-      .then((resp) => {
-        setDataWorld(resp.data);
-        setDataUS(resp.data.US.reverse());
-        console.log(resp.data.US);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // Axios.get("https://pomber.github.io/covid19/timeseries.json")
+    //   .then((resp) => {
+    //     setDataWorld(resp.data);
+    //     setDataUS(resp.data.US.reverse());
+    //     console.log(resp.data.US);
+    //     setIsLoading(false);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
 
     Axios.get("/api/toaster")
       .then((resp) => {
