@@ -55,6 +55,7 @@ export default function Covid19() {
             duration: 1000,
           }
         );
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -314,11 +315,10 @@ export default function Covid19() {
         <br />
         {/* *********************************************************************************** */}
         {/* Card for US */}
-        <Card>
+        {/* <Card>
           <CardHeader>
             <h5 style={regionTitle}>
               {lan.cardUS.title[lanSwitch]} ({dataUS[0].date})
-              {/* (<Moment format="MM-DD">{date}</Moment>) */}
               <span
                 onClick={(e) => {
                   e.preventDefault();
@@ -357,10 +357,10 @@ export default function Covid19() {
               style={{ marginBottom: "1rem" }}
             >
               {lan.general.cardBtn[lanSwitch]}
-            </Button>
+            </Button> */}
 
             {/* Toggle Content for US */}
-            <Collapse isOpen={isOpen2}>
+            {/* <Collapse isOpen={isOpen2}>
               <Card>
                 <CardBody>
                   <Table borderless>
@@ -387,8 +387,7 @@ export default function Covid19() {
               </Card>
             </Collapse>
           </CardBody>
-          {/* <CardFooter></CardFooter> */}
-        </Card>
+        </Card> */}
       </Container>
     </>
   );
