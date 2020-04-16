@@ -47,7 +47,7 @@ export default function LoginModal(props) {
     return <ShowAuthModal />;
   } else if (!getLocalStorage.isAuthed && !isLoggedIn) {
     return <ShowAuthModal />;
-  } else if (moment(new Date()).diff(getLocalStorage.created, "minutes") > 60) {
+  } else if (moment(new Date()).diff(getLocalStorage.created, "minutes") > 600) {
     localStorage.removeItem("auth");
     window.location.reload();
   }
