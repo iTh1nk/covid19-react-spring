@@ -59,12 +59,11 @@ function Navi() {
           </Button>
         </Nav>
         <NavbarText>
-          {/* <span style={{ fontStyle: "italic" }}></span> */}
           <Button
             color="primary"
             size="sm"
             outline
-            onClick={toggle}
+            // onClick={toggle}
             style={{ marginBottom: "1rem" }}
           >
             {lan.searchBtn[lanSwitch]} {toggleStatus}

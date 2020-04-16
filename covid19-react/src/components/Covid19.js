@@ -175,6 +175,14 @@ export default function Covid19() {
           <CardHeader>
             <h5 style={regionTitle}>
               {lan.cardIrvine.title[lanSwitch]} ({dataIrvine[0].date})
+              <span
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.replace("/admin");
+                }}
+              >
+                .
+              </span>
             </h5>
           </CardHeader>
           <CardBody>
@@ -359,8 +367,8 @@ export default function Covid19() {
               {lan.general.cardBtn[lanSwitch]}
             </Button> */}
 
-            {/* Toggle Content for US */}
-            {/* <Collapse isOpen={isOpen2}>
+        {/* Toggle Content for US */}
+        {/* <Collapse isOpen={isOpen2}>
               <Card>
                 <CardBody>
                   <Table borderless>
