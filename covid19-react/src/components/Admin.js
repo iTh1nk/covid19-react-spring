@@ -7,6 +7,7 @@ import {
   Input,
   Button,
   Table,
+  Spinner,
 } from "reactstrap";
 import Axios from "axios";
 
@@ -92,9 +93,22 @@ export default function Admin() {
     setPlaceholder(toaster[0].content);
   };
 
+  const loadingStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "8em",
+  };
+
   if (isLoading) {
     // console.log("Loading: ", toaster[0]);
-    return "Loading...";
+    return (
+      <div style={{ loadingStyle }}>
+        <Spinner type="grow" color="danger" />
+        <Spinner type="grow" color="warning" />
+        <Spinner type="grow" color="primary" />
+      </div>
+    );
   }
 
   return (
