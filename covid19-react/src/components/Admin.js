@@ -101,13 +101,14 @@ export default function Admin() {
   };
 
   if (isLoading) {
-    // console.log("Loading: ", toaster[0]);
     return (
-      <div style={{ loadingStyle }}>
-        <Spinner type="grow" color="danger" />
-        <Spinner type="grow" color="warning" />
-        <Spinner type="grow" color="primary" />
-      </div>
+      <>
+        <div style={loadingStyle}>
+          <Spinner type="grow" color="danger" />
+          <Spinner type="grow" color="warning" />
+          <Spinner type="grow" color="primary" />
+        </div>
+      </>
     );
   }
 
