@@ -183,6 +183,14 @@ export default function Covid19() {
               >
                 .
               </span>
+              <span
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.replace("/login");
+                }}
+              >
+                .
+              </span>
             </h5>
           </CardHeader>
           <CardBody>
