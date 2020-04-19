@@ -40,9 +40,9 @@ export default function MainWeb() {
         <Router>
           <Switch>
             <Route exact path="/" render={(props) => <Covid19 />} />
+            <Route exact path="/login" render={(props) => <Login />} />
             <Route exact path="/we0mmm" render={(props) => <We0mmm />} />
             <Route exact path="/admin" render={(props) => <AuthModal />} />
-            <Route exact path="/login" render={(props) => <Login />} />
             <Route component={NoMatch} />
           </Switch>
         </Router>
