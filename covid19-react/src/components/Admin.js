@@ -85,6 +85,7 @@ export default function Admin() {
   const handleReset = (e) => {
     e.preventDefault();
     setPlaceholder("");
+    document.getElementById("toasterId").value = "";
     document.getElementById("toasterContent").value = "";
   };
 
