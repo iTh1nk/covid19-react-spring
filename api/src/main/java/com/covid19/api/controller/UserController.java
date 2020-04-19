@@ -1,8 +1,14 @@
 package com.covid19.api.controller;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import javax.validation.Valid;
+
 import com.covid19.api.model.AdminUser;
 import com.covid19.api.repository.UserRepository;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,10 +29,10 @@ public class UserController {
   }
 
   @PostMapping("/signup")
-  public void signUp(@RequestBody AdminUser adminUser) {
+  ResponseEntity<AdminUser> signUp(@Valid @RequestBody AdminUser adminUser) throws URISyntaxException {
     adminUser.setPassword(bCryptPasswordEncoder.encode(adminUser.getPassword()));
-    userRepository.save(adminUser);
+    AdminUser result = userRepository.save(adminUser);
+    return ResponseEntity.created(new URI("/api/user/signup" + result.getId())).body(result);
   }
-
 
 }

@@ -26,7 +26,7 @@ public class Application {
 
 		@Override
 		protected void configure(HttpSecurity httpSecurity) throws Exception {
-			httpSecurity.authorizeRequests().antMatchers("/api/toaster").permitAll();
+			httpSecurity.authorizeRequests().antMatchers("/api").permitAll();
 		}
 	}
 }
