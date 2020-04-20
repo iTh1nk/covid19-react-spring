@@ -33,10 +33,19 @@ export default function Login() {
     Axios.post("/api/user/signup", data)
       .then((resp) => {
         console.log("Submitted! ", resp);
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleReset = (e) => {
+    e.preventDefault();
+
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
   };
 
   const handleDel = (e, id) => {
@@ -68,14 +77,15 @@ export default function Login() {
             height="150"
             style={{
               width: "100%",
-              maxWidth: "660px",
+              // maxWidth: "660px",
               overflow: "hidden",
               background: "transparent",
-            }} 
+            }}
             sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
             src="https://embed.music.apple.com/us/album/if-i-were-a-song/1274389969?i=1274389973"
           ></iframe>
         </div>
+        <br />
         <h3>{isLoggedIn ? "Logged In" : "Logged Out"}</h3>
         <hr />
         <Form onSubmit={(e) => handleSubmit(e)}>
@@ -103,7 +113,10 @@ export default function Login() {
               color="secondary"
               outline
               size="sm"
-              style={{ marginLeft: "2em", marginRight: "2em" }}
+              style={{ marginLeft: "2em", marginRight: "5em" }}
+              onClick={(e) => {
+                handleReset(e);
+              }}
             >
               Reset
             </Button>

@@ -1,5 +1,6 @@
 package com.covid19.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,18 +15,18 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
-  private UserDetailsServiceImpl userDetailsService;
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-  public WebSecurity(UserDetailsServiceImpl userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-    this.userDetailsService = userDetailsService;
-    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-  }
+  @Autowired
+  private UserDetailsServiceImpl userDetailsService;
+
+  @Autowired
+  private BCryptPasswordEncoder bCryptPasswordEncoder;
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/**").permitAll()
-        .anyRequest().authenticated().and().addFilter(new JWTAuth(authenticationManager()))
+    http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, "/api/user/signup").permitAll()
+        .anyRequest().authenticated().and()
+        .addFilter(new JWTAuth(authenticationManager()))
         .addFilter(new JWTAuthorization(authenticationManager())).sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }

@@ -3,6 +3,7 @@ package com.covid19.security;
 import com.covid19.api.model.AdminUser;
 import com.covid19.api.repository.UserRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,11 +12,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import static java.util.Collections.emptyList;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
-  private UserRepository userRepository;
 
-  public UserDetailsServiceImpl(UserRepository userRepository) {
-    this.userRepository = userRepository;
-  }
+  @Autowired
+  private UserRepository userRepository;
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
