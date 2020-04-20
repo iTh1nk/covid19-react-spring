@@ -11,6 +11,7 @@ import {
 import Axios from "axios";
 
 export default function Login() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -49,10 +50,33 @@ export default function Login() {
       });
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+  };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <Container style={{ marginTop: "2em" }}>
-        <h3>isLoggedIn: </h3>
+        <div>
+          <iframe
+            allow="autoplay *; encrypted-media *;"
+            frameborder="0"
+            height="150"
+            style={{
+              width: "100%",
+              maxWidth: "660px",
+              overflow: "hidden",
+              background: "transparent",
+            }}
+            sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+            src="https://embed.music.apple.com/us/album/if-i-were-a-song/1274389969?i=1274389973"
+          ></iframe>
+        </div>
+        <h3>{isLoggedIn ? "Logged In" : "Logged Out"}</h3>
         <hr />
         <Form onSubmit={(e) => handleSubmit(e)}>
           <FormGroup>
@@ -73,15 +97,31 @@ export default function Login() {
           </FormGroup>
           <FormGroup>
             <Button color="primary" outline size="sm" type="submit">
-              Submit
+              Singup
             </Button>
             <Button
               color="secondary"
               outline
               size="sm"
-              style={{ marginLeft: "2em" }}
+              style={{ marginLeft: "2em", marginRight: "2em" }}
             >
               Reset
+            </Button>
+            <Button
+              color="primary"
+              outline
+              size="sm"
+              onClick={(e) => handleLogin(e)}
+            >
+              Login
+            </Button>{" "}
+            <Button
+              color="warning"
+              outline
+              size="sm"
+              onClick={(e) => handleLogout(e)}
+            >
+              Logout
             </Button>
           </FormGroup>
         </Form>
