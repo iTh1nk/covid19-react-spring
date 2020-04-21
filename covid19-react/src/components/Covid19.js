@@ -175,22 +175,6 @@ export default function Covid19() {
           <CardHeader>
             <h5 style={regionTitle}>
               {lan.cardIrvine.title[lanSwitch]} ({dataIrvine[0].date})
-              <span
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.replace("/admin");
-                }}
-              >
-                .
-              </span>
-              <span
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.replace("/login");
-                }}
-              >
-                .
-              </span>
             </h5>
           </CardHeader>
           <CardBody>
@@ -199,8 +183,26 @@ export default function Covid19() {
                 <tr>
                   <th style={numConfirmed}>
                     {lan.general.totalConfirmed[lanSwitch]}
+                    <span
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.replace("/login");
+                      }}
+                    >
+                      .
+                    </span>
                   </th>
-                  <th style={numNew}>{lan.general.dailyNew[lanSwitch]}</th>
+                  <th style={numNew}>
+                    {lan.general.dailyNew[lanSwitch]}
+                    <span
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.location.replace("/admin");
+                      }}
+                    >
+                      .
+                    </span>
+                  </th>
                 </tr>
               </thead>
               <tbody style={{ textAlign: "center" }}>

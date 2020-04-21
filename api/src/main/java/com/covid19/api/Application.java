@@ -2,6 +2,8 @@ package com.covid19.api;
 
 import java.util.Arrays;
 
+import com.covid19.api.security.UserDetailsServiceImpl;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -17,48 +19,35 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @SpringBootApplication
 public class Application {
 
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// @Configuration
-	// static class ApplicationSecurity extends WebSecurityConfigurerAdapter {
-
-	// @Bean
-	// public BCryptPasswordEncoder bCryptPasswordEncoder() {
-	// return new BCryptPasswordEncoder();
-	// }
-
-	// @Override
-	// protected void configure(HttpSecurity httpSecurity) throws Exception {
-	// httpSecurity.authorizeRequests().antMatchers("/**").permitAll();
-	// }
-	// }
-
 	// @EnableWebSecurity
 	// public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	// 	// @Override
-	// 	// protected void configure(HttpSecurity http) throws Exception {
-	// 	// 	http.cors().and().csrf().disable();
-	// 	// }
+	// 	@Override
+	// 	protected void configure(HttpSecurity http) throws Exception {
+	// 		http.cors().and().csrf().disable();
+	// 	}
 
 	// 	// @Bean
 	// 	// CorsConfigurationSource corsConfigurationSource() {
-	// 	// 	CorsConfiguration configuration = new CorsConfiguration();
-	// 	// 	configuration.setAllowedOrigins(Arrays.asList("*"));
-	// 	// 	configuration.setAllowedMethods(Arrays.asList("*"));
-	// 	// 	configuration.setAllowedHeaders(Arrays.asList("*"));
-	// 	// 	configuration.setAllowCredentials(true);
-	// 	// 	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	// 	// 	source.registerCorsConfiguration("/**", configuration);
-	// 	// 	return source;
+	// 	// CorsConfiguration configuration = new CorsConfiguration();
+	// 	// configuration.setAllowedOrigins(Arrays.asList("*"));
+	// 	// configuration.setAllowedMethods(Arrays.asList("*"));
+	// 	// configuration.setAllowedHeaders(Arrays.asList("*"));
+	// 	// configuration.setAllowCredentials(true);
+	// 	// UrlBasedCorsConfigurationSource source = new
+	// 	// UrlBasedCorsConfigurationSource();
+	// 	// source.registerCorsConfiguration("/**", configuration);
+	// 	// return source;
 	// 	// }
-
-		@Bean
-		public BCryptPasswordEncoder bCryptPasswordEncoder() {
-			return new BCryptPasswordEncoder();
-		}
 
 	// }
 

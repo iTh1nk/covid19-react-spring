@@ -1,11 +1,11 @@
-package com.covid19.api.repository;
+// package com.covid19.api.repository;
 
-import java.util.Optional;
+// import java.util.Optional;
 
-import com.covid19.api.model.Users;
+// import com.covid19.api.model.Users;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsersRepository extends JpaRepository<Users, Integer> {
-  Optional<Users> findByName(String username);
-}
+// public interface UsersRepository extends JpaRepository<Users, Integer> {
+//   Optional<Users> findByName(String username);
+// }
