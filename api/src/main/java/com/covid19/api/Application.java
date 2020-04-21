@@ -35,31 +35,31 @@ public class Application {
 	// }
 	// }
 
-	@EnableWebSecurity
-	public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	// @EnableWebSecurity
+	// public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			http.cors().and().csrf().disable();
-		}
+	// 	// @Override
+	// 	// protected void configure(HttpSecurity http) throws Exception {
+	// 	// 	http.cors().and().csrf().disable();
+	// 	// }
 
-		// @Bean
-		// CorsConfigurationSource corsConfigurationSource() {
-		// 	CorsConfiguration configuration = new CorsConfiguration();
-		// 	configuration.setAllowedOrigins(Arrays.asList("*"));
-		// 	configuration.setAllowedMethods(Arrays.asList("*"));
-		// 	configuration.setAllowedHeaders(Arrays.asList("*"));
-		// 	configuration.setAllowCredentials(true);
-		// 	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		// 	source.registerCorsConfiguration("/**", configuration);
-		// 	return source;
-		// }
+	// 	// @Bean
+	// 	// CorsConfigurationSource corsConfigurationSource() {
+	// 	// 	CorsConfiguration configuration = new CorsConfiguration();
+	// 	// 	configuration.setAllowedOrigins(Arrays.asList("*"));
+	// 	// 	configuration.setAllowedMethods(Arrays.asList("*"));
+	// 	// 	configuration.setAllowedHeaders(Arrays.asList("*"));
+	// 	// 	configuration.setAllowCredentials(true);
+	// 	// 	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	// 	// 	source.registerCorsConfiguration("/**", configuration);
+	// 	// 	return source;
+	// 	// }
 
 		@Bean
 		public BCryptPasswordEncoder bCryptPasswordEncoder() {
 			return new BCryptPasswordEncoder();
 		}
 
-	}
+	// }
 
 }
