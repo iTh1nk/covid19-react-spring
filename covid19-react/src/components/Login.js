@@ -15,7 +15,12 @@ export default function Login() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    Axios.get("/api/user/list")
+    Axios.get("/api/user/list", {
+      // auth: {
+      // username: "mac",
+      // password: "123123"
+      // }
+    })
       .then((resp) => {
         setUsers(resp.data);
       })
@@ -73,7 +78,7 @@ export default function Login() {
         <div>
           <iframe
             allow="autoplay *; encrypted-media *;"
-            frameborder="0"
+            frameBorder="0"
             height="150"
             style={{
               width: "100%",
@@ -149,23 +154,32 @@ export default function Login() {
             </tr>
           </thead>
           <tbody>
-            {users.map((item, idx) => (
-              <tr key={idx}>
-                <td>{item.id}</td>
-                <td>{item.username}</td>
-                <td>{item.password}</td>
-                <td>
-                  <Button
-                    size="sm"
-                    outline
-                    color="danger"
-                    onClick={(e) => handleDel(e, item.id)}
-                  >
-                    Delete
-                  </Button>
-                </td>
+            {/* {console.log("DEBUG: ", users[0])} */}
+            {users[0] !== "<" ? (
+              users.map((item, idx) => (
+                <tr key={idx}>
+                  <td>{item.id}</td>
+                  <td>{item.username}</td>
+                  <td>{item.password}</td>
+                  <td>
+                    <Button
+                      size="sm"
+                      outline
+                      color="danger"
+                      onClick={(e) => handleDel(e, item.id)}
+                    >
+                      Delete
+                    </Button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td>NA</td>
+                <td>NA</td>
+                <td>NA</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </Table>
       </Container>

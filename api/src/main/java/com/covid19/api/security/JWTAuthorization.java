@@ -22,7 +22,7 @@ public class JWTAuthorization extends BasicAuthenticationFilter {
     super(authenticationManager);
   }
 
-  // @Override
+  @Override
   protected void internalFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
       throws IOException, ServletException {
     String header = req.getHeader("Authorization");

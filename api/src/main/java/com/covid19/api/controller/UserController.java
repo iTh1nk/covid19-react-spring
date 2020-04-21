@@ -31,16 +31,16 @@ public class UserController {
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
+  @GetMapping("/list")
+  Collection<AdminUser> getAdminUser() {
+    return userRepository.findAll();
+  }
+
   @PostMapping("/signup")
   ResponseEntity<AdminUser> signUp(@Valid @RequestBody AdminUser adminUser) throws URISyntaxException {
     adminUser.setPassword(bCryptPasswordEncoder.encode(adminUser.getPassword()));
     AdminUser result = userRepository.save(adminUser);
     return ResponseEntity.created(new URI("/api/user/signup" + result.getId())).body(result);
-  }
-
-  @GetMapping("/list")
-  Collection<AdminUser> getAdminUser() {
-    return userRepository.findAll();
   }
 
   @DeleteMapping("/del/{id}")

@@ -29,7 +29,7 @@ public class JWTAuth extends UsernamePasswordAuthenticationFilter {
     this.authenticationManager = authenticationManager;
   }
 
-  // @Override
+  @Override
   public Authentication attemptAuth(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
     try {
       AdminUser creds = new ObjectMapper().readValue(req.getInputStream(), AdminUser.class);
@@ -41,11 +41,11 @@ public class JWTAuth extends UsernamePasswordAuthenticationFilter {
     }
   }
 
-  // @Override
+  @Override
   protected void successAuth(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth)
       throws IOException, ServletException {
     String token = JWT.create().withSubject(((User) auth.getPrincipal()).getUsername())
-        .withExpiresAt(new Date(System.currentTimeMillis() + 432_000_000)).sign(HMAC512("MacMaster".getBytes()));
+        .withExpiresAt(new Date(System.currentTimeMillis() + 10_000)).sign(HMAC512("MacMaster".getBytes()));
     res.addHeader("Authorization", "Bearer" + token);
   }
 }
