@@ -23,14 +23,22 @@ public class JWTAuthorization extends BasicAuthenticationFilter {
   }
 
   @Override
-  protected void internalFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
+  protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
       throws IOException, ServletException {
+    System.out.println("  $$$$$$$$$$$$$$$$$$$$$$$$$  Authorization 1  $$$$$$$$$$$$$$$$$$$$$$$$$  ");
     String header = req.getHeader("Authorization");
 
     if (header == null || !header.startsWith("Bearer")) {
       chain.doFilter(req, res);
       return;
     }
+    HttpServletResponse response = (HttpServletResponse) res;
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Credentials", "true");
+    response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+    response.setHeader("Access-Control-Max-Age", "3600");
+    response.setHeader("Access-Control-Allow-Headers",
+        "X-Requested-With, Content-Type, Authorization, Origin, Accept, Access-Control-Request-Method, Access-Control-Request-Headers");
 
     UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
 
@@ -39,16 +47,23 @@ public class JWTAuthorization extends BasicAuthenticationFilter {
   }
 
   private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
+    System.out.println("  $$$$$$$$$$$$$$$$$$$$$$$$$  Authorization 2  $$$$$$$$$$$$$$$$$$$$$$$$$  ");
     String token = request.getHeader("Authorization");
     if (token != null) {
-      String user = JWT.require(Algorithm.HMAC512("MacMaster".getBytes())).build().verify(token.replace("Bearer", ""))
+      System.out.println("  $$$$$$$$$$$$$$$$$$$$$$$$$  Authorization 2 - 1  $$$$$$$$$$$$$$$$$$$$$$$$$  \n"
+          + token.replace("Bearer ", ""));
+      String user = JWT.require(Algorithm.HMAC512("MacMaster".getBytes())).build().verify(token.replace("Bearer ", ""))
           .getSubject();
 
+      System.out.println("  $$$$$$$$$$$$$$$$$$$$$$$$$  Authorization 2 - 1 - 1  $$$$$$$$$$$$$$$$$$$$$$$$$  \n" + user);
+
       if (user != null) {
+        System.out.println("  $$$$$$$$$$$$$$$$$$$$$$$$$  Authorization 2 - 2  $$$$$$$$$$$$$$$$$$$$$$$$$  ");
         return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
       }
       return null;
     }
+    System.out.println("  $$$$$$$$$$$$$$$$$$$$$$$$$  Authorization 3  $$$$$$$$$$$$$$$$$$$$$$$$$  ");
     return null;
   }
 }

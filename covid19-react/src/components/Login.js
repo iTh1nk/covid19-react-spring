@@ -13,19 +13,20 @@ import Axios from "axios";
 export default function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     Axios.get("/api/user/list", {
-      // auth: {
-      // username: "mac",
-      // password: "123123"
-      // }
+      headers: {
+        "Authorization": window.localStorage.getItem("token")
+      }
     })
       .then((resp) => {
+        console.log("Get: ", resp.status)
         setUsers(resp.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   });
 
@@ -66,6 +67,18 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    let data = {
+      username: document.getElementById("username").value,
+      password: document.getElementById("password").value,
+    };
+    Axios.post("/login", data)
+      .then((resp) => {
+        window.localStorage.setItem("token", resp.headers.authorization);
+        console.log(resp);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleLogout = (e) => {
@@ -75,7 +88,7 @@ export default function Login() {
   return (
     <>
       <Container style={{ marginTop: "2em" }}>
-        <div>
+        {/* <div>
           <iframe
             allow="autoplay *; encrypted-media *;"
             frameBorder="0"
@@ -92,7 +105,7 @@ export default function Login() {
         </div>
         <br />
         <h3>{isLoggedIn ? "Logged In" : "Logged Out"}</h3>
-        <hr />
+        <hr /> */}
         <Form onSubmit={(e) => handleSubmit(e)}>
           <FormGroup>
             <Label>User Name: </Label>

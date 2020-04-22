@@ -23,17 +23,20 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
 public class JWTAuth extends UsernamePasswordAuthenticationFilter {
+  
   private AuthenticationManager authenticationManager;
 
   public JWTAuth(AuthenticationManager authenticationManager) {
+    System.out.println("  #########################  Auth  #########################  ");
     this.authenticationManager = authenticationManager;
   }
-
+  
   @Override
-  public Authentication attemptAuth(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
+  public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
+    System.out.println("  #########################  Auth 1  #########################  ");
     try {
       AdminUser creds = new ObjectMapper().readValue(req.getInputStream(), AdminUser.class);
-
+      System.out.println("  #########################  DEBUG  #########################  \n" + creds);
       return authenticationManager.authenticate(
           new UsernamePasswordAuthenticationToken(creds.getUsername(), creds.getPassword(), new ArrayList<>()));
     } catch (IOException e) {
@@ -42,10 +45,11 @@ public class JWTAuth extends UsernamePasswordAuthenticationFilter {
   }
 
   @Override
-  protected void successAuth(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth)
+  protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth)
       throws IOException, ServletException {
     String token = JWT.create().withSubject(((User) auth.getPrincipal()).getUsername())
-        .withExpiresAt(new Date(System.currentTimeMillis() + 10_000)).sign(HMAC512("MacMaster".getBytes()));
-    res.addHeader("Authorization", "Bearer" + token);
+        .withExpiresAt(new Date(System.currentTimeMillis() + 60_000)).sign(HMAC512("MacMaster".getBytes()));
+    res.addHeader("Authorization", "Bearer " + token);
+    System.out.println("  #########################  Auth 2  #########################  \n" + token);
   }
 }
