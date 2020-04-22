@@ -34,7 +34,7 @@ export default function Login() {
           setUsers([]);
         }
       });
-  },[isClicked]);
+  }, [isClicked]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -92,6 +92,8 @@ export default function Login() {
 
   const handleLogout = (e) => {
     e.preventDefault();
+    setIsClicked(!isClicked);
+    window.localStorage.removeItem("token");
   };
 
   return (
