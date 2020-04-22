@@ -52,7 +52,7 @@ export default function Covid19() {
               : resp.data[0].content}
           </div>,
           {
-            duration: 1000,
+            duration: 2000,
           }
         );
         setIsLoading(false);

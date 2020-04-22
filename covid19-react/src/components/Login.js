@@ -14,21 +14,27 @@ export default function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
   const [token, setToken] = useState("");
+  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     Axios.get("/api/user/list", {
       headers: {
-        "Authorization": window.localStorage.getItem("token")
-      }
+        Authorization: window.localStorage.getItem("token"),
+      },
     })
       .then((resp) => {
-        console.log("Get: ", resp.status)
+        console.log("Get: ", resp.status);
+        setIsLoggedIn(true);
         setUsers(resp.data);
       })
       .catch((err) => {
         console.log(err.response);
+        if (err.response.status === 403) {
+          setIsLoggedIn(false);
+          setUsers([]);
+        }
       });
-  });
+  },[isClicked]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,6 +44,7 @@ export default function Login() {
     };
     Axios.post("/api/user/signup", data)
       .then((resp) => {
+        setIsClicked(!isClicked);
         console.log("Submitted! ", resp);
         document.getElementById("username").value = "";
         document.getElementById("password").value = "";
@@ -58,6 +65,7 @@ export default function Login() {
     e.preventDefault();
     Axios.delete("/api/user/del/" + id)
       .then((resp) => {
+        setIsClicked(!isClicked);
         console.log("Deleted!");
       })
       .catch((err) => {
@@ -73,6 +81,7 @@ export default function Login() {
     };
     Axios.post("/login", data)
       .then((resp) => {
+        setIsClicked(!isClicked);
         window.localStorage.setItem("token", resp.headers.authorization);
         console.log(resp);
       })
@@ -102,10 +111,11 @@ export default function Login() {
             sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
             src="https://embed.music.apple.com/us/album/if-i-were-a-song/1274389969?i=1274389973"
           ></iframe>
-        </div>
-        <br />
+        </div> */}
+        {/* <br /> */}
         <h3>{isLoggedIn ? "Logged In" : "Logged Out"}</h3>
-        <hr /> */}
+        <hr />
+        <br />
         <Form onSubmit={(e) => handleSubmit(e)}>
           <FormGroup>
             <Label>User Name: </Label>
@@ -156,6 +166,7 @@ export default function Login() {
             </Button>
           </FormGroup>
         </Form>
+        <br />
         <hr />
         <Table borderless style={{ textAlign: "center" }}>
           <thead>
