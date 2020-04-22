@@ -10,4 +10,5 @@
 * App includes an admin page for CRUDing ***toaster*** notification and potentially for daily data;
 * In order to easily switch between multi-language, all texts are stored in a ***.json*** file since there are only few texts needed in this app; 
 * React hook ***useContext*** is used to physically switch between languages;
-* This app hasn't include back-end authentication, instead, react handles admin page access by using short token and creating variable in local storage which will be removed after 1 hour;
+* ~~This app hasn't include back-end authentication, instead, react handles admin page access by using short token and creating variable in local storage which will be removed after 1 hour;~~
+* JWT has been implemented to this app.
