@@ -146,9 +146,9 @@ export default function LoginModal(props) {
     );
   }
 
-  if (!isLoggedIn) {
-    return <ShowAuthModal />;
-  }
+  // if (!isLoggedIn) {
+  //   return <ShowAuthModal />;
+  // }
   //  else if (!getLocalStorage.isAuthed && !isLoggedIn) {
   //   return <ShowAuthModal />;
   // } else if (
