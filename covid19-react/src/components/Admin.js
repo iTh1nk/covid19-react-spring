@@ -157,7 +157,7 @@ export default function Admin() {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                localStorage.removeItem("auth");
+                localStorage.removeItem("token");
                 window.location.reload();
               }}
               style={{ position: "absolute", right: "0em" }}

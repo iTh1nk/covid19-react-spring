@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/user")
@@ -48,5 +50,11 @@ public class UserController {
     userRepository.deleteById(id);
     return ResponseEntity.ok().build();
   }
+
+  @GetMapping(value="/isAuth")
+  public String getIsAuth() {
+      return "isAuth";
+  }
+  
 
 }

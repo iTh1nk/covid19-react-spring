@@ -10,6 +10,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "cheerio": "^1.0.0-rc.3",
+    "formik": "^2.1.4",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
     "node-fetch": "^2.6.0",
@@ -23,7 +24,9 @@
     "react-spring": "^8.0.27",
     "react-text-loop": "^2.3.0",
     "reactstrap": "^8.4.1",
-    "toasted-notes": "^3.2.0"
+    "reactstrap-formik": "^1.0.9",
+    "toasted-notes": "^3.2.0",
+    "yup": "^0.28.4"
   },
   "scripts": {
     "start": "PORT=3005 react-scripts start",
