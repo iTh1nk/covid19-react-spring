@@ -1,11 +1,19 @@
 [
   {
-    "date": "04-22",
+    "date": "04-23",
     "confirmed": 1827,
     "new": 78,
     "deaths": 36,
     "icu": 59,
     "hospitalized": 158
+  },
+  {
+    "date": "04-22",
+    "confirmed": 1753,
+    "new": 67,
+    "deaths": 34,
+    "icu": 70,
+    "hospitalized": 162
   },
   {
     "date": "04-21",
