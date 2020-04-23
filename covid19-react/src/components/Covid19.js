@@ -41,7 +41,7 @@ export default function Covid19() {
 
     Axios.get("/api/toaster")
       .then((resp) => {
-        console.log("Get Toaster: ", resp.data);
+        console.log("Get Toaster: ", resp);
         toaster.notify(
           <div style={{ fontWeight: "bold", color: "darkgreen" }}>
             {/* {lan.toasterNote[lanSwitch]} */}
