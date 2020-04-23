@@ -51,12 +51,12 @@ export default function LoginModal(props) {
           setIsLoggedIn(false);
         }
       });
-  },[]);
+  }, []);
 
   function ShowAuthModal() {
     return (
       <div>
-        <Modal isOpen={modal} backdrop="static">
+        <Modal isOpen={true} backdrop="static">
           <ModalHeader toggle={toggle} charCode="🏡">
             Access Authentication
           </ModalHeader>
@@ -81,7 +81,6 @@ export default function LoginModal(props) {
                   .required("Password is required!"),
               })}
               onSubmit={(values, { setSubmitting }) => {
-                setSubmitting(true);
                 let data = {
                   username: values.username,
                   password: values.password,
@@ -93,13 +92,15 @@ export default function LoginModal(props) {
                       resp.headers.authorization
                     );
                     setIsLoggedIn(true);
-                    setSubmitting(false);
                   })
                   .catch((err) => {
                     console.log(err.response);
                     if (err.response.status === 403) {
                       setIsLoggedIn(false);
                     }
+                    setTimeout(() => {
+                      setSubmitting(false);
+                    }, 1000);
                   });
               }}
             >
