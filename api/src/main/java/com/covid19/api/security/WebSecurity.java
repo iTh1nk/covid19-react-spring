@@ -36,16 +36,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     System.out.println(" *************************  WebSecurity 2  ************************* ");
     http.cors().and().csrf().disable()
     
-        .authorizeRequests().antMatchers(HttpMethod.POST, "/api/user/signup").permitAll()
+        // .authorizeRequests().antMatchers(HttpMethod.POST, "/api/user/signup").permitAll()
 
-        .antMatchers(HttpMethod.GET, "/api/toaster").permitAll()
-        .anyRequest().authenticated().and()
+        // .antMatchers(HttpMethod.GET, "/api/toaster").permitAll()
+        // .anyRequest().authenticated().and()
 
-        // .formLogin().permitAll().and()
+        // // .formLogin().permitAll().and()
 
-        .addFilter(new JWTAuth(authenticationManager()))
-        .addFilter(new JWTAuthorization(authenticationManager()))
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        // .addFilter(new JWTAuth(authenticationManager()))
+        // .addFilter(new JWTAuthorization(authenticationManager()))
+        // .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         
 
         ;
