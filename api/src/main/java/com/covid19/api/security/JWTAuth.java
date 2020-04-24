@@ -48,7 +48,7 @@ public class JWTAuth extends UsernamePasswordAuthenticationFilter {
   protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth)
       throws IOException, ServletException {
     String token = JWT.create().withSubject(((User) auth.getPrincipal()).getUsername())
-        .withExpiresAt(new Date(System.currentTimeMillis() + 60_000)).sign(HMAC512("MacMaster".getBytes()));
+        .withExpiresAt(new Date(System.currentTimeMillis() + 7_200_000)).sign(HMAC512("MacMaster".getBytes()));
     res.addHeader("Authorization", "Bearer " + token);
     System.out.println("  #########################  Auth 2  #########################  \n" + token);
   }

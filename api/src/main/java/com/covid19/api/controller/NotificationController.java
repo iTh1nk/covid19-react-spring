@@ -30,11 +30,8 @@ public class NotificationController {
   private NotificationRepository notificationRepository;
 
   @GetMapping(value = "/toaster")
-  // Collection<Notification> getNotification() {
-  //   return notificationRepository.findAll();
-  // }
-  private String getToaster() {
-    return "HELLO";
+  Collection<Notification> getNotification() {
+    return notificationRepository.findAll();
   }
 
   @PostMapping(value = "/toaster")
