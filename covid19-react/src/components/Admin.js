@@ -51,7 +51,11 @@ export default function Admin() {
       id: document.getElementById("toasterId").value,
       content: document.getElementById("toasterContent").value,
     };
-    Axios.post("/api/toaster", data)
+    Axios.post("/api/toaster", data, {
+      headers: {
+        Authorization: window.localStorage.getItem("token"),
+      },
+    })
       .then((resp) => {
         setToaster([
           ...toaster,

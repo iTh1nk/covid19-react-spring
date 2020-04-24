@@ -63,7 +63,11 @@ export default function Login() {
 
   const handleDel = (e, id) => {
     e.preventDefault();
-    Axios.delete("/api/user/del/" + id)
+    Axios.delete("/api/user/del/" + id, {
+      headers: {
+        Authorization: window.localStorage.getItem("token"),
+      },
+    })
       .then((resp) => {
         setIsClicked(!isClicked);
         console.log("Deleted!");
@@ -79,7 +83,11 @@ export default function Login() {
       username: document.getElementById("username").value,
       password: document.getElementById("password").value,
     };
-    Axios.post("/login", data)
+    Axios.post("/login", data, {
+      headers: {
+        Authorization: window.localStorage.getItem("token"),
+      },
+    })
       .then((resp) => {
         setIsClicked(!isClicked);
         window.localStorage.setItem("token", resp.headers.authorization);
