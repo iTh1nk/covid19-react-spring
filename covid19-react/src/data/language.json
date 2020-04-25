@@ -79,6 +79,10 @@
     "totalDeaths": {
       "cn": "累计死亡",
       "en": "Total Deaths"
+    },
+    "newCaseHigh": {
+      "cn": "新高",
+      "en": "New High"
     }
   },
   "errors": {
