@@ -279,7 +279,10 @@ export default function Covid19() {
                   <th style={numConfirmed}>
                     {lan.general.totalConfirmed[lanSwitch]}
                   </th>
-                  <th style={numNew}>{lan.general.dailyNew[lanSwitch]}({lan.general.newCaseHigh[lanSwitch]})</th>
+                  <th style={numNew}>
+                    {lan.general.dailyNew[lanSwitch]}
+                    {/* ({lan.general.newCaseHigh[lanSwitch]}) */}
+                  </th>
                   <th style={numDead}>{lan.general.totalDeaths[lanSwitch]}</th>
                 </tr>
               </thead>
