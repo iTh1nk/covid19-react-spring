@@ -76,7 +76,11 @@ export default function Admin() {
   const handleDel = (e, id) => {
     e.preventDefault();
     // dispatch({ type: "delete", id: id });
-    Axios.delete("/api/toaster/" + id)
+    Axios.delete("/api/toaster/" + id, {
+      headers: {
+        Authorization: window.localStorage.getItem("token"),
+      },
+    })
       .then((resp) => {
         setToaster(toaster.filter((item) => item.id !== id));
         console.log("DELETed!");

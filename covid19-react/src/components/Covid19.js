@@ -183,14 +183,14 @@ export default function Covid19() {
                 <tr>
                   <th style={numConfirmed}>
                     {lan.general.totalConfirmed[lanSwitch]}
-                    <span
+                    {/* <span
                       onClick={(e) => {
                         e.preventDefault();
                         window.location.replace("/login");
                       }}
                     >
                       .
-                    </span>
+                    </span> */}
                   </th>
                   <th style={numNew}>
                     {lan.general.dailyNew[lanSwitch]}
