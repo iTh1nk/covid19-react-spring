@@ -64,7 +64,7 @@ export default function Admin() {
           {
             id: document.getElementById("toasterId").value,
             content: document.getElementById("toasterContent").value,
-            duration: document.getElementById("toasterDuration").value,
+            duration: document.getElementById("toasterDuration").value * 1000,
           },
         ]);
         console.log("POSTed!", resp.data);
