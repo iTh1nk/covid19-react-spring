@@ -62,8 +62,8 @@ export default function Covid19() {
             Authorization: window.localStorage.getItem("token"),
           },
         })
-          .then((resp) => {
-            setDataIrvine(resp.data);
+          .then((resp2) => {
+            setDataIrvine(resp2.data);
             setIsLoading(false);
           })
           .catch((err) => {
