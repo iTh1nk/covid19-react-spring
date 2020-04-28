@@ -57,11 +57,7 @@ export default function Covid19() {
           }
         );
 
-        Axios.get("/api/data/irvine/list", {
-          headers: {
-            Authorization: window.localStorage.getItem("token"),
-          },
-        })
+        Axios.get("/api/data/irvine/list")
           .then((resp2) => {
             setDataIrvine(resp2.data);
             setIsLoading(false);
