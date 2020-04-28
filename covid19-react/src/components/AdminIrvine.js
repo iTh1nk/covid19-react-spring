@@ -142,7 +142,7 @@ export default function AdminIrvine(props) {
           </tr>
         </thead>
         <tbody>
-          {dataIrvine.map((item, idx) => (
+          {dataIrvine.reverse().map((item, idx) => (
             <tr key={idx}>
               <td>{item.id}</td>
               <td>{item.date}</td>
