@@ -56,7 +56,19 @@ export default function Covid19() {
             duration: resp.data[0].duration,
           }
         );
-        setIsLoading(false);
+
+        Axios.get("/api/data/irvine/list", {
+          headers: {
+            Authorization: window.localStorage.getItem("token"),
+          },
+        })
+          .then((resp) => {
+            setDataIrvine(resp.data);
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            console.log(err.response);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -68,18 +80,6 @@ export default function Covid19() {
             duration: 1000,
           }
         );
-      });
-
-    Axios.get("/api/data/irvine/list", {
-      headers: {
-        Authorization: window.localStorage.getItem("token"),
-      },
-    })
-      .then((resp) => {
-        setDataIrvine(resp.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
       });
 
     // toaster.notify(({ onClose }) => (
