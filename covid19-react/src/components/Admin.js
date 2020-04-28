@@ -10,6 +10,7 @@ import {
   Spinner,
 } from "reactstrap";
 import Axios from "axios";
+import AdminIrvine from "./AdminIrvine";
 
 // function reducer(state, action) {
 //   switch (action.type) {
@@ -113,6 +114,14 @@ export default function Admin() {
     height: "8em",
   };
 
+  const titleStyle = {
+    fontWeight: "bolder",
+  };
+
+  const conStyle = {
+    marginTop: "2em"
+  }
+
   if (isLoading) {
     return (
       <>
@@ -127,10 +136,10 @@ export default function Admin() {
 
   return (
     <>
-      <Container style={{ marginTop: "5em" }}>
+      <Container style={conStyle}>
         <Form onSubmit={(e) => handleSubmit(e)}>
           <FormGroup>
-            <Label style={{ fontWeight: "bolder" }}>Toaster ID: </Label>
+            <Label style={titleStyle}>Toaster ID: </Label>
             <Input
               type="text"
               name="id"
@@ -139,10 +148,7 @@ export default function Admin() {
             />
           </FormGroup>
           <FormGroup>
-            <Label
-              onClick={(e) => handlePlaceholder(e)}
-              style={{ fontWeight: "bolder" }}
-            >
+            <Label onClick={(e) => handlePlaceholder(e)} style={titleStyle}>
               Toaster Content:{" "}
             </Label>
             <Input
@@ -155,7 +161,7 @@ export default function Admin() {
             />
           </FormGroup>
           <FormGroup>
-            <Label style={{ fontWeight: "bolder" }}>Toaster duration:</Label>
+            <Label style={titleStyle}>Toaster duration:</Label>
             <Input
               placeholder="Please input toaster duration..."
               id="toasterDuration"
@@ -206,7 +212,7 @@ export default function Admin() {
               <tr key={index}>
                 <td>{item.id}</td>
                 <td>{item.content}</td>
-                <td>{item.duration || "Null"}</td>
+                <td>{item.duration / 1000 + " Sec" || "Null"}</td>
                 <td>
                   <Button
                     size="sm"
@@ -220,6 +226,13 @@ export default function Admin() {
             ))}
           </tbody>
         </Table>
+        <hr
+          style={{
+            border: ".1em solid green",
+            borderRadius: "1em",
+          }}
+        />
+        <AdminIrvine titleStyle={titleStyle} conStyle={conStyle} />
       </Container>
     </>
   );
