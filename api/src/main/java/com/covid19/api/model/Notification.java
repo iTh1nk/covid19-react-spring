@@ -21,4 +21,6 @@ public class Notification {
   private Long id;
 
   private String content;
+
+  private Integer duration;
 }

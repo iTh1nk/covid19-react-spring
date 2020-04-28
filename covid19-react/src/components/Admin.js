@@ -50,6 +50,7 @@ export default function Admin() {
     let data = {
       id: document.getElementById("toasterId").value,
       content: document.getElementById("toasterContent").value,
+      duration: document.getElementById("toasterDuration").value,
     };
     Axios.post("/api/toaster", data, {
       headers: {
@@ -62,11 +63,13 @@ export default function Admin() {
           {
             id: document.getElementById("toasterId").value,
             content: document.getElementById("toasterContent").value,
+            duration: document.getElementById("toasterDuration").value,
           },
         ]);
-        console.log("POSTed!");
+        console.log("POSTed!", resp.data);
         document.getElementById("toasterId").value = "";
         document.getElementById("toasterContent").value = "";
+        document.getElementById("toasterDuration").value = "";
       })
       .catch((err) => {
         console.log(err);
@@ -95,6 +98,7 @@ export default function Admin() {
     setPlaceholder("");
     document.getElementById("toasterId").value = "";
     document.getElementById("toasterContent").value = "";
+    document.getElementById("toasterDuration").value = "";
   };
 
   const handlePlaceholder = (e) => {
@@ -133,7 +137,8 @@ export default function Admin() {
               id="toasterId"
               placeholder={"Please input toaster ID..."}
             />
-            <br />
+          </FormGroup>
+          <FormGroup>
             <Label
               onClick={(e) => handlePlaceholder(e)}
               style={{ fontWeight: "bolder" }}
@@ -149,6 +154,16 @@ export default function Admin() {
               }
             />
           </FormGroup>
+          <FormGroup>
+            <Label style={{ fontWeight: "bolder" }}>Toaster duration:</Label>
+            <Input
+              placeholder="Please input toaster duration..."
+              id="toasterDuration"
+              type="text"
+              name="duration"
+            />
+          </FormGroup>
+
           <FormGroup style={{ width: "100%", position: "relative" }}>
             <Button type="submit" size="sm" outline color="primary">
               Submit
@@ -182,7 +197,7 @@ export default function Admin() {
             <tr>
               <th>ID</th>
               <th>Content</th>
-              {/* <th>Action</th> */}
+              <th>Duration</th>
             </tr>
           </thead>
           <tbody>
@@ -191,6 +206,7 @@ export default function Admin() {
               <tr key={index}>
                 <td>{item.id}</td>
                 <td>{item.content}</td>
+                <td>{item.duration || "Null"}</td>
                 <td>
                   <Button
                     size="sm"
