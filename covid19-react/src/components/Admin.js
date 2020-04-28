@@ -119,8 +119,8 @@ export default function Admin() {
   };
 
   const conStyle = {
-    marginTop: "2em"
-  }
+    marginTop: "2em",
+  };
 
   if (isLoading) {
     return (
@@ -233,6 +233,12 @@ export default function Admin() {
           }}
         />
         <AdminIrvine titleStyle={titleStyle} conStyle={conStyle} />
+        <hr
+          style={{
+            border: ".1em solid green",
+            borderRadius: "1em",
+          }}
+        />
       </Container>
     </>
   );

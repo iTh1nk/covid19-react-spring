@@ -13,7 +13,6 @@ import Axios from "axios";
 export default function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
-  const [token, setToken] = useState("");
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {

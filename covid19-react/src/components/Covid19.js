@@ -9,7 +9,7 @@ import {
   Table,
   Spinner,
 } from "reactstrap";
-import dataIrvine from "../data/dataIrvine.json";
+// import dataIrvine from "../data/dataIrvine.json";
 import dataOC from "../data/dataOC.json";
 // import Moment from "react-moment";
 // import moment from "moment";
@@ -23,6 +23,7 @@ import toaster from "toasted-notes";
 export default function Covid19() {
   const [dataUS, setDataUS] = useState([]);
   const [dataWorld, setDataWorld] = useState([]);
+  const [dataIrvine, setDataIrvine] = useState([]);
   const { toggleSearch, setToggleSearch, lanSwitch, lan } = useContext(
     AssignContext
   );
@@ -69,6 +70,18 @@ export default function Covid19() {
         );
       });
 
+    Axios.get("/api/data/irvine/list", {
+      headers: {
+        Authorization: window.localStorage.getItem("token"),
+      },
+    })
+      .then((resp) => {
+        setDataIrvine(resp.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+
     // toaster.notify(({ onClose }) => (
     //   <div>
     //     <span>My custom toaster</span>
@@ -84,25 +97,25 @@ export default function Covid19() {
     // ));
   }, []);
 
-  const numNewUS = (arg1, arg2) => {
-    return arg1 - arg2;
-  };
-  const numNewUSList = (num) => {
-    if (num == dataUS.length - 1) {
-      return dataUS[parseInt(num)].confirmed;
-    } else {
-      return (
-        dataUS[parseInt(num)].confirmed - dataUS[parseInt(num) + 1].confirmed
-      );
-    }
-  };
-  const formatDate = (str) => {
-    return str;
-  };
+  // const numNewUS = (arg1, arg2) => {
+  //   return arg1 - arg2;
+  // };
+  // const numNewUSList = (num) => {
+  //   if (num == dataUS.length - 1) {
+  //     return dataUS[parseInt(num)].confirmed;
+  //   } else {
+  //     return (
+  //       dataUS[parseInt(num)].confirmed - dataUS[parseInt(num) + 1].confirmed
+  //     );
+  //   }
+  // };
+  // const formatDate = (str) => {
+  //   return str;
+  // };
 
-  const computeNewIrvine = (num, index) => {
-    console.log(num, index);
-  };
+  // const computeNewIrvine = (num, index) => {
+  //   console.log(num, index);
+  // };
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen1, setIsOpen1] = useState(false);
@@ -112,7 +125,7 @@ export default function Covid19() {
   const toggle2 = () => setIsOpen2(!isOpen2);
   const [isLoading, setIsLoading] = useState(true);
 
-  const date = new Date();
+  // const date = new Date();
 
   const Loading = () => {
     return (
