@@ -51,7 +51,7 @@ export default function Admin() {
     let data = {
       id: document.getElementById("toasterId").value,
       content: document.getElementById("toasterContent").value,
-      duration: document.getElementById("toasterDuration").value,
+      duration: document.getElementById("toasterDuration").value * 1000,
     };
     Axios.post("/api/toaster", data, {
       headers: {
@@ -163,7 +163,7 @@ export default function Admin() {
           <FormGroup>
             <Label style={titleStyle}>Toaster duration:</Label>
             <Input
-              placeholder="Please input toaster duration..."
+              placeholder="Please input toaster duration IN SECONDS..."
               id="toasterDuration"
               type="text"
               name="duration"
