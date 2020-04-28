@@ -50,7 +50,6 @@ export default function AdminIrvine(props) {
         validationSchema={Yup.object({
           irvineDataId: Yup.number()
             .typeError("This filed requires a number!")
-            .required("ID is required!")
             .positive("ID has to be a positive number!")
             .integer("ID has to be an integer!"),
           irvineDataDate: Yup.string()
