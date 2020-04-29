@@ -222,8 +222,8 @@ export default function Covid19() {
                   <td style={numNew}>
                     +
                     {dataIrvine.length === 1
-                      ? 0
-                      : dataIrvine[1].confirmed - dataIrvine[0].confirmed}
+                      ? "NA"
+                      : dataIrvine[dataIrvine.length - 1].confirmed - dataIrvine[dataIrvine.length - 2].confirmed}
                   </td>
                 </tr>
               </tbody>
@@ -259,7 +259,7 @@ export default function Covid19() {
                           <td style={numNew}>
                             +
                             {index === 0
-                              ? 0
+                              ? "NA"
                               : dataIrvine[index].confirmed -
                                 dataIrvine[index - 1].confirmed}
                           </td>
