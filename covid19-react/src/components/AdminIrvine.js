@@ -75,6 +75,7 @@ export default function AdminIrvine(props) {
         //   },
         //   ...dataIrvine,
         // ]);
+        setModal(!modal);
         console.log("Irvine Data UPDATEd!");
       })
       .catch((err) => {
@@ -254,6 +255,7 @@ export default function AdminIrvine(props) {
                 <Label>Date: </Label>
                 <Input
                   type="text"
+                  defaultValue={item.date}
                   placeholder={item.date}
                   id={handleGenId("date", item.id)}
                 />
@@ -262,6 +264,7 @@ export default function AdminIrvine(props) {
                 <Label>Confirmed: </Label>
                 <Input
                   type="text"
+                  defaultValue={item.confirmed}
                   placeholder={item.confirmed}
                   id={handleGenId("confirmed", item.id)}
                 />
