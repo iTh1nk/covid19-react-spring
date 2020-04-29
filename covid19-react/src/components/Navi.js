@@ -40,10 +40,10 @@ function Navi() {
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/" className="text-md-center">
           <TextLoop interval="6000">
-            <h1 style={{ color: "darkblue" }}>
+            <h1 style={{ color: "#e95421" }}>
               {lanSwitch ? "麦 报" : "麦 报"}{" "}
             </h1>
-            <h1 style={{ color: "darkblue", transform: "scale(1, 1)" }}>
+            <h1 style={{ color: "#e95421", transform: "scale(1, 1)" }}>
               {lanSwitch ? "MCast" : "MCast"}{" "}
             </h1>
           </TextLoop>
@@ -60,11 +60,9 @@ function Navi() {
         </Nav>
         <NavbarText>
           <Button
-            color="primary"
             size="sm"
-            outline
             // onClick={toggle}
-            style={{ marginBottom: "1rem" }}
+            style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
           >
             {lan.searchBtn[lanSwitch]} {toggleStatus}
           </Button>
