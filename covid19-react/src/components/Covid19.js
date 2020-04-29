@@ -183,7 +183,7 @@ export default function Covid19() {
         <Card>
           <CardHeader>
             <h5 style={regionTitle}>
-              {lan.cardIrvine.title[lanSwitch]} ({dataIrvine[0].date})
+              {lan.cardIrvine.title[lanSwitch]} ({dataIrvine[dataIrvine.length - 1].date})
             </h5>
           </CardHeader>
           <CardBody>
