@@ -223,7 +223,7 @@ export default function Covid19() {
                     +
                     {dataIrvine.length === 1
                       ? 0
-                      : dataIrvine[0].confirmed - dataIrvine[1].confirmed}
+                      : dataIrvine[1].confirmed - dataIrvine[0].confirmed}
                   </td>
                 </tr>
               </tbody>
@@ -252,7 +252,7 @@ export default function Covid19() {
                       </tr>
                     </thead>
                     <tbody style={{ textAlign: "center" }}>
-                      {dataIrvine.map((item, index) => (
+                      {dataIrvine.reverse().map((item, index) => (
                         <tr key={index}>
                           <td style={dateStyle}>{item.date}</td>
                           <td style={numConfirmed}>{item.confirmed}</td>
