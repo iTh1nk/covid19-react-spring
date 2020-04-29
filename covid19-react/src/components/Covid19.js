@@ -258,7 +258,7 @@ export default function Covid19() {
                           <td style={numConfirmed}>{item.confirmed}</td>
                           <td style={numNew}>
                             +
-                            {index === dataIrvine.length - 1
+                            {index === 0
                               ? 0
                               : dataIrvine[index + 1].confirmed -
                                 dataIrvine[index].confirmed}
