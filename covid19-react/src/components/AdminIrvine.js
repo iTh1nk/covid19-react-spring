@@ -75,7 +75,7 @@ export default function AdminIrvine(props) {
         //   },
         //   ...dataIrvine,
         // ]);
-        console.log("Irvine Data UPDATEd!", data);
+        console.log("Irvine Data UPDATEd!");
       })
       .catch((err) => {
         console.log(err.response);
@@ -248,11 +248,12 @@ export default function AdminIrvine(props) {
             <div key={idx}>
               <FormGroup>
                 <Label>ID: </Label>
-                <Input defaultValue={item.id} />
+                <Input type="text" defaultValue={item.id} />
               </FormGroup>
               <FormGroup>
                 <Label>Date: </Label>
                 <Input
+                  type="text"
                   placeholder={item.date}
                   id={handleGenId("date", item.id)}
                 />
@@ -260,6 +261,7 @@ export default function AdminIrvine(props) {
               <FormGroup>
                 <Label>Confirmed: </Label>
                 <Input
+                  type="text"
                   placeholder={item.confirmed}
                   id={handleGenId("confirmed", item.id)}
                 />
