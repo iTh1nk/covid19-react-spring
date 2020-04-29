@@ -19,6 +19,7 @@ import { ReactstrapInput } from "reactstrap-formik";
 export default function AdminIrvine(props) {
   const [dataIrvine, setDataIrvine] = useState([]);
   const [modal, setModal] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   const toggle = () => setModal(!modal);
   const [update, setUpdate] = useState([]);
@@ -36,7 +37,7 @@ export default function AdminIrvine(props) {
       .catch((err) => {
         console.log(err.response);
       });
-  }, []);
+  }, [isClicked]);
 
   const handleDel = (e, id) => {
     e.preventDefault();
@@ -47,6 +48,7 @@ export default function AdminIrvine(props) {
     })
       .then((resp) => {
         setDataIrvine(dataIrvine.filter((item) => item.id !== id));
+        setIsClicked(!isClicked);
         console.log("Irvine Data DELETEd!");
       })
       .catch((err) => {
@@ -76,6 +78,7 @@ export default function AdminIrvine(props) {
         //   ...dataIrvine,
         // ]);
         setModal(!modal);
+        setIsClicked(!isClicked);
         console.log("Irvine Data UPDATEd!");
       })
       .catch((err) => {
