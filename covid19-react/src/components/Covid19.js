@@ -216,7 +216,9 @@ export default function Covid19() {
               </thead>
               <tbody style={{ textAlign: "center" }}>
                 <tr>
-                  <td style={numConfirmed}>{dataIrvine[0].confirmed}</td>
+                  <td style={numConfirmed}>
+                    {dataIrvine[dataIrvine.length - 1].confirmed}
+                  </td>
                   <td style={numNew}>
                     +
                     {dataIrvine.length === 1
@@ -258,8 +260,8 @@ export default function Covid19() {
                             +
                             {index === dataIrvine.length - 1
                               ? 0
-                              : dataIrvine[index].confirmed -
-                                dataIrvine[index + 1].confirmed}
+                              : dataIrvine[index + 1].confirmed -
+                                dataIrvine[index].confirmed}
                           </td>
                         </tr>
                       ))}
