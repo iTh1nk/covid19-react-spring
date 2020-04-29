@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Container, FormGroup, Label, Input, Button, Table } from "reactstrap";
+import {
+  Container,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+  Table,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import Axios from "axios";
@@ -7,6 +18,10 @@ import { ReactstrapInput } from "reactstrap-formik";
 
 export default function AdminIrvine(props) {
   const [dataIrvine, setDataIrvine] = useState([]);
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
+  const [update, setUpdate] = useState([]);
 
   useEffect(() => {
     Axios.get("/api/data/irvine/list", {
@@ -25,7 +40,7 @@ export default function AdminIrvine(props) {
 
   const handleDel = (e, id) => {
     e.preventDefault();
-    Axios.get("/api/data/irvine/del/" + id, {
+    Axios.delete("/api/data/irvine/del/" + id, {
       headers: {
         Authorization: window.localStorage.getItem("token"),
       },
@@ -37,6 +52,54 @@ export default function AdminIrvine(props) {
       .catch((err) => {
         console.log(err.response);
       });
+  };
+
+  const handleUpdate = (e, id) => {
+    e.preventDefault();
+    let data = {
+      id: id,
+      date: document.getElementById("dataDate" + id).value,
+      confirmed: document.getElementById("dataConfirmed" + id).value,
+    };
+    Axios.put("/api/data/irvine/update/" + id, data, {
+      headers: {
+        Authorization: window.localStorage.getItem("token"),
+      },
+    })
+      .then((resp) => {
+        // setDataIrvine([
+        //   {
+        //     id: values.irvineDataId,
+        //     date: values.irvineDataDate,
+        //     confirmed: values.irvineDataConfirmed,
+        //   },
+        //   ...dataIrvine,
+        // ]);
+        console.log("Irvine Data UPDATEd!", data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  const handleModalUpdate = (e, id, date, confirmed) => {
+    setModal(!modal);
+    setUpdate([
+      {
+        id: id,
+        date: date,
+        confirmed: confirmed,
+      },
+    ]);
+  };
+
+  const handleGenId = (str, id) => {
+    if (str === "date") {
+      return "dataDate" + id;
+    } else if (str === "confirmed") {
+      return "dataConfirmed" + id;
+    }
+    return null;
   };
 
   return (
@@ -77,12 +140,12 @@ export default function AdminIrvine(props) {
           })
             .then((resp) => {
               setDataIrvine([
-                ...dataIrvine,
                 {
                   id: values.irvineDataId,
                   date: values.irvineDataDate,
                   confirmed: values.irvineDataConfirmed,
                 },
+                ...dataIrvine,
               ]);
               console.log("Irvine Data POSTed!");
             })
@@ -142,12 +205,23 @@ export default function AdminIrvine(props) {
           </tr>
         </thead>
         <tbody>
-          {dataIrvine.reverse().map((item, idx) => (
+          {dataIrvine.map((item, idx) => (
             <tr key={idx}>
               <td>{item.id}</td>
               <td>{item.date}</td>
               <td>{item.confirmed}</td>
               <td>
+                <Button
+                  size="sm"
+                  outline
+                  color="success"
+                  style={{ marginRight: "1em" }}
+                  onClick={(e) =>
+                    handleModalUpdate(e, item.id, item.date, item.confirmed)
+                  }
+                >
+                  Update
+                </Button>
                 <Button
                   color="danger"
                   size="sm"
@@ -161,6 +235,53 @@ export default function AdminIrvine(props) {
           ))}
         </tbody>
       </Table>
+      {/* Modal for Data Update */}
+      <Modal
+        isOpen={modal}
+        toggle={toggle}
+        backdrop={true}
+        // keyboard={keyboard}
+      >
+        <ModalHeader toggle={toggle}>Update Data</ModalHeader>
+        <ModalBody>
+          {update.map((item, idx) => (
+            <div key={idx}>
+              <FormGroup>
+                <Label>ID: </Label>
+                <Input defaultValue={item.id} />
+              </FormGroup>
+              <FormGroup>
+                <Label>Date: </Label>
+                <Input
+                  placeholder={item.date}
+                  id={handleGenId("date", item.id)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>Confirmed: </Label>
+                <Input
+                  placeholder={item.confirmed}
+                  id={handleGenId("confirmed", item.id)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Button
+                  size="sm"
+                  color="primary"
+                  onClick={(e) => handleUpdate(e, item.id)}
+                  style={{ marginRight: "1em" }}
+                >
+                  Update
+                </Button>
+                <Button size="sm" color="secondary" onClick={toggle}>
+                  Cancel
+                </Button>
+              </FormGroup>
+            </div>
+          ))}
+        </ModalBody>
+        {/* <ModalFooter></ModalFooter> */}
+      </Modal>
     </Container>
   );
 }
