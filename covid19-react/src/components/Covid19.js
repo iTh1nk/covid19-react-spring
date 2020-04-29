@@ -225,6 +225,10 @@ export default function Covid19() {
                     {dataIrvine.length === 1
                       ? "NA"
                       : dataIrvine[dataIrvine.length - 1].confirmed -
+                          dataIrvine[dataIrvine.length - 2].confirmed <
+                        0
+                      ? 0
+                      : dataIrvine[dataIrvine.length - 1].confirmed -
                         dataIrvine[dataIrvine.length - 2].confirmed}
                   </td>
                 </tr>
