@@ -139,7 +139,7 @@ export default function Covid19() {
   };
 
   const regionTitle = {
-    color: "darkblue",
+    color: "white",
   };
 
   const numConfirmed = {
@@ -181,9 +181,10 @@ export default function Covid19() {
         {/* *********************************************************************************** */}
         {/* Card for Irvine */}
         <Card>
-          <CardHeader>
+          <CardHeader style={{ backgroundColor: "#e95421" }}>
             <h5 style={regionTitle}>
-              {lan.cardIrvine.title[lanSwitch]} ({dataIrvine[dataIrvine.length - 1].date})
+              {lan.cardIrvine.title[lanSwitch]} (
+              {dataIrvine[dataIrvine.length - 1].date})
             </h5>
           </CardHeader>
           <CardBody>
@@ -223,16 +224,16 @@ export default function Covid19() {
                     +
                     {dataIrvine.length === 1
                       ? "NA"
-                      : dataIrvine[dataIrvine.length - 1].confirmed - dataIrvine[dataIrvine.length - 2].confirmed}
+                      : dataIrvine[dataIrvine.length - 1].confirmed -
+                        dataIrvine[dataIrvine.length - 2].confirmed}
                   </td>
                 </tr>
               </tbody>
             </Table>
             <Button
-              color="primary"
               onClick={toggle}
               size="sm"
-              style={{ marginBottom: "1rem" }}
+              style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
             >
               {lan.general.cardBtn[lanSwitch]}
             </Button>
@@ -277,7 +278,7 @@ export default function Covid19() {
         {/* *********************************************************************************** */}
         {/* Card for OC */}
         <Card>
-          <CardHeader>
+          <CardHeader style={{ backgroundColor: "#e95421" }}>
             <h5 style={regionTitle}>
               {lan.cardOC.title[lanSwitch]}({dataOC[0].date}) (
               {lan.cardOC.icu[lanSwitch]}: {dataOC[0].icu})
@@ -306,10 +307,9 @@ export default function Covid19() {
               </tbody>
             </Table>
             <Button
-              color="primary"
               onClick={toggle1}
               size="sm"
-              style={{ marginBottom: "1rem" }}
+              style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
             >
               {lan.general.cardBtn[lanSwitch]}
             </Button>
