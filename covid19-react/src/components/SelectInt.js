@@ -137,7 +137,7 @@ function SelectInt(props) {
         {console.log(topNotification)}
         <span>
           {lanSwitch === "cn"
-            ? topNotification[0].cn
+            ? topNotification[0].en || lan.topNotification[lanSwitch]
             : topNotification[0].en || lan.topNotification[lanSwitch]}
         </span>
       </p>
