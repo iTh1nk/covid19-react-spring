@@ -18,6 +18,8 @@ import Axios from "axios";
 import SelectInt from "./SelectInt";
 import { AssignContext } from "./AssignContext";
 
+import IsLoading from "./IsLoading";
+
 import toaster from "toasted-notes";
 
 export default function Covid19() {
@@ -122,16 +124,6 @@ export default function Covid19() {
 
   // const date = new Date();
 
-  const Loading = () => {
-    return (
-      <div>
-        <Spinner type="grow" color="danger" />
-        <Spinner type="grow" color="warning" />
-        <Spinner type="grow" color="primary" />
-      </div>
-    );
-  };
-
   const containerStyle = {
     marginTop: "1em",
     marginBottom: "1em",
@@ -154,20 +146,11 @@ export default function Covid19() {
     fontStyle: "italic",
     color: "darkblue",
   };
-  const loadingStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "8em",
-  };
 
   if (isLoading) {
     return (
       <>
-        <div style={loadingStyle}>{lan.message.loading[lanSwitch]}</div>
-        <div style={loadingStyle}>
-          <Loading />
-        </div>
+        <IsLoading />
       </>
     );
   }
@@ -299,8 +282,8 @@ export default function Covid19() {
                     {lan.general.totalConfirmed[lanSwitch]}
                   </th>
                   <th style={numNew}>
-                    {lan.general.dailyNew[lanSwitch]}
-                    ({lan.general.newCaseHigh[lanSwitch]})
+                    {lan.general.dailyNew[lanSwitch]}(
+                    {lan.general.newCaseHigh[lanSwitch]})
                   </th>
                   <th style={numDead}>{lan.general.totalDeaths[lanSwitch]}</th>
                 </tr>

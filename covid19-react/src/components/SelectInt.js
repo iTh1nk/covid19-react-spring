@@ -1,28 +1,38 @@
 import React, { useState, useEffect, useContext } from "react";
 
 import Select from "react-select";
-import { Collapse, Button, CardBody, Card, Table } from "reactstrap";
+import { Collapse, Button, CardBody, Card, Table, Spinner } from "reactstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 // import Moment from "react-moment";
 import moment from "moment";
 import { AssignContext } from "./AssignContext";
 import "./SelectInt.css";
-// import Headlines from "./Headlines";
+import Axios from "axios";
+import IsLoading from "./IsLoading";
 
 function SelectInt(props) {
-  // const dateMoment = () => {
-  //   return moment({ startDate })
-  //     .subtract(1, "day")
-  //     .format("YYYY-M-D");
-  // };
+  const [isLoading, setIsLoading] = useState(true);
+  const [topNotification, setTopNotification] = useState([]);
+
+  useEffect(() => {
+    Axios.get("/api/toaster").then((resp) => {
+      setTopNotification([
+        {
+          cn: resp.data[1].content,
+          en: resp.data[2].content,
+        },
+      ]);
+      setIsLoading(false);
+    });
+  }, []);
 
   useEffect(() => {
     setCollapse(props.toggle);
   }, [props.toggle]);
 
   const [selectedOptionCountry, setSelectedOptionCountry] = useState([]);
-  const handleChangeCountry = selectedOptionCountry => {
+  const handleChangeCountry = (selectedOptionCountry) => {
     setSelectedOptionCountry(selectedOptionCountry);
     console.log(`Option selected:`, selectedOptionCountry);
   };
@@ -33,17 +43,6 @@ function SelectInt(props) {
   const { toggleStatus, setToggleStatus, lanSwitch, lan } = useContext(
     AssignContext
   );
-
-  // const [selectedData, dispatch] = useReducer(
-  //   selectedDataReducer,
-  //   "Waiting for data..."
-  // );
-  // function selectedDataReducer(state, action) {
-  //   switch (action.type) {
-  //     case "US":
-  //       return;
-  //   }
-  // }
 
   const onEntering = () => setToggleStatus("...");
   const onEntered = () => setToggleStatus("");
@@ -72,10 +71,7 @@ function SelectInt(props) {
         <div>
           {props.data[selectedOptionCountry.value].map((item, index) => (
             <div key={index}>
-              {item.date ==
-              moment(startDate)
-                // .subtract(1, "day")
-                .format("YYYY-M-D") ? (
+              {item.date == moment(startDate).format("YYYY-M-D") ? (
                 <Table>
                   <thead style={{ textAlign: "center" }}>
                     <tr>
@@ -104,7 +100,7 @@ function SelectInt(props) {
     }
   };
 
-  const handleReset = e => {
+  const handleReset = (e) => {
     e.preventDefault();
     setStartDate(new Date());
     setSelectedOptionCountry([]);
@@ -123,14 +119,27 @@ function SelectInt(props) {
     { value: "Japan", label: "日本(Japan)" },
     { value: "Russia", label: "俄罗斯(Russia)" },
     { value: "Mexico", label: "墨西哥(Mexico)" },
-    { value: "Taiwan*", label: "台湾(Taiwan)" }
+    { value: "Taiwan*", label: "台湾(Taiwan)" },
   ];
+
+  if (isLoading) {
+    return (
+      <>
+        <IsLoading />
+      </>
+    );
+  }
 
   return (
     <div>
-      {/* <Moment format="YYYY-M-D">{startDate}</Moment> */}
       <p className="topNotification">
-        <span>{lan.topNotification[lanSwitch]}</span>
+        {/* <span>{lan.topNotification[lanSwitch]}</span> */}
+        {console.log(topNotification)}
+        <span>
+          {lanSwitch === "cn"
+            ? topNotification[0].cn
+            : topNotification[0].en || lan.topNotification[lanSwitch]}
+        </span>
       </p>
       <Collapse
         isOpen={collapse}
@@ -151,19 +160,18 @@ function SelectInt(props) {
             <span>{lan.general.date[lanSwitch]}: </span>
             <DatePicker
               selected={startDate}
-              onChange={date => {
+              onChange={(date) => {
                 setStartDate(date);
               }}
               dateFormat="yyyy-M-d"
               showYearDropdown
-              // openToDate={new Date("2020/01/22")}
             />
             {selectedOptionCountry == "" ? null : (
               <div style={{ marginTop: "1em" }}>
                 <Button
                   color="secondary"
                   size="sm"
-                  onClick={e => handleReset(e)}
+                  onClick={(e) => handleReset(e)}
                 >
                   {lan.selectInt.resetBtn[lanSwitch]}
                 </Button>
@@ -177,8 +185,6 @@ function SelectInt(props) {
                 </span>
               </div>
             )}
-            {/* {moment(startDate).format("YYYY-M-D") ==
-            moment(new Date()).format("YYYY-M-D") ? null : ( */}
             <div style={{ marginTop: "1em" }}>
               <ShowSelectData />
             </div>
