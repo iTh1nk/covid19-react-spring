@@ -11,14 +11,14 @@ function Navi() {
     setToggleSearch,
     lanSwitch,
     SetLanSwitch,
-    lan
+    lan,
   } = useContext(AssignContext);
 
   const toggle = () => {
     setToggleSearch(!toggleSearch);
   };
 
-  const handleLanSwitch = e => {
+  const handleLanSwitch = (e) => {
     e.preventDefault();
     if (lanSwitch === "cn") {
       SetLanSwitch("en");
@@ -32,7 +32,7 @@ function Navi() {
 
   const lanSwitchIconStyle = {
     width: "1.8em",
-    height: "1.8em"
+    height: "1.8em",
   };
 
   return (
@@ -49,7 +49,13 @@ function Navi() {
           </TextLoop>
         </NavbarBrand>
         <Nav className="mr-auto" navbar>
-          <Button size="sm" outline onClick={e => handleLanSwitch(e)}>
+          <Button
+            size="sm"
+            outline
+            color="primary"
+            style={{ borderColor: "#e95421" }}
+            onClick={(e) => handleLanSwitch(e)}
+          >
             <img
               src="/lanSwitch.png"
               alt="Language Icon"
@@ -61,7 +67,7 @@ function Navi() {
         <NavbarText>
           <Button
             size="sm"
-            // onClick={toggle}
+            onClick={toggle}
             style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
           >
             {lan.searchBtn[lanSwitch]} {toggleStatus}

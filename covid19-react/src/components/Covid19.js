@@ -29,17 +29,6 @@ export default function Covid19() {
   );
 
   useEffect(() => {
-    // Axios.get("https://pomber.github.io/covid19/timeseries.json")
-    //   .then((resp) => {
-    //     setDataWorld(resp.data);
-    //     setDataUS(resp.data.US.reverse());
-    //     console.log(resp.data.US);
-    //     setIsLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
     Axios.get("/api/toaster")
       .then((resp) => {
         console.log("Get Toaster: ", resp);
@@ -60,7 +49,17 @@ export default function Covid19() {
         Axios.get("/api/data/irvine/list")
           .then((resp2) => {
             setDataIrvine(resp2.data);
-            setIsLoading(false);
+
+            Axios.get("https://pomber.github.io/covid19/timeseries.json")
+              .then((resp) => {
+                setDataWorld(resp.data);
+                setDataUS(resp.data.US.reverse());
+                console.log(resp.data.US);
+                setIsLoading(false);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           })
           .catch((err) => {
             console.log(err.response);
@@ -93,21 +92,21 @@ export default function Covid19() {
     // ));
   }, []);
 
-  // const numNewUS = (arg1, arg2) => {
-  //   return arg1 - arg2;
-  // };
-  // const numNewUSList = (num) => {
-  //   if (num == dataUS.length - 1) {
-  //     return dataUS[parseInt(num)].confirmed;
-  //   } else {
-  //     return (
-  //       dataUS[parseInt(num)].confirmed - dataUS[parseInt(num) + 1].confirmed
-  //     );
-  //   }
-  // };
-  // const formatDate = (str) => {
-  //   return str;
-  // };
+  const numNewUS = (arg1, arg2) => {
+    return arg1 - arg2;
+  };
+  const numNewUSList = (num) => {
+    if (num == dataUS.length - 1) {
+      return dataUS[parseInt(num)].confirmed;
+    } else {
+      return (
+        dataUS[parseInt(num)].confirmed - dataUS[parseInt(num) + 1].confirmed
+      );
+    }
+  };
+  const formatDate = (str) => {
+    return str;
+  };
 
   // const computeNewIrvine = (num, index) => {
   //   console.log(num, index);
@@ -355,18 +354,10 @@ export default function Covid19() {
         <br />
         {/* *********************************************************************************** */}
         {/* Card for US */}
-        {/* <Card>
-          <CardHeader>
+        <Card>
+          <CardHeader style={{ backgroundColor: "#e95421" }}>
             <h5 style={regionTitle}>
               {lan.cardUS.title[lanSwitch]} ({dataUS[0].date})
-              <span
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.replace("/admin");
-                }}
-              >
-                .
-              </span>
             </h5>
           </CardHeader>
           <CardBody>
@@ -391,16 +382,15 @@ export default function Covid19() {
               </tbody>
             </Table>
             <Button
-              color="primary"
               onClick={toggle2}
               size="sm"
-              style={{ marginBottom: "1rem" }}
+              style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
             >
               {lan.general.cardBtn[lanSwitch]}
-            </Button> */}
+            </Button>
 
-        {/* Toggle Content for US */}
-        {/* <Collapse isOpen={isOpen2}>
+            {/* Toggle Content for US */}
+            <Collapse isOpen={isOpen2}>
               <Card>
                 <CardBody>
                   <Table borderless>
@@ -427,7 +417,7 @@ export default function Covid19() {
               </Card>
             </Collapse>
           </CardBody>
-        </Card> */}
+        </Card>
       </Container>
     </>
   );
