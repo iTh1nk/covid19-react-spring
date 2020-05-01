@@ -34,7 +34,7 @@ function SelectInt(props) {
   const [selectedOptionCountry, setSelectedOptionCountry] = useState([]);
   const handleChangeCountry = (selectedOptionCountry) => {
     setSelectedOptionCountry(selectedOptionCountry);
-    console.log(`Option selected:`, selectedOptionCountry);
+    // console.log(`Option selected:`, selectedOptionCountry);
   };
 
   const [startDate, setStartDate] = useState(new Date());
@@ -51,7 +51,7 @@ function SelectInt(props) {
   // const toggle = () => setCollapse(!collapse);
 
   const ShowSelectData = () => {
-    console.log(moment(new Date()).diff(startDate, "minutes"));
+    // console.log(moment(new Date()).diff(startDate, "minutes"));
     if (selectedOptionCountry == "") {
       return (
         <div style={{ color: "red" }}>
@@ -134,7 +134,6 @@ function SelectInt(props) {
     <div>
       <p className="topNotification">
         {/* <span>{lan.topNotification[lanSwitch]}</span> */}
-        {console.log(topNotification)}
         <span>
           {lanSwitch === "cn"
             ? topNotification[0].en || lan.topNotification[lanSwitch]

@@ -39,10 +39,9 @@ export default function Admin() {
         setToaster(resp.data);
         // dispatch({ type: "get", data: resp.data });
         setIsLoading(false);
-        // console.log("Get Toaster: ", resp.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   }, []);
 
@@ -67,13 +66,13 @@ export default function Admin() {
             duration: document.getElementById("toasterDuration").value * 1000,
           },
         ]);
-        console.log("POSTed!", resp.data);
+        console.log("POSTed!");
         document.getElementById("toasterId").value = "";
         document.getElementById("toasterContent").value = "";
         document.getElementById("toasterDuration").value = "";
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 
@@ -90,7 +89,7 @@ export default function Admin() {
         console.log("DELETed!");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 
@@ -207,7 +206,6 @@ export default function Admin() {
             </tr>
           </thead>
           <tbody>
-            {/* {console.log("GetToaster: ", toaster)} */}
             {toaster.map((item, index) => (
               <tr key={index}>
                 <td>{item.id}</td>

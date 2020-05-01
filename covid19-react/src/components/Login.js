@@ -22,7 +22,6 @@ export default function Login() {
       },
     })
       .then((resp) => {
-        console.log("Get: ", resp.status);
         setIsLoggedIn(true);
         setUsers(resp.data);
       })
@@ -44,12 +43,12 @@ export default function Login() {
     Axios.post("/api/user/signup", data)
       .then((resp) => {
         setIsClicked(!isClicked);
-        console.log("Submitted! ", resp);
+        console.log("Submitted! ");
         document.getElementById("username").value = "";
         document.getElementById("password").value = "";
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 
@@ -72,7 +71,7 @@ export default function Login() {
         console.log("Deleted!");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 
@@ -90,10 +89,9 @@ export default function Login() {
       .then((resp) => {
         setIsClicked(!isClicked);
         window.localStorage.setItem("token", resp.headers.authorization);
-        console.log(resp);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 
@@ -187,7 +185,6 @@ export default function Login() {
             </tr>
           </thead>
           <tbody>
-            {/* {console.log("DEBUG: ", users[0])} */}
             {users[0] !== "<" ? (
               users.map((item, idx) => (
                 <tr key={idx}>

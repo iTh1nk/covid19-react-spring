@@ -31,7 +31,6 @@ export default function AdminIrvine(props) {
       },
     })
       .then((resp) => {
-        console.log(resp.data);
         setDataIrvine(resp.data);
       })
       .catch((err) => {

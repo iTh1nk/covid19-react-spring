@@ -33,12 +33,12 @@ export default function Covid19() {
   useEffect(() => {
     Axios.get("/api/toaster")
       .then((resp) => {
-        console.log("Get Toaster: ", resp);
+        // console.log("Get Toaster: ", resp);
         toaster.notify(
           <div style={{ fontWeight: "bold", color: "darkgreen" }}>
             {/* {lan.toasterNote[lanSwitch]} */}
             {/* {console.log("Typeof: " ,typeof resp.data[0])} */}
-            {console.log(resp.data)}
+            {/* {console.log(resp.data)} */}
             {typeof resp.data[0] === "undefined"
               ? lan.toasterNote[lanSwitch]
               : resp.data[0].content}
@@ -56,7 +56,7 @@ export default function Covid19() {
               .then((resp) => {
                 setDataWorld(resp.data);
                 setDataUS(resp.data.US.reverse());
-                console.log(resp.data.US);
+                // console.log(resp.data.US);
                 setIsLoading(false);
               })
               .catch((err) => {
