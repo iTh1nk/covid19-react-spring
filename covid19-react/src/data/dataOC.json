@@ -1,5 +1,18 @@
 [
   {
+    "date": "05-04",
+    "confirmed": 2819,
+    "new": 89,
+    "deaths": 57,
+    "icu": 52,
+    "hospitalized": 169,
+    "tests": 237,
+    "Anaheim": 420,
+    "Huntington Beach": 230,
+    "Santa Ana": 405,
+    "Tustin": 46
+  },
+  {
     "date": "05-03",
     "confirmed": 2743,
     "new": 107,
