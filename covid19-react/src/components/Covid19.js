@@ -147,95 +147,86 @@ export default function Covid19() {
     color: "darkblue",
   };
 
-  if (isLoading) {
+  function TableOC() {
     return (
       <>
-        <Container style={containerStyle}>
-          {/* *********************************************************************************** */}
-          {/* Card for OC */}
-          <Card>
-            <CardHeader style={{ backgroundColor: "#e95421" }}>
-              <h5 style={regionTitle}>
-                {lan.cardOC.title[lanSwitch]}({dataOC[0].date}) (
-                {lan.cardOC.icu[lanSwitch]}: {dataOC[0].icu})
-              </h5>
-            </CardHeader>
-            <CardBody>
-              <Table>
-                <thead style={{ textAlign: "center" }}>
-                  <tr>
-                    <th style={numConfirmed}>
-                      {lan.general.totalConfirmed[lanSwitch]}
-                    </th>
-                    <th style={numNew}>
-                      {lan.general.dailyNew[lanSwitch]}
-                      {/* New Highest Daily */}
-                      {/* ({lan.general.newCaseHigh[lanSwitch]}) */}
-                    </th>
-                    <th style={numDead}>
-                      {lan.general.totalDeaths[lanSwitch]}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody style={{ textAlign: "center" }}>
-                  <tr>
-                    <td style={numConfirmed}>{dataOC[0].confirmed}</td>
-                    <td style={numNew}>+{dataOC[0].new}</td>
-                    <td style={numDead}>{dataOC[0].deaths}</td>
-                  </tr>
-                </tbody>
-              </Table>
-              <Button
-                onClick={toggle1}
-                size="sm"
-                style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
-              >
-                {lan.general.cardBtn[lanSwitch]}
-              </Button>
+        {/* *********************************************************************************** */}
+        {/* Card for OC */}
+        <Card>
+          <CardHeader style={{ backgroundColor: "#e95421" }}>
+            <h5 style={regionTitle}>
+              {lan.cardOC.title[lanSwitch]}({dataOC[0].date}) (
+              {lan.cardOC.icu[lanSwitch]}: {dataOC[0].icu})
+            </h5>
+          </CardHeader>
+          <CardBody>
+            <Table>
+              <thead style={{ textAlign: "center" }}>
+                <tr>
+                  <th style={numConfirmed}>
+                    {lan.general.totalConfirmed[lanSwitch]}
+                  </th>
+                  <th style={numNew}>
+                    {lan.general.dailyNew[lanSwitch]}
+                    {/* New Highest Daily */}
+                    {/* ({lan.general.newCaseHigh[lanSwitch]}) */}
+                  </th>
+                  <th style={numDead}>{lan.general.totalDeaths[lanSwitch]}</th>
+                </tr>
+              </thead>
+              <tbody style={{ textAlign: "center" }}>
+                <tr>
+                  <td style={numConfirmed}>{dataOC[0].confirmed}</td>
+                  <td style={numNew}>+{dataOC[0].new}</td>
+                  <td style={numDead}>{dataOC[0].deaths}</td>
+                </tr>
+              </tbody>
+            </Table>
+            <Button
+              onClick={toggle1}
+              size="sm"
+              style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
+            >
+              {lan.general.cardBtn[lanSwitch]}
+            </Button>
 
-              {/* Toggle Content for OC */}
-              <Collapse isOpen={isOpen1}>
-                <Card>
-                  <CardBody>
-                    <Table borderless>
-                      <thead style={{ textAlign: "center" }}>
-                        <tr>
-                          <th>{lan.general.date[lanSwitch]}</th>
-                          <th style={numConfirmed}>
-                            {lan.general.dayConfirmed[lanSwitch]}
-                          </th>
-                          <th style={numNew}>
-                            {lan.general.dayNew[lanSwitch]}
-                          </th>
+            {/* Toggle Content for OC */}
+            <Collapse isOpen={isOpen1}>
+              <Card>
+                <CardBody>
+                  <Table borderless>
+                    <thead style={{ textAlign: "center" }}>
+                      <tr>
+                        <th>{lan.general.date[lanSwitch]}</th>
+                        <th style={numConfirmed}>
+                          {lan.general.dayConfirmed[lanSwitch]}
+                        </th>
+                        <th style={numNew}>{lan.general.dayNew[lanSwitch]}</th>
+                      </tr>
+                    </thead>
+                    <tbody style={{ textAlign: "center" }}>
+                      {dataOC.map((item, index) => (
+                        <tr key={index}>
+                          <td style={dateStyle}>{item.date}</td>
+                          <td style={numConfirmed}>{item.confirmed}</td>
+                          <td style={numNew}>+{item.new}</td>
                         </tr>
-                      </thead>
-                      <tbody style={{ textAlign: "center" }}>
-                        {dataOC.map((item, index) => (
-                          <tr key={index}>
-                            <td style={dateStyle}>{item.date}</td>
-                            <td style={numConfirmed}>{item.confirmed}</td>
-                            <td style={numNew}>+{item.new}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </Table>
-                  </CardBody>
-                </Card>
-              </Collapse>
-            </CardBody>
-            {/* <CardFooter></CardFooter> */}
-          </Card>
-        </Container>
-        <IsLoading />
+                      ))}
+                    </tbody>
+                  </Table>
+                </CardBody>
+              </Card>
+            </Collapse>
+          </CardBody>
+          {/* <CardFooter></CardFooter> */}
+        </Card>
       </>
     );
   }
 
-  return (
-    <>
-      <Container style={containerStyle}>
-        <SelectInt data={dataWorld} toggle={toggleSearch} />
-
+  function TableIrvine() {
+    return (
+      <>
         {/* *********************************************************************************** */}
         {/* Card for Irvine */}
         <Card>
@@ -340,78 +331,13 @@ export default function Covid19() {
           </CardBody>
           {/* <CardFooter></CardFooter> */}
         </Card>
-        <br />
-        {/* *********************************************************************************** */}
-        {/* Card for OC */}
-        <Card>
-          <CardHeader style={{ backgroundColor: "#e95421" }}>
-            <h5 style={regionTitle}>
-              {lan.cardOC.title[lanSwitch]}({dataOC[0].date}) (
-              {lan.cardOC.icu[lanSwitch]}: {dataOC[0].icu})
-            </h5>
-          </CardHeader>
-          <CardBody>
-            <Table>
-              <thead style={{ textAlign: "center" }}>
-                <tr>
-                  <th style={numConfirmed}>
-                    {lan.general.totalConfirmed[lanSwitch]}
-                  </th>
-                  <th style={numNew}>
-                    {lan.general.dailyNew[lanSwitch]}
-                    {/* New Highest Daily */}
-                    {/* ({lan.general.newCaseHigh[lanSwitch]}) */}
-                  </th>
-                  <th style={numDead}>{lan.general.totalDeaths[lanSwitch]}</th>
-                </tr>
-              </thead>
-              <tbody style={{ textAlign: "center" }}>
-                <tr>
-                  <td style={numConfirmed}>{dataOC[0].confirmed}</td>
-                  <td style={numNew}>+{dataOC[0].new}</td>
-                  <td style={numDead}>{dataOC[0].deaths}</td>
-                </tr>
-              </tbody>
-            </Table>
-            <Button
-              onClick={toggle1}
-              size="sm"
-              style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
-            >
-              {lan.general.cardBtn[lanSwitch]}
-            </Button>
+      </>
+    );
+  }
 
-            {/* Toggle Content for OC */}
-            <Collapse isOpen={isOpen1}>
-              <Card>
-                <CardBody>
-                  <Table borderless>
-                    <thead style={{ textAlign: "center" }}>
-                      <tr>
-                        <th>{lan.general.date[lanSwitch]}</th>
-                        <th style={numConfirmed}>
-                          {lan.general.dayConfirmed[lanSwitch]}
-                        </th>
-                        <th style={numNew}>{lan.general.dayNew[lanSwitch]}</th>
-                      </tr>
-                    </thead>
-                    <tbody style={{ textAlign: "center" }}>
-                      {dataOC.map((item, index) => (
-                        <tr key={index}>
-                          <td style={dateStyle}>{item.date}</td>
-                          <td style={numConfirmed}>{item.confirmed}</td>
-                          <td style={numNew}>+{item.new}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </CardBody>
-              </Card>
-            </Collapse>
-          </CardBody>
-          {/* <CardFooter></CardFooter> */}
-        </Card>
-        <br />
+  function TableUS() {
+    return (
+      <>
         {/* *********************************************************************************** */}
         {/* Card for US */}
         <Card>
@@ -478,6 +404,33 @@ export default function Covid19() {
             </Collapse>
           </CardBody>
         </Card>
+      </>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <>
+        <Container style={containerStyle}>
+          <TableOC />
+          <IsLoading />
+        </Container>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Container style={containerStyle}>
+        <SelectInt data={dataWorld} toggle={toggleSearch} />
+        {/* Show Data for Irvine */}
+        <TableIrvine />
+        <br />
+        {/* Show Data for OC */}
+        <TableOC />
+        <br />
+        {/* Show Data for US */}
+        <TableUS />
       </Container>
     </>
   );
