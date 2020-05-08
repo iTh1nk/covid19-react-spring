@@ -9,7 +9,7 @@ import {
   Table,
   Spinner,
 } from "reactstrap";
-// import dataIrvine from "../data/dataIrvine.json";
+import dataIrvineUnload from "../data/dataIrvine.json";
 import dataOC from "../data/dataOC.json";
 // import Moment from "react-moment";
 // import moment from "moment";
@@ -147,88 +147,177 @@ export default function Covid19() {
     color: "darkblue",
   };
 
-  function TableOC() {
-    return (
-      <>
-        {/* *********************************************************************************** */}
-        {/* Card for OC */}
-        <Card>
-          <CardHeader style={{ backgroundColor: "#e95421" }}>
-            <h5 style={regionTitle}>
-              {lan.cardOC.title[lanSwitch]}({dataOC[0].date}) (
-              {lan.cardOC.icu[lanSwitch]}: {dataOC[0].icu})
-            </h5>
-          </CardHeader>
-          <CardBody>
-            <Table>
-              <thead style={{ textAlign: "center" }}>
-                <tr>
-                  <th style={numConfirmed}>
-                    {lan.general.totalConfirmed[lanSwitch]}
-                  </th>
-                  <th style={numNew}>
-                    {lan.general.dailyNew[lanSwitch]}
-                    {/* New Highest Daily */}
-                    {/* ({lan.general.newCaseHigh[lanSwitch]}) */}
-                  </th>
-                  <th style={numDead}>{lan.general.totalDeaths[lanSwitch]}</th>
-                </tr>
-              </thead>
-              <tbody style={{ textAlign: "center" }}>
-                <tr>
-                  <td style={numConfirmed}>{dataOC[0].confirmed}</td>
-                  <td style={numNew}>+{dataOC[0].new}</td>
-                  <td style={numDead}>{dataOC[0].deaths}</td>
-                </tr>
-              </tbody>
-            </Table>
-            <Button
-              onClick={toggle1}
-              size="sm"
-              style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
-            >
-              {lan.general.cardBtn[lanSwitch]}
-            </Button>
-
-            {/* Toggle Content for OC */}
-            <Collapse isOpen={isOpen1}>
-              <Card>
-                <CardBody>
-                  <Table borderless>
-                    <thead style={{ textAlign: "center" }}>
-                      <tr>
-                        <th>{lan.general.date[lanSwitch]}</th>
-                        <th style={numConfirmed}>
-                          {lan.general.dayConfirmed[lanSwitch]}
-                        </th>
-                        <th style={numNew}>{lan.general.dayNew[lanSwitch]}</th>
-                      </tr>
-                    </thead>
-                    <tbody style={{ textAlign: "center" }}>
-                      {dataOC.map((item, index) => (
-                        <tr key={index}>
-                          <td style={dateStyle}>{item.date}</td>
-                          <td style={numConfirmed}>{item.confirmed}</td>
-                          <td style={numNew}>+{item.new}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                </CardBody>
-              </Card>
-            </Collapse>
-          </CardBody>
-          {/* <CardFooter></CardFooter> */}
-        </Card>
-      </>
-    );
-  }
-
   if (isLoading) {
     return (
       <>
         <Container style={containerStyle}>
-          <TableOC />
+          {/* *********************************************************************************** */}
+          {/* Card for Irvine Unload */}
+          <Card>
+            <CardHeader style={{ backgroundColor: "#e95421" }}>
+              <h5 style={regionTitle}>
+                {lan.cardIrvine.title[lanSwitch]} ({dataIrvineUnload[0].date})
+              </h5>
+            </CardHeader>
+            <CardBody>
+              <Table>
+                <thead style={{ textAlign: "center" }}>
+                  <tr>
+                    <th style={numConfirmed}>
+                      {lan.general.totalConfirmed[lanSwitch]}
+                    </th>
+                    <th style={numNew}>
+                      {lan.general.dailyNew[lanSwitch]}
+                      <span
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.location.replace("/admin");
+                        }}
+                      >
+                        .
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody style={{ textAlign: "center" }}>
+                  <tr>
+                    <td style={numConfirmed}>
+                      {dataIrvineUnload[0].confirmed}
+                    </td>
+                    <td style={numNew}>
+                      +
+                      {dataIrvineUnload.length === 1
+                        ? "NA"
+                        : dataIrvineUnload[0].confirmed -
+                            dataIrvineUnload[1].confirmed <
+                          0
+                        ? 0
+                        : dataIrvineUnload[0].confirmed -
+                          dataIrvineUnload[1].confirmed}
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Button
+                onClick={toggle}
+                size="sm"
+                style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
+              >
+                {lan.general.cardBtn[lanSwitch]}
+              </Button>
+
+              {/* Toggle Content for Irvine Unload */}
+              <Collapse isOpen={isOpen}>
+                <Card>
+                  <CardBody>
+                    <Table borderless>
+                      <thead style={{ textAlign: "center" }}>
+                        <tr>
+                          <th>{lan.general.date[lanSwitch]}</th>
+                          <th style={numConfirmed}>
+                            {lan.general.dayConfirmed[lanSwitch]}
+                          </th>
+                          <th style={numNew}>
+                            {lan.general.dayNew[lanSwitch]}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody style={{ textAlign: "center" }}>
+                        {dataIrvineUnload.map((item, index) => (
+                          <tr key={index}>
+                            <td style={dateStyle}>{item.date}</td>
+                            <td style={numConfirmed}>{item.confirmed}</td>
+                            <td style={numNew}>
+                              +
+                              {index === dataIrvineUnload.length - 1
+                                ? "NA"
+                                : dataIrvineUnload[index].confirmed -
+                                    dataIrvineUnload[index + 1].confirmed <
+                                  0
+                                ? 0
+                                : dataIrvineUnload[index].confirmed -
+                                  dataIrvineUnload[index + 1].confirmed}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </CardBody>
+                </Card>
+              </Collapse>
+            </CardBody>
+            {/* <CardFooter></CardFooter> */}
+          </Card>
+          {/* *********************************************************************************** */}
+          {/* Card for OC Unload */}
+          <Card>
+            <CardHeader style={{ backgroundColor: "#e95421" }}>
+              <h5 style={regionTitle}>
+                {lan.cardOC.title[lanSwitch]}({dataOC[0].date}) (
+                {lan.cardOC.icu[lanSwitch]}: {dataOC[0].icu})
+              </h5>
+            </CardHeader>
+            <CardBody>
+              <Table>
+                <thead style={{ textAlign: "center" }}>
+                  <tr>
+                    <th style={numConfirmed}>
+                      {lan.general.totalConfirmed[lanSwitch]}
+                    </th>
+                    <th style={numNew}>{lan.general.dailyNew[lanSwitch]}</th>
+                    <th style={numDead}>
+                      {lan.general.totalDeaths[lanSwitch]}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody style={{ textAlign: "center" }}>
+                  <tr>
+                    <td style={numConfirmed}>{dataOC[0].confirmed}</td>
+                    <td style={numNew}>+{dataOC[0].new}</td>
+                    <td style={numDead}>{dataOC[0].deaths}</td>
+                  </tr>
+                </tbody>
+              </Table>
+              <Button
+                onClick={toggle1}
+                size="sm"
+                style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
+              >
+                {lan.general.cardBtn[lanSwitch]}
+              </Button>
+
+              {/* Toggle Content for OC Unload */}
+              <Collapse isOpen={isOpen1}>
+                <Card>
+                  <CardBody>
+                    <Table borderless>
+                      <thead style={{ textAlign: "center" }}>
+                        <tr>
+                          <th>{lan.general.date[lanSwitch]}</th>
+                          <th style={numConfirmed}>
+                            {lan.general.dayConfirmed[lanSwitch]}
+                          </th>
+                          <th style={numNew}>
+                            {lan.general.dayNew[lanSwitch]}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody style={{ textAlign: "center" }}>
+                        {dataOC.map((item, index) => (
+                          <tr key={index}>
+                            <td style={dateStyle}>{item.date}</td>
+                            <td style={numConfirmed}>{item.confirmed}</td>
+                            <td style={numNew}>+{item.new}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </CardBody>
+                </Card>
+              </Collapse>
+            </CardBody>
+            {/* <CardFooter></CardFooter> */}
+          </Card>
           <IsLoading />
         </Container>
       </>
@@ -345,7 +434,76 @@ export default function Covid19() {
           {/* <CardFooter></CardFooter> */}
         </Card>
         <br />
-        <TableOC />
+        {/* *********************************************************************************** */}
+        {/* Card for OC */}
+        <Card>
+          <CardHeader style={{ backgroundColor: "#e95421" }}>
+            <h5 style={regionTitle}>
+              {lan.cardOC.title[lanSwitch]}({dataOC[0].date}) (
+              {lan.cardOC.icu[lanSwitch]}: {dataOC[0].icu})
+            </h5>
+          </CardHeader>
+          <CardBody>
+            <Table>
+              <thead style={{ textAlign: "center" }}>
+                <tr>
+                  <th style={numConfirmed}>
+                    {lan.general.totalConfirmed[lanSwitch]}
+                  </th>
+                  <th style={numNew}>
+                    {lan.general.dailyNew[lanSwitch]}
+                    {/* New Highest Daily */}
+                    {/* ({lan.general.newCaseHigh[lanSwitch]}) */}
+                  </th>
+                  <th style={numDead}>{lan.general.totalDeaths[lanSwitch]}</th>
+                </tr>
+              </thead>
+              <tbody style={{ textAlign: "center" }}>
+                <tr>
+                  <td style={numConfirmed}>{dataOC[0].confirmed}</td>
+                  <td style={numNew}>+{dataOC[0].new}</td>
+                  <td style={numDead}>{dataOC[0].deaths}</td>
+                </tr>
+              </tbody>
+            </Table>
+            <Button
+              onClick={toggle1}
+              size="sm"
+              style={{ marginBottom: "1rem", backgroundColor: "#e95421" }}
+            >
+              {lan.general.cardBtn[lanSwitch]}
+            </Button>
+
+            {/* Toggle Content for OC */}
+            <Collapse isOpen={isOpen1}>
+              <Card>
+                <CardBody>
+                  <Table borderless>
+                    <thead style={{ textAlign: "center" }}>
+                      <tr>
+                        <th>{lan.general.date[lanSwitch]}</th>
+                        <th style={numConfirmed}>
+                          {lan.general.dayConfirmed[lanSwitch]}
+                        </th>
+                        <th style={numNew}>{lan.general.dayNew[lanSwitch]}</th>
+                      </tr>
+                    </thead>
+                    <tbody style={{ textAlign: "center" }}>
+                      {dataOC.map((item, index) => (
+                        <tr key={index}>
+                          <td style={dateStyle}>{item.date}</td>
+                          <td style={numConfirmed}>{item.confirmed}</td>
+                          <td style={numNew}>+{item.new}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </CardBody>
+              </Card>
+            </Collapse>
+          </CardBody>
+          {/* <CardFooter></CardFooter> */}
+        </Card>
         <br />
         {/* *********************************************************************************** */}
         {/* Card for US */}

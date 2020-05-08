@@ -1,5 +1,45 @@
 [
   {
+    "date": "05-08",
+    "confirmed": 140
+  },
+  {
+    "date": "05-07",
+    "confirmed": 139
+  },
+  {
+    "date": "05-06",
+    "confirmed": 138
+  },
+  {
+    "date": "05-05",
+    "confirmed": 137
+  },
+  {
+    "date": "05-04",
+    "confirmed": 137
+  },
+  {
+    "date": "05-03",
+    "confirmed": 136
+  },
+  {
+    "date": "05-02",
+    "confirmed": 136
+  },
+  {
+    "date": "05-01",
+    "confirmed": 133
+  },
+  {
+    "date": "04-30",
+    "confirmed": 130
+  },
+  {
+    "date": "04-29",
+    "confirmed": 126
+  },
+  {
     "date": "04-28",
     "confirmed": 127
   },
