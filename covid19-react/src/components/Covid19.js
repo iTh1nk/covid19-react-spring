@@ -74,7 +74,7 @@ export default function Covid19() {
             {lan.toasterNote[lanSwitch]}
           </div>,
           {
-            duration: 1000,
+            duration: 10000,
           }
         );
       });

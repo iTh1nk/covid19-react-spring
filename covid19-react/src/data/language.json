@@ -12,8 +12,8 @@
     "en": "MacSearch"
   },
   "toasterNote": {
-    "cn": "等待数据库...",
-    "en": "Waiting for SQL..."
+    "cn": "Database Not Connected(数据库未连接)",
+    "en": "Database Not Connected..."
   },
   "topNotification": {
     "cn": "“这些残暴的欢愉，终将以残暴结局”",
