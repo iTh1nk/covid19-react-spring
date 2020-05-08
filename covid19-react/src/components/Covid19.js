@@ -224,9 +224,22 @@ export default function Covid19() {
     );
   }
 
-  function TableIrvine() {
+  if (isLoading) {
     return (
       <>
+        <Container style={containerStyle}>
+          <TableOC />
+          <IsLoading />
+        </Container>
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Container style={containerStyle}>
+        <SelectInt data={dataWorld} toggle={toggleSearch} />
+
         {/* *********************************************************************************** */}
         {/* Card for Irvine */}
         <Card>
@@ -331,13 +344,9 @@ export default function Covid19() {
           </CardBody>
           {/* <CardFooter></CardFooter> */}
         </Card>
-      </>
-    );
-  }
-
-  function TableUS() {
-    return (
-      <>
+        <br />
+        <TableOC />
+        <br />
         {/* *********************************************************************************** */}
         {/* Card for US */}
         <Card>
@@ -404,33 +413,6 @@ export default function Covid19() {
             </Collapse>
           </CardBody>
         </Card>
-      </>
-    );
-  }
-
-  if (isLoading) {
-    return (
-      <>
-        <Container style={containerStyle}>
-          <TableOC />
-          <IsLoading />
-        </Container>
-      </>
-    );
-  }
-
-  return (
-    <>
-      <Container style={containerStyle}>
-        <SelectInt data={dataWorld} toggle={toggleSearch} />
-        {/* Show Data for Irvine */}
-        <TableIrvine />
-        <br />
-        {/* Show Data for OC */}
-        <TableOC />
-        <br />
-        {/* Show Data for US */}
-        <TableUS />
       </Container>
     </>
   );
