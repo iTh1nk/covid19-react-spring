@@ -1,5 +1,37 @@
 [
   {
+    "date": "05-29",
+    "confirmed": 5923,
+    "new": 185,
+    "deaths": 145,
+    "icu": 98,
+    "hospitalized": 255,
+    "tests": 1484,
+    "Anaheim": 1001,
+    "Garden Grove": 316,
+    "Huntington Beach": 334,
+    "Irvine": 189,
+    "Orange": 270,
+    "Santa Ana": 1126,
+    "Tustin": 90
+  },
+  {
+    "date": "05-28",
+    "confirmed": 5744,
+    "new": 100,
+    "deaths": 142,
+    "icu": 105,
+    "hospitalized": 255,
+    "tests": 1229,
+    "Anaheim": 963,
+    "Garden Grove": 311,
+    "Huntington Beach": 331,
+    "Irvine": 185,
+    "Orange": 266,
+    "Santa Ana": 1085,
+    "Tustin": 91
+  },
+  {
     "date": "05-27",
     "confirmed": 5646,
     "new": 116,
