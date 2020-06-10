@@ -1,5 +1,21 @@
 [
   {
+    "date": "06-10",
+    "confirmed": 7737,
+    "new": 147,
+    "deaths": 198,
+    "icu": 146,
+    "hospitalized": 306,
+    "tests": 1564,
+    "Anaheim": 1429,
+    "Garden Grove": 430,
+    "Huntington Beach": 399,
+    "Irvine": 223,
+    "Orange": 348,
+    "Santa Ana": 1648,
+    "Tustin": 141
+  },
+  {
     "date": "06-09",
     "confirmed": 7614,
     "new": 93,
