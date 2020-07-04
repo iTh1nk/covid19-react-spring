@@ -1,5 +1,14 @@
 [
   {
+    "date": "07-03",
+    "confirmed": 15778,
+    "new": 713,
+    "deaths": 360,
+    "icu": 187,
+    "hospitalized": 584,
+    "tests": 5963
+  },
+  {
     "date": "07-02",
     "confirmed": 15065,
     "new": 652,
