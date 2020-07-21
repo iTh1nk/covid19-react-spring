@@ -1,5 +1,13 @@
 [
   {
+    "date": "07-20",
+    "confirmed": 1000
+  },
+  {
+    "date": "07-19",
+    "confirmed": 979
+  },
+  {
     "date": "07-18",
     "confirmed": 950
   },
