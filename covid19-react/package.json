@@ -13,7 +13,7 @@
     "formik": "^2.1.4",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "react": "^16.13.1",
     "react-datepicker": "^2.14.1",
     "react-dom": "^16.13.1",
